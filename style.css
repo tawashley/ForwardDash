@@ -49,18 +49,14 @@ body{
     margin-right: 0;
 }
 
-.widget--100{
+.widget--full{
     width: 100%;
 }
 
-.widget--75{
-    width: 75%;
-}
-
-.widget--50{
+.widget--half{
     width: 50%;
 }
 
-.widget--25{
+.widget--small{
     width: 25%;
 }

@@ -44,7 +44,7 @@ function WidgetManager() {
     function _renderWidgetHTML(response, widget) {
         var html = [];
 
-        html.push('<section class="widget" id="' + widget.name + 'Container">');
+        html.push('<section class="widget widget--' + widget.size + '" id="' + widget.name + 'Container">');
         html.push(response);
         html.push('</section>');
 
