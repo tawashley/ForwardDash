@@ -1,0 +1,66 @@
+html,
+body,
+p,
+ul,
+li,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6{
+    padding: 0;
+    margin: 0;
+}
+
+*{
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+html{
+    height: 100%;
+}
+
+body{
+    border-top: 6px solid #2D7BB3;
+    padding: 1em 2.5em;
+    height: inherit;
+    font-family: Arial, Helvetica, sans-serif;
+}
+._widget-container_{
+    display: none;
+}
+
+.show {
+    display: block;
+}
+
+.widget{
+    padding: .5em;
+    margin-bottom: 1em;
+    float: left;
+    border: 1px solid #333;
+    margin-right: 20px;
+}
+
+.widget + * {
+    margin-right: 0;
+}
+
+.widget--100{
+    width: 100%;
+}
+
+.widget--75{
+    width: 75%;
+}
+
+.widget--50{
+    width: 50%;
+}
+
+.widget--25{
+    width: 25%;
+}
