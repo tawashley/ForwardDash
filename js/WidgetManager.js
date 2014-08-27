@@ -44,11 +44,11 @@ function WidgetManager() {
     function _renderWidgetHTML(response, widget) {
         var html = [];
 
-        html.push('<section class="widget widget--' + widget.size + '" id="' + widget.name + 'Container">');
+        html.push('<section class="widget widget--' + widget.size + '" id="' + widget.name + 'Container" data-widget-id="' + widget.id + '">');
         html.push(response);
         html.push('</section>');
 
-        _container.insertAdjacentHTML('afterbegin', html.join(''));
+        _container.insertAdjacentHTML('beforeend', html.join(''));
 
         _loadScript(widget);
 
