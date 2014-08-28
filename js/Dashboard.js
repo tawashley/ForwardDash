@@ -6,12 +6,10 @@ document.addEventListener("DOMContentLoaded", function(){
         name: 'ClockWidget',
         size: 'small',
         config : {
-            showSeconds: false
-            // showTimeOfDayIcon: false
-            // showDate: false
-
-            // 24-hour of 12-hour clock
-           //clockFormat: 24 || 12
+            showSeconds: false,
+            // showTimeOfDayIcon: false,
+            // showDate: false,
+           // TwelvehourClock: true
         }
     })
 

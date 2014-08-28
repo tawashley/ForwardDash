@@ -5,6 +5,7 @@ function ClockWidget(config) {
         showDate: ((config.showDate !== undefined) ? config.showDate : true),
         showSeconds: ((config.showSeconds !== undefined) ? config.showSeconds : true),
         showTimeOfDayIcon: ((config.showTimeOfDayIcon !== undefined) ? config.showTimeOfDayIcon : true),
+        TwelvehourClock: ((config.TwelvehourClock !== undefined) ? config.TwelvehourClock : false)
     };
 
     var _dom = {
@@ -43,10 +44,16 @@ function ClockWidget(config) {
             date = new Date(),
             hour = (date.getHours() <= 9) ? '0' + date.getHours() : date.getHours(),
             mins = (date.getMinutes() <= 9) ? '0' + date.getMinutes() : date.getMinutes(),
-            seconds = (date.getSeconds() <= 9) ? '0' + date.getSeconds() : date.getSeconds();
+            seconds = (date.getSeconds() <= 9) ? '0' + date.getSeconds() : date.getSeconds(),
+            pmAm = (hour > 12) ? 'pm' : 'am';
 
         if(_config.showTimeOfDayIcon){
             html.push('<div class="clock-section clock-icon"><i class="icon '  + getTimeOfDayIcon(hour) + '"></i></div>')
+        }
+
+        if(_config.TwelvehourClock && hour > 12){
+            hour = '0' + (hour - 12);
+
         }
 
         html.push('<div class="clock-section clock-time">');
@@ -55,6 +62,10 @@ function ClockWidget(config) {
 
         if(_config.showSeconds){
             html.push('<span class="clock-seconds">:' + seconds + '</span>');
+        }
+
+        if(_config.TwelvehourClock){
+            html.push('<span class="clock-pm-am">' + pmAm + '</div>');
         }
 
         html.push('</div>');

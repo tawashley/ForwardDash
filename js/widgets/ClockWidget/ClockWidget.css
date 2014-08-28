@@ -9,6 +9,11 @@
     font-size: 4em;
 }
 
+.clock-pm-am{
+    font-size: .5em;
+    opacity: .65;
+}
+
 .clock-icon .icon{
     font-size: 3.125em;
 }
