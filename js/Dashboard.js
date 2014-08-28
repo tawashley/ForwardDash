@@ -6,11 +6,6 @@ document.addEventListener("DOMContentLoaded", function(){
         size: 'small'
     })
 
-    Manager.registerWidget({
-        name: 'TestWidget',
-        size: 'small'
-    })
-
     Manager.render();
 
 }, false);
