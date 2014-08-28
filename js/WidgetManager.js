@@ -15,7 +15,7 @@ function WidgetManager() {
 
     function _loadScript(widget) {
         var script = document.createElement('script');
-        script.src = 'js/widgets/' + widget.name + '/' + widget.name + 'Main.js';
+        script.src = 'js/widgets/' + widget.name + '/' + widget.name + '.js';
 
         script.onload = function(){
             //@TODO get rid of eval eventually!

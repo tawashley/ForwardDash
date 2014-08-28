@@ -2,13 +2,13 @@ document.addEventListener("DOMContentLoaded", function(){
     var Manager = WidgetManager();
 
     Manager.registerWidget({
-        name: 'TestWidget',
+        name: 'ClockWidget',
         size: 'small'
     })
 
     Manager.registerWidget({
-        name: 'TestWidget2',
-        size: 'full'
+        name: 'TestWidget',
+        size: 'small'
     })
 
     Manager.render();

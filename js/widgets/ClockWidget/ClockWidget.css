@@ -1,0 +1,14 @@
+.clock-widget-container{}
+
+.clock-widget-clock{
+    font-size: 48px;
+}
+
+.clock-seconds{
+    color: #DDD;
+    opacity: .65;
+}
+
+.date-section{
+    margin-right: .35em;
+}
