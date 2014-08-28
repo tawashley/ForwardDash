@@ -37,13 +37,29 @@ function ClockWidget() {
             mins = (date.getMinutes() <= 9) ? '0' + date.getMinutes() : date.getMinutes(),
             seconds = (date.getSeconds() <= 9) ? '0' + date.getSeconds() : date.getSeconds();
 
-        html.push('<span class="clock-section clock-hours">' + hour + ':</span>');
-        html.push('<span class="clock-section clock-mins">' + mins + ':</span>');
-        html.push('<span class="clock-section clock-seconds">' + seconds + '</span>');
+        html.push('<div class="clock-section clock-icon"><i class="icon '  + getTimeOfDayIcon(hour) + '"></i></div>')
+
+        html.push('<div class="clock-section clock-time">');
+        html.push('<span class="clock-hours">' + hour + ':</span>');
+        html.push('<span class="clock-mins">' + mins + ':</span>');
+        html.push('<span class="clock-seconds">' + seconds + '</span>');
+        html.push('</div>');
 
         _config.clock.innerHTML = html.join('');
 
         setTimeout(_render_time, 1000);
+
+        function getTimeOfDayIcon(hour) {
+            if(hour > 00 && hour < 08){
+                return 'icon-early-morning';
+            } else if(hour > 07 && hour < 13) {
+                return 'icon-morning';
+            } else if (hour > 12 && hour < 19){
+                return 'icon-afternoon';
+            } else if (hour > 18 && hour <= 23) {
+                return 'icon-evening';
+            }
+        }
     }
 
     exports.init = function() {
