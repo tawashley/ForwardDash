@@ -18,8 +18,8 @@ function WidgetManager() {
         script.src = 'js/widgets/' + widget.name + '/' + widget.name + '.js';
 
         script.onload = function(){
-            //@TODO get rid of eval eventually!
-            eval(widget.name + "().init()");
+            // eval(widget.name + "().init()");
+            window[widget.name](widget.config).init();
         }
 
         document.getElementById('WidgetManagerScript').appendChild(script);

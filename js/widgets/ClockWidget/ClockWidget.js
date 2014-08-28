@@ -1,9 +1,16 @@
-function ClockWidget() {
+function ClockWidget(config) {
+
 
     var _config = {
+        showDate: ((config.showDate !== undefined) ? config.showDate : true),
+        showSeconds: ((config.showSeconds !== undefined) ? config.showSeconds : true),
+        showTimeOfDayIcon: ((config.showTimeOfDayIcon !== undefined) ? config.showTimeOfDayIcon : true),
+    };
+
+    var _dom = {
         clock: document.getElementById('clock-widget-clock'),
         date: document.getElementById('clock-widget-date')
-    }
+    };
 
     var exports = {};
 
@@ -16,7 +23,7 @@ function ClockWidget() {
         html.push('<span class="date-section date-month">' + getMonthString(date.getMonth()) + '</span>');
         html.push('<span class="date-section date-year">' + date.getFullYear() + '</span>');
 
-        _config.date.innerHTML = html.join('');
+        _dom.date.innerHTML = html.join('');
 
         function getDayString(day_number){
             var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
@@ -28,6 +35,7 @@ function ClockWidget() {
             return months[month_number];
         }
 
+        setTimeout(_render_date, 100000);
     }
 
     function _render_time(){
@@ -37,15 +45,21 @@ function ClockWidget() {
             mins = (date.getMinutes() <= 9) ? '0' + date.getMinutes() : date.getMinutes(),
             seconds = (date.getSeconds() <= 9) ? '0' + date.getSeconds() : date.getSeconds();
 
-        html.push('<div class="clock-section clock-icon"><i class="icon '  + getTimeOfDayIcon(hour) + '"></i></div>')
+        if(_config.showTimeOfDayIcon){
+            html.push('<div class="clock-section clock-icon"><i class="icon '  + getTimeOfDayIcon(hour) + '"></i></div>')
+        }
 
         html.push('<div class="clock-section clock-time">');
         html.push('<span class="clock-hours">' + hour + ':</span>');
-        html.push('<span class="clock-mins">' + mins + ':</span>');
-        html.push('<span class="clock-seconds">' + seconds + '</span>');
+        html.push('<span class="clock-mins">' + mins + '</span>');
+
+        if(_config.showSeconds){
+            html.push('<span class="clock-seconds">:' + seconds + '</span>');
+        }
+
         html.push('</div>');
 
-        _config.clock.innerHTML = html.join('');
+        _dom.clock.innerHTML = html.join('');
 
         setTimeout(_render_time, 1000);
 
@@ -64,7 +78,10 @@ function ClockWidget() {
 
     exports.init = function() {
         _render_time();
-        _render_date();
+
+        if(_config.showDate){
+            _render_date();
+        }
     };
 
     return exports;
