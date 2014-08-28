@@ -6,6 +6,6 @@ document.addEventListener("DOMContentLoaded", function(){
         size: 'small'
     })
 
-    Manager.render();
+    Manager.renderWidgets();
 
 }, false);

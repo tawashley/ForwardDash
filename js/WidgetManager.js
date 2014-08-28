@@ -71,7 +71,7 @@ function WidgetManager() {
         return _widgets;
     };
 
-    exports.render = function() {
+    exports.renderWidgets = function() {
         _initialiseWidgets();
     };
 
