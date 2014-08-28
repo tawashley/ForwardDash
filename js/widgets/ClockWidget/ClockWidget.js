@@ -20,13 +20,11 @@ function ClockWidget() {
 
         function getDayString(day_number){
             var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
-
             return days[day_number];
         }
 
         function getMonthString(month_number){
-            var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August'];
-
+            var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
             return months[month_number];
         }
 
