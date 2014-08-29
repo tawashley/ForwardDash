@@ -10,6 +10,8 @@ function CurrentWeatherWidget() {
     //     TwelvehourClock: ((config.TwelvehourClock !== undefined) ? config.TwelvehourClock : false)
     // };
 
+    var exports = {};
+
     exports.init = function() {
         console.log('hits current weather widget init')
     };

@@ -5,7 +5,8 @@ function ClockWidget(config) {
         showDate: ((config.showDate !== undefined) ? config.showDate : true),
         showSeconds: ((config.showSeconds !== undefined) ? config.showSeconds : true),
         showTimeOfDayIcon: ((config.showTimeOfDayIcon !== undefined) ? config.showTimeOfDayIcon : true),
-        TwelvehourClock: ((config.TwelvehourClock !== undefined) ? config.TwelvehourClock : false)
+        TwelvehourClock: ((config.TwelvehourClock !== undefined) ? config.TwelvehourClock : false),
+        showYear: ((config.showYear !== undefined) ? config.showYear : true),
     };
 
     var _dom = {
@@ -22,7 +23,10 @@ function ClockWidget(config) {
         html.push('<span class="date-section date-day">' + getDayString(date.getDay()) + '</span>');
         html.push('<span class="date-section date-date">' + date.getDate() + '</span>');
         html.push('<span class="date-section date-month">' + getMonthString(date.getMonth()) + '</span>');
-        html.push('<span class="date-section date-year">' + date.getFullYear() + '</span>');
+
+        if(_config.showYear){
+            html.push('<span class="date-section date-year">' + date.getFullYear() + '</span>');
+        }
 
         _dom.date.innerHTML = html.join('');
 

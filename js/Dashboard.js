@@ -9,6 +9,10 @@ document.addEventListener("DOMContentLoaded", function(){
             // showTimeOfDayIcon: false,
             // showDate: false,
            // TwelvehourClock: true
+           // showYear: false
+
+           //shortMonth: true
+           //shortYear: true
         }
     })
 
