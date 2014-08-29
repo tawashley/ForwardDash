@@ -1,7 +1,6 @@
 document.addEventListener("DOMContentLoaded", function(){
     var Manager = WidgetManager();
 
-    //@TODO figure out have to pass config from registerWidget into the widget object;
     Manager.registerWidget({
         name: 'ClockWidget',
         size: 'small',
@@ -11,6 +10,12 @@ document.addEventListener("DOMContentLoaded", function(){
             // showDate: false,
            // TwelvehourClock: true
         }
+    })
+
+    Manager.registerWidget({
+        name: 'CurrentWeatherWidget',
+        size: 'medium',
+        position: 'right'
     })
 
     Manager.renderWidgets();

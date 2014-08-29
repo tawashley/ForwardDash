@@ -1,0 +1,34 @@
+.clock-icon{
+    height: 3.125em;
+    width: 3.125em;
+    margin-top: 1.25em;
+}
+
+.clock-time{
+    font-weight: 300;
+    font-size: 4em;
+}
+
+.clock-pm-am{
+    font-size: .5em;
+    opacity: .65;
+}
+
+.clock-icon .icon{
+    font-size: 3.125em;
+}
+
+.clock-section{
+    float: left;
+    margin-right: .5em;
+}
+
+.clock-seconds{
+    color: #DDD;
+    opacity: .65;
+    font-size: .7em;
+}
+
+.date-section{
+    margin-right: .3em;
+}
