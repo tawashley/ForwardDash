@@ -7,6 +7,8 @@ function ClockWidget(config) {
         showTimeOfDayIcon: ((config.showTimeOfDayIcon !== undefined) ? config.showTimeOfDayIcon : true),
         TwelvehourClock: ((config.TwelvehourClock !== undefined) ? config.TwelvehourClock : false),
         showYear: ((config.showYear !== undefined) ? config.showYear : true),
+        shortDay: ((config.shortDay !== undefined) ? config.shortDay : false),
+        shortMonth: ((config.shortMonth !== undefined) ? config.shortMonth : false),
     };
 
     var _dom = {
@@ -32,11 +34,23 @@ function ClockWidget(config) {
 
         function getDayString(day_number){
             var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
+            var shortDays = ['Sun', 'Mon', 'Tues', 'Wed', 'Thurs', 'Fri', 'Sat']
+
+            if(_config.shortDay){
+                return shortDays[day_number];
+            }
+
             return days[day_number];
         }
 
         function getMonthString(month_number){
             var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+            var shortMonths = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'June', 'July', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'];
+
+            if(_config.shortMonth){
+                return shortMonths[month_number];
+            }
+
             return months[month_number];
         }
 
@@ -57,7 +71,6 @@ function ClockWidget(config) {
 
         if(_config.TwelvehourClock && hour > 12){
             hour = '0' + (hour - 12);
-
         }
 
         html.push('<div class="clock-section clock-time">');
