@@ -5,15 +5,17 @@ document.addEventListener("DOMContentLoaded", function(){
         name: 'ClockWidget',
         size: 'small',
         config : {
-            showSeconds: false,
-            // showTimeOfDayIcon: false,
-            // showDate: false,
-           // TwelvehourClock: true
-           // showYear: false
-           // shortDay: true,
-           // shortMonth: true
-
-           //shortYear: true
+            clock: {
+                showSeconds: false,
+                // showTimeOfDayIcon: false,
+                // TwelvehourClock: true
+            },
+            date: {
+                // showDate: false
+                // showYear: false
+                // shortDay: true
+                // shortMonth: true
+            }
         }
     })
 
