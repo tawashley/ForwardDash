@@ -3,7 +3,9 @@ function CurrentWeatherWidget(config, helpers) {
     var _config = {
         celsius: helpers.config.setValue(config.celsius, false),
         formatString: ((config.celsius) ? '&#8451;' : '&#8457;'),
-        apiFormatString: ((config.celsius) ? 'metric' : 'imperial')
+        apiFormatString: ((config.celsius) ? 'metric' : 'imperial'),
+        showPlaceName: helpers.config.setValue(config.showPlaceName, true),
+        showMinMaxTemp: helpers.config.setValue(config.showMinMaxTemp, true)
     };
 
     var _position;
@@ -41,11 +43,16 @@ function CurrentWeatherWidget(config, helpers) {
 
         var html = [];
 
-        html.push('<div class="weather-location">' + response.name +', ' + response.sys.country +'</div>');
+        if(_config.showPlaceName){
+            html.push('<div class="weather-location">' + response.name +', ' + response.sys.country +'</div>');
+        }
 
         html.push('<div class="weather-data weather-data--primary">' + response.main.temp_max.toFixed(0) + formatStringHTML(_config.formatString) + '</div>');
-        html.push('<div class="weather-data weather-data--secondary">Max: ' + response.main.temp_max.toFixed(0) + formatStringHTML(_config.formatString) + '</div>');
-        html.push('<div class="weather-data weather-data--secondary">Min: ' + response.main.temp_min.toFixed(0) + formatStringHTML(_config.formatString) + '</div>');
+
+        if(_config.showMinMaxTemp){
+            html.push('<div class="weather-data weather-data--secondary">Max: ' + response.main.temp_max.toFixed(0) + formatStringHTML(_config.formatString) + '</div>');
+            html.push('<div class="weather-data weather-data--secondary">Min: ' + response.main.temp_min.toFixed(0) + formatStringHTML(_config.formatString) + '</div>');
+        }
 
         _dom.widgetContainer.innerHTML = html.join('');
 

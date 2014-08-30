@@ -24,8 +24,9 @@ document.addEventListener("DOMContentLoaded", function(){
         size: 'medium',
         position: 'right',
         config: {
-            celsius: true
+            celsius: true,
             // celsius: false (default)
+            // showMinMaxTemp: false
         }
     })
 
