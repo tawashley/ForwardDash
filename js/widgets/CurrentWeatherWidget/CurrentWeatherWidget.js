@@ -6,8 +6,6 @@ function CurrentWeatherWidget(config, helpers) {
         apiFormatString: ((config.celsius) ? 'metric' : 'imperial')
     };
 
-    console.log(_config);
-
     var _position;
 
     var _dom = {
@@ -43,15 +41,21 @@ function CurrentWeatherWidget(config, helpers) {
 
         var html = [];
 
-        html.push('<div class="weather-data max-temp">Current Temperature: ' + response.main.temp_max.toFixed(0) + _config.formatString + '</div>');
-        html.push('<div class="weather-data max-temp">Max Temp: ' + response.main.temp_max.toFixed(0) + _config.formatString + '</div>');
-        html.push('<div class="weather-data min-temp">Min Temp: ' + response.main.temp_min.toFixed(0) + _config.formatString + '</div>');
+        html.push('<div class="weather-location">' + response.name +', ' + response.sys.country +'</div>');
+
+        html.push('<div class="weather-data weather-data--primary">' + response.main.temp_max.toFixed(0) + formatStringHTML(_config.formatString) + '</div>');
+        html.push('<div class="weather-data weather-data--secondary">Max: ' + response.main.temp_max.toFixed(0) + formatStringHTML(_config.formatString) + '</div>');
+        html.push('<div class="weather-data weather-data--secondary">Min: ' + response.main.temp_min.toFixed(0) + formatStringHTML(_config.formatString) + '</div>');
 
         _dom.widgetContainer.innerHTML = html.join('');
+
+        function formatStringHTML(format) {
+            return '<sup class="weather-data temp-format">' + format + '</sup>';
+        }
     }
 
     function _loadingUIMessage(){
-        _dom.widgetContainer.innerHTML = '<p>Getting weather data...</p>';
+        _dom.widgetContainer.innerHTML = '<div class="loading-message">Getting the weather</div>';
     }
 
     var exports = {};

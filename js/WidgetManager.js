@@ -110,7 +110,6 @@ function WidgetHelpers(){
     exports.getLocation = function(data) {
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(function(position){
-                console.log('Geolocation Successful');
                 data.completeCallback(position);
             }, function(error){
 
