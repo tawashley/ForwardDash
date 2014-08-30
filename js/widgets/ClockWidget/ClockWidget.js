@@ -1,9 +1,8 @@
-function ClockWidget(config) {
-
+function ClockWidget(config, helpers) {
 
     var _config = {
         clock: {
-            showSeconds: ((config.clock.showSeconds !== undefined) ? config.clock.showSeconds : true),
+            showSeconds: helpers.config.setValue(config.clock.showSeconds, true),
             showTimeOfDayIcon: ((config.clock.showTimeOfDayIcon !== undefined) ? config.clock.showTimeOfDayIcon : true),
             TwelvehourClock: ((config.clock.TwelvehourClock !== undefined) ? config.clock.TwelvehourClock : false),
         },
