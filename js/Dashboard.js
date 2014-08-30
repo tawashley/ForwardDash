@@ -1,8 +1,6 @@
 document.addEventListener("DOMContentLoaded", function(){
     var Manager = WidgetManager();
 
-    //@TODO LOOK AT MAKING EACH WIDGET IT'S OWN WEB WORKER - PSUEDO THREADING
-
     Manager.registerWidget({
         name: 'ClockWidget',
         size: 'small',

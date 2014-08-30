@@ -45,7 +45,7 @@ function WidgetManager() {
     function _renderWidgetHTML(response, widget) {
         var html = [];
 
-        html.push('<section class="widget widget--' + widget.size + ' widget--'+ ((widget.position !== undefined) ? widget.position : 'left' ) +'" id="' + widget.name + 'Container" data-widget-id="' + widget.id + '">');
+        html.push('<section class="widget' + _getWidgetSizeClass(widget) + _getWidgetPositionClass(widget) +'" id="' + widget.name + 'Container" data-widget-id="' + widget.id + '">');
         html.push(response);
         html.push('</section>');
 
@@ -58,6 +58,14 @@ function WidgetManager() {
         }
 
         _count++;
+    }
+
+    function _getWidgetPositionClass(widget){
+        return ((widget.position !== undefined) ? ' widget--' + widget.position : ' widget--left' )
+    }
+
+    function _getWidgetSizeClass(widget){
+        return ((widget.size !== undefined) ? ' widget--' + widget.size : ' widget--left' )
     }
 
     exports.registerWidget = function(widget) {
