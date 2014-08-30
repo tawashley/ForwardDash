@@ -22,7 +22,11 @@ document.addEventListener("DOMContentLoaded", function(){
     Manager.registerWidget({
         name: 'CurrentWeatherWidget',
         size: 'medium',
-        position: 'right'
+        position: 'right',
+        config: {
+            celsius: true
+            // celsius: false (default)
+        }
     })
 
     Manager.renderWidgets();

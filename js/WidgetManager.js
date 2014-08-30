@@ -83,6 +83,9 @@ function WidgetHelpers(){
     exports.config = {
         setValue: function(value, default_value){
             return ((value !== undefined) ? value : default_value);
+        },
+        isUndefined: function(value){
+            return (value === undefined);
         }
     }
 
