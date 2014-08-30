@@ -1,6 +1,8 @@
 document.addEventListener("DOMContentLoaded", function(){
     var Manager = WidgetManager();
 
+    //@TODO LOOK AT MAKING EACH WIDGET IT'S OWN WEB WORKER - PSUEDO THREADING
+
     Manager.registerWidget({
         name: 'ClockWidget',
         size: 'small',
@@ -21,12 +23,11 @@ document.addEventListener("DOMContentLoaded", function(){
 
     Manager.registerWidget({
         name: 'CurrentWeatherWidget',
-        size: 'medium',
         position: 'right',
         config: {
             celsius: true,
             // celsius: false (default)
-            // showMinMaxTemp: false
+            showMinMaxTemp: false
         }
     })
 
