@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", function(){
                 // TwelvehourClock: true
             },
             date: {
-                // showDate: false
+                // showDate: true
                 // showYear: false
                 // shortDay: true
                 // shortMonth: true

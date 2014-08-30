@@ -3,14 +3,14 @@ function ClockWidget(config, helpers) {
     var _config = {
         clock: {
             showSeconds: helpers.config.setValue(config.clock.showSeconds, true),
-            showTimeOfDayIcon: ((config.clock.showTimeOfDayIcon !== undefined) ? config.clock.showTimeOfDayIcon : true),
-            TwelvehourClock: ((config.clock.TwelvehourClock !== undefined) ? config.clock.TwelvehourClock : false),
+            showTimeOfDayIcon: helpers.config.setValue(config.clock.showTimeOfDayIcon, true),
+            TwelvehourClock: helpers.config.setValue(config.clock.TwelvehourClock, false),
         },
         date : {
-            showDate: ((config.date.showDate !== undefined) ? config.date.showDate : true),
-            showYear: ((config.date.showYear !== undefined) ? config.date.showYear : true),
-            shortDay: ((config.date.shortDay !== undefined) ? config.date.shortDay : false),
-            shortMonth: ((config.date.shortMonth !== undefined) ? config.date.shortMonth : false)
+            showDate: helpers.config.setValue(config.date.showDate, true),
+            showYear: helpers.config.setValue(config.date.showYear, true),
+            shortDay: helpers.config.setValue(config.date.shortDay, false),
+            shortMonth: helpers.config.setValue(config.date.shortMonth, false)
         }
     };
 
