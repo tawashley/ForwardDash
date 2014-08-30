@@ -27,19 +27,12 @@ function WidgetManager() {
     }
 
     function _XHRWidgetHTML(widget) {
-        var xhr = new XMLHttpRequest();
-
-        xhr.open('GET', '/js/widgets/'+ widget.name + '/' + widget.name + '.html', true);
-
-        xhr.onreadystatechange= function() {
-            if (this.readyState !== 4 || this.status !== 200){
-                return;
-            }
-
-            _renderWidgetHTML(this.responseText, widget)
-        };
-
-        xhr.send();
+        helpers.asyncRequest({
+            method: 'GET',
+            uri: '/js/widgets/'+ widget.name + '/' + widget.name + '.html'
+        }, function(response){
+            _renderWidgetHTML(response, widget)
+        })
     }
 
     function _renderWidgetHTML(response, widget) {
