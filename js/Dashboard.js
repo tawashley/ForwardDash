@@ -27,7 +27,9 @@ document.addEventListener("DOMContentLoaded", function(){
         config: {
             celsius: true,
             // celsius: false (default)
-            showMinMaxTemp: false
+            showMinMaxTemp: false,
+            // showSunrise: false,
+            showSunset: true
         }
     })
 

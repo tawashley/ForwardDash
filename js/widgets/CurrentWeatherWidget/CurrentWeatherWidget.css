@@ -1,4 +1,6 @@
-.current-weather-container{}
+.current-weather-container{
+    text-align: right;
+}
 
 .loading-message{
     color: #AAA;
@@ -6,6 +8,10 @@
 
 .temp-format{
     font-size: .6em;
+}
+
+.weather-data{
+    font-weight: lighter;
 }
 
 .weather-data--primary{

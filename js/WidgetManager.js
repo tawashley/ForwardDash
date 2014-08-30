@@ -7,7 +7,6 @@ function WidgetManager() {
         _count = 1;
 
     var helpers = WidgetHelpers();
-
     var exports = {};
 
     function _initialiseWidgets() {
