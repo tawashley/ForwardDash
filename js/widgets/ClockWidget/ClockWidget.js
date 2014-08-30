@@ -72,8 +72,9 @@ function ClockWidget(config, helpers) {
             html.push('<div class="clock-section clock-icon"><i class="icon '  + getTimeOfDayIcon(hour) + '"></i></div>')
         }
 
+
         if(_config.clock.TwelvehourClock && hour > 12){
-            hour = '0' + (hour - 12);
+            hour = (hour - 12);
         }
 
         html.push('<div class="clock-section clock-time">');

@@ -51,8 +51,8 @@ document.addEventListener("DOMContentLoaded", function(){
         config : {
             clock: {
                 showSeconds: false,
-                // showTimeOfDayIcon: false,
-                // TwelvehourClock: true
+                showTimeOfDayIcon: false,
+                TwelvehourClock: true
             },
             date: {
                 // showDate: true
