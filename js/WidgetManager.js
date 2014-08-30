@@ -3,7 +3,10 @@ function WidgetManager() {
         _id_count = 1,
         _id_prefix = "W-000",
         _container = document.getElementById('_widget-container_'),
+        _widgetManagerScript = document.getElementById('WidgetManagerScript')
         _count = 1;
+
+    var helpers = WidgetHelpers();
 
     var exports = {};
 
@@ -18,10 +21,10 @@ function WidgetManager() {
         script.src = 'js/widgets/' + widget.name + '/' + widget.name + '.js';
 
         script.onload = function(){
-            window[widget.name](widget.config, WidgetHelpers()).init();
+            window[widget.name](widget.config, helpers).init();
         }
 
-        document.getElementById('WidgetManagerScript').appendChild(script);
+        _widgetManagerScript.appendChild(script);
     }
 
     function _XHRWidgetHTML(widget) {
