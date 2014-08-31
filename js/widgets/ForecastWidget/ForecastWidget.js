@@ -1,7 +1,11 @@
 function ForecastWidget(config, helpers) {
 
-    var widgetContainer = document.getElementById('forecast-container'),
-        _html = [];
+    var _html = [],
+        _date = new Date();
+
+    var _dom = {
+        widgetContainer: document.getElementById('forecast-container')
+    }
 
     var _config = {
         celsius: helpers.config.setValue(config.celsius, false),
@@ -30,7 +34,7 @@ function ForecastWidget(config, helpers) {
             _renderSingleDayForecast(day_forecast);
         });
 
-        widgetContainer.innerHTML = _html.join('');
+        _dom.widgetContainer.innerHTML = _html.join('');
     }
 
     function _renderSingleDayForecast(day_forecast){
@@ -57,9 +61,14 @@ function ForecastWidget(config, helpers) {
         });
     }
 
+    function _loadingUIMessage(){
+        _dom.widgetContainer.innerHTML = '<div class="loading-message">Getting the weather forecast</div>';
+    }
+
     var exports = {};
 
     exports.init = function() {
+        _loadingUIMessage();
         _getUserLocation();
     };
 

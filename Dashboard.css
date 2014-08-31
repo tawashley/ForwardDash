@@ -29,6 +29,12 @@ body{
     height: inherit;
     font-family: 'Open Sans', sans-serif;
 }
+
+.loading-message{
+    text-align: center;
+    color: #AAA;
+}
+
 ._widget-container_{
     /*display: none;*/
 
