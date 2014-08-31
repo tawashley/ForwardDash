@@ -97,9 +97,9 @@ function ClockWidget(config, helpers) {
 
         function getTimeOfDayIcon(hour) {
             if(hour > 00 && hour < 08){
-                return 'icon-early-morning';
-            } else if(hour > 07 && hour < 13) {
                 return 'icon-morning';
+            } else if(hour > 07 && hour < 13) {
+                return 'icon-sunny';
             } else if (hour > 12 && hour < 19){
                 return 'icon-afternoon';
             } else if (hour > 18 && hour <= 23) {

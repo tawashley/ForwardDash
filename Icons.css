@@ -1,16 +1,16 @@
 @font-face {
-	font-family: 'time-of-day-icons';
-	src:url('fonts/time-of-day-icons.eot?pr8f7r');
-	src:url('fonts/time-of-day-icons.eot?#iefixpr8f7r') format('embedded-opentype'),
-		url('fonts/time-of-day-icons.woff?pr8f7r') format('woff'),
-		url('fonts/time-of-day-icons.ttf?pr8f7r') format('truetype'),
-		url('fonts/time-of-day-icons.svg?pr8f7r#time-of-day-icons') format('svg');
+	font-family: 'weather-icons';
+	src:url('fonts/weather-icons.eot?-mglz33');
+	src:url('fonts/weather-icons.eot?#iefix-mglz33') format('embedded-opentype'),
+		url('fonts/weather-icons.woff?-mglz33') format('woff'),
+		url('fonts/weather-icons.ttf?-mglz33') format('truetype'),
+		url('fonts/weather-icons.svg?-mglz33#weather-icons') format('svg');
 	font-weight: normal;
 	font-style: normal;
 }
 
 [class^="icon-"], [class*=" icon-"] {
-	font-family: 'time-of-day-icons';
+	font-family: 'weather-icons';
 	speak: none;
 	font-style: normal;
 	font-weight: normal;
@@ -26,12 +26,36 @@
 .icon-afternoon:before {
 	content: "\e600";
 }
-.icon-early-morning:before {
+.icon-cloudy-alt:before {
 	content: "\e601";
 }
-.icon-evening:before {
+.icon-cloudy:before {
 	content: "\e602";
 }
-.icon-morning:before {
+.icon-evening:before {
 	content: "\e603";
+}
+.icon-mist:before {
+	content: "\e604";
+}
+.icon-morning:before {
+	content: "\e605";
+}
+.icon-overcast:before {
+	content: "\e606";
+}
+.icon-rainy:before {
+	content: "\e607";
+}
+.icon-snowy:before {
+	content: "\e608";
+}
+.icon-sunny:before {
+	content: "\e609";
+}
+.icon-thunder:before {
+	content: "\e60a";
+}
+.icon-windy:before {
+	content: "\e60b";
 }
