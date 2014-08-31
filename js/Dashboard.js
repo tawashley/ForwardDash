@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", function(){
         widgets: [
             {
                 name: 'ClockWidget',
-                size: 'small',
+                size: 'half',
                 config : {
                     clock: {
                         showSeconds: false,
