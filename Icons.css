@@ -1,10 +1,10 @@
 @font-face {
 	font-family: 'weather-icons';
-	src:url('fonts/weather-icons.eot?-mglz33');
-	src:url('fonts/weather-icons.eot?#iefix-mglz33') format('embedded-opentype'),
-		url('fonts/weather-icons.woff?-mglz33') format('woff'),
-		url('fonts/weather-icons.ttf?-mglz33') format('truetype'),
-		url('fonts/weather-icons.svg?-mglz33#weather-icons') format('svg');
+	src:url('dashboard/fonts/weather-icons.eot?-mglz33');
+	src:url('dashboard/fonts/weather-icons.eot?#iefix-mglz33') format('embedded-opentype'),
+		url('dashboard/fonts/weather-icons.woff?-mglz33') format('woff'),
+		url('dashboard/fonts/weather-icons.ttf?-mglz33') format('truetype'),
+		url('dashboard/fonts/weather-icons.svg?-mglz33#weather-icons') format('svg');
 	font-weight: normal;
 	font-style: normal;
 }

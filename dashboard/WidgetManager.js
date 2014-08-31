@@ -55,7 +55,7 @@ function WidgetManager() {
 
     function _loadScript(widget) {
         var script = document.createElement('script');
-        script.src = 'js/widgets/' + widget.name + '/' + widget.name + '.js';
+        script.src = 'dashboard/widgets/' + widget.name + '/' + widget.name + '.js';
 
         script.onload = function(){
             window[widget.name](widget.config, helpers).init();
@@ -67,7 +67,7 @@ function WidgetManager() {
     function _XHRWidgetHTML(widget, callback) {
         helpers.asyncRequest({
             method: 'GET',
-            uri: '/js/widgets/'+ widget.name + '/' + widget.name + '.html',
+            uri: '/dashboard/widgets/'+ widget.name + '/' + widget.name + '.html',
             async: false
         }, function(response){
             callback(response);
