@@ -22,9 +22,7 @@ function WidgetManager() {
 
     function _renderRow(row) {
         var html = [];
-
         var widgetCount = row.widgets.length;
-
         var count = 0;
 
         html.push('<div class="widget-row" id="' + row.name + '" >');
@@ -35,17 +33,11 @@ function WidgetManager() {
             });
 
             count++;
-
-            if(count === widgetCount){
-                console.log('looped through all widgets');
-            }
         })
 
         html.push('</div>');
 
         if(count === widgetCount){
-            console.log(html);
-
             _container.insertAdjacentHTML('beforeend', html.join(''));
 
             row.widgets.forEach(function(widget, index){
@@ -93,14 +85,6 @@ function WidgetManager() {
     function _getWidgetSizeClass(widget){
         return ((widget.size !== undefined) ? ' widget--' + widget.size : ' widget--left' )
     }
-
-    exports.registerWidget = function(widget) {
-        widget.id = _id_prefix + _id_count;
-
-        _widgets.push(widget);
-
-        _id_count++;
-    };
 
     exports.getWidgets = function() {
         return _widgets;
