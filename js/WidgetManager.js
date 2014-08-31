@@ -1,11 +1,8 @@
 function WidgetManager() {
-    var _widgets = [],
-        _widget_id = 0,
-        _widget_prefix = "W00-",
+    var _dashboardRows = [],
         _container = document.getElementById('_widget-container_'),
         _widgetManagerScript = document.getElementById('WidgetManagerScript')
         _count = 1;
-        _dashboardRows = [];
 
     var helpers = WidgetHelpers();
     var exports = {};
@@ -82,10 +79,6 @@ function WidgetManager() {
         return ((widget.size !== undefined) ? ' widget--' + widget.size : ' widget--left' )
     }
 
-    exports.getWidgets = function() {
-        return _widgets;
-    };
-
     exports.defineRow = function(data) {
         _dashboardRows.push({
             name: data.name,
@@ -94,7 +87,6 @@ function WidgetManager() {
     }
 
     exports.renderWidgets = function() {
-        // _initialiseWidgets();
         _initialiseRows();
     };
 
