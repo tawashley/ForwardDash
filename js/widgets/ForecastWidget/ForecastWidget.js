@@ -37,11 +37,8 @@ function ForecastWidget(config, helpers) {
     }
 
     function _renderSingleDayForecast(day_forecast, day_number){
+        //epoch date
         var forecastDate = new Date(day_forecast.dt * 1000);
-
-        console.log('forecast', day_forecast);
-
-        console.log('epoch date for forecast', day_forecast.dt);
 
         _html.push('<div class="day-forecast">');
 
