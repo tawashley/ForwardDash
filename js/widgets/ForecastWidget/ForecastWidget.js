@@ -12,6 +12,7 @@ function ForecastWidget(config, helpers) {
         apiFormatString: ((config.celsius) ? 'metric' : 'imperial'),
         showTemp: helpers.config.setValue(config.showTemp, true),
         showForecastDescription: helpers.config.setValue(config.showForecastDescription, true),
+        hightlightTodaysForecast: helpers.config.setValue(config.hightlightTodaysForecast, true)
     };
 
     var _position;
@@ -42,7 +43,7 @@ function ForecastWidget(config, helpers) {
         //epoch date
         var forecastDate = new Date(day_forecast.dt * 1000);
 
-        _html.push('<div class="day-forecast ' + _checkAddTodayClass(forecastDate.getDay()) + '">');
+        _html.push('<div class="day-forecast ' + ((_config.hightlightTodaysForecast) ? _checkAddTodayClass(forecastDate.getDay()) : '') + '">');
 
         _html.push('<div class="forecast-details">');
         _html.push('<div class="forecast-day">' + forecastDate.getDate() + ' ' + helpers.date.getMonthString(forecastDate.getMonth(), true) + '</div>');

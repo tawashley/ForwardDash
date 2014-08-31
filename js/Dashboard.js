@@ -43,8 +43,9 @@ document.addEventListener("DOMContentLoaded", function(){
                 size: 'full',
                 config: {
                     celsius: true,
-                    // showTemp: false
-                    // showForecastDescription: false
+                    // showTemp: false,
+                    // showForecastDescription: false,
+                    // hightlightTodaysForecast: false
                 }
             }
         ]
