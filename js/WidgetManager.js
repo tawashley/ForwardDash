@@ -19,7 +19,7 @@ function WidgetManager() {
         var widgetCount = row.widgets.length;
         var count = 0;
 
-        html.push('<div class="widget-row" id="' + row.name + '" >');
+        html.push('<div class="widget-row"' + _getDashboardRowID(row.name) + '>');
 
         row.widgets.forEach(function(widget, index){
             _widgetCount++;
@@ -78,6 +78,10 @@ function WidgetManager() {
         html.push('</section>');
 
         return html.join('');
+    }
+
+    function _getDashboardRowID(name){
+        return ((name !== undefined) ? 'id="' + name + '"': '');
     }
 
     function _getWidgetPositionClass(widget){

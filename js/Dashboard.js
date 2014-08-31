@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", function(){
     var Manager = WidgetManager();
 
     Manager.defineRow({
-        name: 'TestRowName',
+        name: 'TopRow',
         widgets: [
             {
                 name: 'ClockWidget',
