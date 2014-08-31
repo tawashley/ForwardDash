@@ -93,7 +93,7 @@ function WidgetManager() {
     }
 
     function _getWidgetSizeClass(widget){
-        return ((widget.size !== undefined) ? ' widget--' + widget.size : ' widget--left' )
+        return ((widget.size !== undefined) ? ' widget--' + widget.size : '' )
     }
 
     exports.defineRow = function(data) {
