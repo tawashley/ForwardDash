@@ -31,24 +31,46 @@ function ForecastWidget(config, helpers) {
 
     function _renderWeatherUI(response){
         response.list.forEach(function(day_forecast, index){
-            _renderSingleDayForecast(day_forecast);
+            _renderSingleDayForecast(day_forecast, index);
         });
 
         _dom.widgetContainer.innerHTML = _html.join('');
     }
 
-    function _renderSingleDayForecast(day_forecast){
+    function _renderSingleDayForecast(day_forecast, day_number){
         console.log('forecast', day_forecast);
 
         _html.push('<div class="day-forecast">');
-        _html.push('<div class="forecast-icon"></div>');
+
+        _html.push('<div class="forecast-icon">' + _renderForecastIconHTML(day_forecast.weather[0].main) + '</div>');
 
         _html.push('<div class="forecast-details">');
         _html.push('<div class="forecast-details--description">' + day_forecast.weather[0].main + '</div>');
-        _html.push('<div class="forecast-details--description">' + Math.round(day_forecast.temp.day) + _config.formatString + '</div>');
+        _html.push('<div class="forecast-details--temp">' + Math.round(day_forecast.temp.day) + _config.formatString + '</div>');
         _html.push('</div>');
 
         _html.push('</div>');
+    }
+
+    function _renderForecastIconHTML(type){
+        var icon_class;
+
+        switch(type){
+            case 'Rain':
+                icon_class = 'icon-rainy'
+                break;
+            case 'Clear':
+                icon_class = 'icon-sunny'
+                break;
+            case 'Clouds':
+                icon_class = 'icon-cloudy-alt'
+                break;
+            default:
+                console.warn('Icon for weather type of"' + type + '" has not yet been implemented - defaulting to sunny');
+                icon_class = 'icon-sunny'
+        }
+
+        return '<i class="icon ' + icon_class + '"></i>';
     }
 
     function _getForecast(){

@@ -10,10 +10,19 @@
 .forecast-icon{
     height: 5em;
     width: 5em;
-    background: #F00;
+}
+
+.forecast-icon .icon{
+    padding: .13em;
+    font-size: 4em;
 }
 
 .forecast-details{
     padding: .5em;
     text-align: center;
+    font-weight: 300;
+}
+
+.forecast-details--description{
+    color: #AAA;
 }
