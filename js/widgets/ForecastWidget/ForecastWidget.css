@@ -26,3 +26,11 @@
 .forecast-details--description{
     color: #AAA;
 }
+
+.forecast-details--temp-format{
+    font-size: .6em;
+}
+
+.forecast-day{
+    margin-bottom: .4em;
+}

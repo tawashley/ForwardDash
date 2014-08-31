@@ -10,6 +10,29 @@ function WidgetHelpers(){
         }
     }
 
+    exports.date = {
+        getDayString: function(day_number, short_day){
+            var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
+            var shortDays = ['Sun', 'Mon', 'Tues', 'Wed', 'Thurs', 'Fri', 'Sat']
+
+            if(short_day){
+                return shortDays[day_number];
+            }
+
+            return days[day_number];
+        },
+        getMonthString: function(month_number, short_date){
+            var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+            var shortMonths = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'June', 'July', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'];
+
+            if(short_date){
+                return shortMonths[month_number];
+            }
+
+            return months[month_number];
+        }
+    }
+
     exports.asyncRequest = function(data, callback) {
         var xhr = new XMLHttpRequest();
 

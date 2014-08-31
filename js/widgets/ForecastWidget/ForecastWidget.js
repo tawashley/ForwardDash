@@ -1,7 +1,6 @@
 function ForecastWidget(config, helpers) {
 
-    var _html = [],
-        _date = new Date();
+    var _html = [];
 
     var _dom = {
         widgetContainer: document.getElementById('forecast-container')
@@ -38,18 +37,30 @@ function ForecastWidget(config, helpers) {
     }
 
     function _renderSingleDayForecast(day_forecast, day_number){
+        var forecastDate = new Date(day_forecast.dt * 1000);
+
         console.log('forecast', day_forecast);
 
+        console.log('epoch date for forecast', day_forecast.dt);
+
         _html.push('<div class="day-forecast">');
+
+        _html.push('<div class="forecast-details">');
+        _html.push('<div class="forecast-day">' + forecastDate.getDate() + ' ' + helpers.date.getMonthString(forecastDate.getMonth(), true) + '</div>');
+        _html.push('</div>');
 
         _html.push('<div class="forecast-icon">' + _renderForecastIconHTML(day_forecast.weather[0].main) + '</div>');
 
         _html.push('<div class="forecast-details">');
         _html.push('<div class="forecast-details--description">' + day_forecast.weather[0].main + '</div>');
-        _html.push('<div class="forecast-details--temp">' + Math.round(day_forecast.temp.day) + _config.formatString + '</div>');
+        _html.push('<div class="forecast-details--temp">' + Math.round(day_forecast.temp.day) + _renderFormatStringHTML() + '</div>');
         _html.push('</div>');
 
         _html.push('</div>');
+    }
+
+    function _renderFormatStringHTML(){
+        return '<sup class="forecast-details--temp-format">' + _config.formatString + '</sup>';
     }
 
     function _renderForecastIconHTML(type){
