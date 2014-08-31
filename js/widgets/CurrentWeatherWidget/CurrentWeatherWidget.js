@@ -82,7 +82,7 @@ function CurrentWeatherWidget(config, helpers) {
     }
 
     function _loadingUIMessage(){
-        _dom.widgetContainer.innerHTML = '<div class="loading-message">Getting the weather</div>';
+        _dom.widgetContainer.innerHTML = '<div class="loading-message">Getting today\'s weather</div>';
     }
 
     var exports = {};
