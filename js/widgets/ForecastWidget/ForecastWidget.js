@@ -9,7 +9,9 @@ function ForecastWidget(config, helpers) {
     var _config = {
         celsius: helpers.config.setValue(config.celsius, false),
         formatString: ((config.celsius) ? '&#8451;' : '&#8457;'),
-        apiFormatString: ((config.celsius) ? 'metric' : 'imperial')
+        apiFormatString: ((config.celsius) ? 'metric' : 'imperial'),
+        showTemp: helpers.config.setValue(config.showTemp, true),
+        showForecastDescription: helpers.config.setValue(config.showForecastDescription, true),
     };
 
     var _position;
@@ -40,7 +42,7 @@ function ForecastWidget(config, helpers) {
         //epoch date
         var forecastDate = new Date(day_forecast.dt * 1000);
 
-        _html.push('<div class="day-forecast">');
+        _html.push('<div class="day-forecast ' + _checkAddTodayClass(forecastDate.getDay()) + '">');
 
         _html.push('<div class="forecast-details">');
         _html.push('<div class="forecast-day">' + forecastDate.getDate() + ' ' + helpers.date.getMonthString(forecastDate.getMonth(), true) + '</div>');
@@ -49,11 +51,22 @@ function ForecastWidget(config, helpers) {
         _html.push('<div class="forecast-icon">' + _renderForecastIconHTML(day_forecast.weather[0].main) + '</div>');
 
         _html.push('<div class="forecast-details">');
-        _html.push('<div class="forecast-details--description">' + day_forecast.weather[0].main + '</div>');
-        _html.push('<div class="forecast-details--temp">' + Math.round(day_forecast.temp.day) + _renderFormatStringHTML() + '</div>');
+
+        if(_config.showForecastDescription){
+            _html.push('<div class="forecast-details--description">' + day_forecast.weather[0].main + '</div>');
+        }
+
+        if(_config.showTemp){
+            _html.push('<div class="forecast-details--temp">' + Math.round(day_forecast.temp.day) + _renderFormatStringHTML() + '</div>');
+        }
+
         _html.push('</div>');
 
         _html.push('</div>');
+    }
+
+    function _checkAddTodayClass(day){
+        return (day === new Date().getDay()) ? 'day-forecast--today' : '';
     }
 
     function _renderFormatStringHTML(){

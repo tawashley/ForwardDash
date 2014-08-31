@@ -42,7 +42,9 @@ document.addEventListener("DOMContentLoaded", function(){
                 name: 'ForecastWidget',
                 size: 'full',
                 config: {
-                    celsius: true
+                    celsius: true,
+                    // showTemp: false
+                    // showForecastDescription: false
                 }
             }
         ]

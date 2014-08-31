@@ -1,10 +1,16 @@
 .day-forecast{
     float: left;
-    margin-right: 2.5em;
+    margin-right: 1.5em;
+    padding: .4em;
 }
 
 .day-forecast:last-child{
     margin-right: 0;
+}
+
+.day-forecast--today{
+    background: #2D7BB3;
+    color: #FFF;
 }
 
 .forecast-icon{
@@ -24,7 +30,8 @@
 }
 
 .forecast-details--description{
-    color: #AAA;
+    /*color: #AAA;*/
+    opacity: .4;
 }
 
 .forecast-details--temp-format{
