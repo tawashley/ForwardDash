@@ -1,8 +1,9 @@
 function WidgetManager() {
     var _dashboardRows = [],
         _container = document.getElementById('_widget-container_'),
-        _widgetManagerScript = document.getElementById('WidgetManagerScript')
-        _count = 1;
+        _widgetManagerScript = document.getElementById('WidgetManagerScript'),
+        _widgetCount = 0,
+        _count = 0;
 
     var helpers = WidgetHelpers();
     var exports = {};
@@ -21,6 +22,8 @@ function WidgetManager() {
         html.push('<div class="widget-row" id="' + row.name + '" >');
 
         row.widgets.forEach(function(widget, index){
+            _widgetCount++;
+
             _XHRWidgetHTML(widget, function(response){
                 html.push(_renderWidgetHTML(response, widget));
             });
@@ -31,11 +34,17 @@ function WidgetManager() {
         html.push('</div>');
 
         if(count === widgetCount){
+            console.log('number of widgets', _widgetCount);
+
             _container.insertAdjacentHTML('beforeend', html.join(''));
 
             row.widgets.forEach(function(widget, index){
                 _loadScript(widget);
             })
+        }
+
+        if(_widgetCount === count){
+            _container.classList.add('show');
         }
 
     }

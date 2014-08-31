@@ -1,0 +1,5 @@
+if(_count == _widgets.length){
+    _container.classList.add('show');
+}
+
+_count++;
