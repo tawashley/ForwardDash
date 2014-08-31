@@ -1,0 +1,19 @@
+.day-forecast{
+    float: left;
+    margin-right: 2.5em;
+}
+
+.day-forecast:last-child{
+    margin-right: 0;
+}
+
+.forecast-icon{
+    height: 5em;
+    width: 5em;
+    background: #F00;
+}
+
+.forecast-details{
+    padding: .5em;
+    text-align: center;
+}

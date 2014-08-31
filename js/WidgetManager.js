@@ -34,8 +34,6 @@ function WidgetManager() {
         html.push('</div>');
 
         if(count === widgetCount){
-            console.log('number of widgets', _widgetCount);
-
             _container.insertAdjacentHTML('beforeend', html.join(''));
 
             row.widgets.forEach(function(widget, index){

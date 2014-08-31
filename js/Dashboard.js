@@ -35,6 +35,19 @@ document.addEventListener("DOMContentLoaded", function(){
         ]
     })
 
+    Manager.defineRow({
+        name: 'ForecastRow',
+        widgets: [
+            {
+                name: 'ForecastWidget',
+                size: 'full',
+                config: {
+                    celsius: true
+                }
+            }
+        ]
+    })
+
     Manager.renderWidgets();
 
 }, false);
