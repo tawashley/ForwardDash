@@ -1,7 +1,5 @@
 function WidgetManager() {
     var _widgets = [],
-        _id_count = 1,
-        _id_prefix = "W-000",
         _container = document.getElementById('_widget-container_'),
         _widgetManagerScript = document.getElementById('WidgetManagerScript')
         _count = 1;
@@ -16,6 +14,47 @@ function WidgetManager() {
         });
     };
 
+    function _initialiseRows() {
+        _dashboardRows.forEach(function(row, index){
+            _renderRow(row);
+        })
+    }
+
+    function _renderRow(row) {
+        var html = [];
+
+        var widgetCount = row.widgets.length;
+
+        var count = 0;
+
+        html.push('<div class="widget-row" id="' + row.name + '" >');
+
+        row.widgets.forEach(function(widget, index){
+            _XHRWidgetHTML(widget, function(response){
+                html.push(_renderWidgetHTML(response, widget));
+            });
+
+            count++;
+
+            if(count === widgetCount){
+                console.log('looped through all widgets');
+            }
+        })
+
+        html.push('</div>');
+
+        if(count === widgetCount){
+            console.log(html);
+
+            _container.insertAdjacentHTML('beforeend', html.join(''));
+
+            row.widgets.forEach(function(widget, index){
+                _loadScript(widget);
+            })
+        }
+
+    }
+
     function _loadScript(widget) {
         var script = document.createElement('script');
         script.src = 'js/widgets/' + widget.name + '/' + widget.name + '.js';
@@ -27,31 +66,24 @@ function WidgetManager() {
         _widgetManagerScript.appendChild(script);
     }
 
-    function _XHRWidgetHTML(widget) {
+    function _XHRWidgetHTML(widget, callback) {
         helpers.asyncRequest({
             method: 'GET',
-            uri: '/js/widgets/'+ widget.name + '/' + widget.name + '.html'
+            uri: '/js/widgets/'+ widget.name + '/' + widget.name + '.html',
+            async: false
         }, function(response){
-            _renderWidgetHTML(response, widget)
+            callback(response);
         })
     }
 
     function _renderWidgetHTML(response, widget) {
         var html = [];
 
-        html.push('<section class="widget' + _getWidgetSizeClass(widget) + _getWidgetPositionClass(widget) +'" id="' + widget.name + 'Container" data-widget-id="' + widget.id + '">');
+        html.push('<section class="widget' + _getWidgetSizeClass(widget) + _getWidgetPositionClass(widget) +'" id="' + widget.name + 'Container">');
         html.push(response);
         html.push('</section>');
 
-        _container.insertAdjacentHTML('beforeend', html.join(''));
-
-        _loadScript(widget);
-
-        if(_count == _widgets.length){
-            _container.classList.add('show');
-        }
-
-        _count++;
+        return html.join('');
     }
 
     function _getWidgetPositionClass(widget){
@@ -75,15 +107,15 @@ function WidgetManager() {
     };
 
     exports.defineRow = function(data) {
-        _dashboardRows[data.name] = data.widgets;
-
-        console.log('data', data);
-
-        console.log('rows', _dashboardRows);
+        _dashboardRows.push({
+            name: data.name,
+            widgets: data.widgets
+        });
     }
 
     exports.renderWidgets = function() {
-        _initialiseWidgets();
+        // _initialiseWidgets();
+        _initialiseRows();
     };
 
     return exports;

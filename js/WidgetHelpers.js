@@ -13,7 +13,7 @@ function WidgetHelpers(){
     exports.asyncRequest = function(data, callback) {
         var xhr = new XMLHttpRequest();
 
-        xhr.open(data.method, data.uri, true);
+        xhr.open(data.method, data.uri, (data.async !== undefined) ? data.async : true);
 
         xhr.onreadystatechange = function() {
             if (this.readyState !== 4 || this.status !== 200){

@@ -30,7 +30,13 @@ body{
     font-family: 'Open Sans', sans-serif;
 }
 ._widget-container_{
-    display: none;
+    /*display: none;*/
+}
+
+.widget-row:after {
+  content: "";
+  display: table;
+  clear: both;
 }
 
 .show {
