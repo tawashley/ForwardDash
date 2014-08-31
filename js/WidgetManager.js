@@ -1,5 +1,7 @@
 function WidgetManager() {
     var _widgets = [],
+        _widget_id = 0,
+        _widget_prefix = "W00-",
         _container = document.getElementById('_widget-container_'),
         _widgetManagerScript = document.getElementById('WidgetManagerScript')
         _count = 1;
@@ -7,12 +9,6 @@ function WidgetManager() {
 
     var helpers = WidgetHelpers();
     var exports = {};
-
-    function _initialiseWidgets() {
-        _widgets.forEach(function(widget, index){
-            _XHRWidgetHTML(widget);
-        });
-    };
 
     function _initialiseRows() {
         _dashboardRows.forEach(function(row, index){
