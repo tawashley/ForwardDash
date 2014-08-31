@@ -1,6 +1,8 @@
 document.addEventListener("DOMContentLoaded", function(){
     var Manager = WidgetManager();
 
+    Manager.setLoadingMessage('Loading dashboard widgets');
+
     Manager.defineRow({
         name: 'TopRow',
         widgets: [

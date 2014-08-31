@@ -3,7 +3,8 @@ function WidgetManager() {
         _container = document.getElementById('_widget-container_'),
         _widgetManagerScript = document.getElementById('WidgetManagerScript'),
         _widgetCount = 0,
-        _count = 0;
+        _count = 0,
+        _setLoadingMessage = false;
 
     var helpers = WidgetHelpers();
     var exports = {};
@@ -42,6 +43,11 @@ function WidgetManager() {
         }
 
         if(_widgetCount === count){
+
+            if(_setLoadingMessage){
+                document.getElementById('dashboard-loading-message').parentElement.removeChild(document.getElementById('dashboard-loading-message'));
+            }
+
             _container.classList.add('show');
         }
 
@@ -100,6 +106,16 @@ function WidgetManager() {
     exports.renderWidgets = function() {
         _initialiseRows();
     };
+
+    exports.setLoadingMessage = function(message) {
+        var html = [];
+
+        html.push('<div class="loading-message" id="dashboard-loading-message">'+ message + '</div>');
+        // document.getElementsByTagName('body')[0].innerHTML = '<div class="loading-message">'+ message + '</div>';
+        document.getElementsByTagName('body')[0].insertAdjacentHTML('afterbegin', html.join(''));
+
+        _setLoadingMessage = true;
+    }
 
     return exports;
 };
