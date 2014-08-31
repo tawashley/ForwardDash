@@ -5,6 +5,7 @@ function WidgetManager() {
         _container = document.getElementById('_widget-container_'),
         _widgetManagerScript = document.getElementById('WidgetManagerScript')
         _count = 1;
+        _dashboardRows = [];
 
     var helpers = WidgetHelpers();
     var exports = {};
@@ -72,6 +73,14 @@ function WidgetManager() {
     exports.getWidgets = function() {
         return _widgets;
     };
+
+    exports.defineRow = function(data) {
+        _dashboardRows[data.name] = data.widgets;
+
+        console.log('data', data);
+
+        console.log('rows', _dashboardRows);
+    }
 
     exports.renderWidgets = function() {
         _initialiseWidgets();
