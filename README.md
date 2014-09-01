@@ -2,7 +2,7 @@
 
 > Widget powered web based dashboard using HTML, CSS and JS
 
-A Web Dashboard built using widgets - built with a focus on the developer, allowing freedom of structure and behavior with the look and feel being controlled programatically.
+A Web Dashboard built using widgets - built with a focus on the developer, allowing freedom of structure and behavior with the look and feel being controlled programatically. You will find no fancy UI for dragging and dropping widgets here nor will you find menus for removing or adding widgets - all of this is done in the code, examples of which can be found below.
 
 There are currently three default widgets
 
@@ -141,6 +141,36 @@ For example, all code for a widget called 'FooBar' would be in a folder called '
 
 This strucutre can be seen for the default dashboard widgets.
 
+FooBarWidget.html
+
+```html
+<div id="foo-bar-container" class="foo-bar-container widget-container"></div>
+
+<!-- href must be relative to index.html -->
+<link rel="stylesheet" href="dashboard/widgets/FooBarWidget/FooBarWidget.css">
+```
+
+FooBarWidget.js
+
+```js
+function FooBarWidget() {
+
+    var exports = {};
+
+    ...
+
+    //Single public function. This function is called during renderWidgets()
+    exports.init = function() {
+        //GO GO GO WIDGET!
+    };
+
+    return exports;
+};
+```
+
+A widget stylesheet is optional, with only .html and .js being required. Further info on developing a widget can be found in Developing A Widget
+
 ## Current Limitations
 
-@TODO limitations
+* Only one instance of a widget can be on the dashboard at a time. Due to how widgets markup have IDs and this being the hook for the widget's script adding a second widget of the same type does not currently work. This could be improved in the future via perhaps employing a data attribute to the markup. Either way having multiple instances of the the same widget is something I have not unfortunately at the time of writing invested time in solving.
+* By it's very design, once the dashboard has been render on the UI adding, removing, repositioning etc. widgets is accompished by changing the underlying code, not by clicking UI controls.
