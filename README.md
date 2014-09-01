@@ -4,6 +4,8 @@
 
 A Web Dashboard built using widgets - built with a focus on the developer, allowing freedom of structure and behavior with the look and feel being controlled programatically. You will find no fancy UI for dragging and dropping widgets here nor will you find menus for removing or adding widgets - all of this is done in the code, examples of which can be found below.
 
+This is all in the aim of giving a developer power over a widget's structure, look and behaviour and removing unecessary abstraction through the interface.
+
 There are currently three default widgets
 
 * ClockWidget
@@ -112,6 +114,7 @@ Manager.defineRow({
 
 Manager.defineRow({
     name: 'ForecastRow',
+    position: 'left'
     widgets: [
         {
             name: 'ForecastWidget',
