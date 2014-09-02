@@ -5,12 +5,13 @@ module.exports = function(grunt) {
 
     //Default Task
     grunt.registerTask('default', [
-        'sass',
-        'autoprefixer',
-        'cssmin',
-        'concat',
-        'jshint',
-        'uglify',
+        //'sass',
+        //'autoprefixer',
+        //'cssmin',
+        //'concat',
+        //'jshint',
+        //'uglify',
+        'connect:livereload',
         'watch'
     ]);
 
@@ -25,100 +26,123 @@ module.exports = function(grunt) {
         pkg: grunt.file.readJSON('package.json'),
 
         // usage '<%= config.foo %>'
-        config: {
+        // config: {
 
-        },
+        // },
 
-        //=CSS related tasks
-        sass: {
-            options: {
-                style: 'expanded',
-                sourcemap: true
-            },
-            main: {
-                files: {
-                    '<%= config.css.dir %>/<%= config.css.fileName %>.css':'<%= config.sass.dir %>/<%= config.sass.fileName %>.scss'
-                }
-            }
-        },
+        // //=CSS related tasks
+        // sass: {
+        //     options: {
+        //         style: 'expanded',
+        //         sourcemap: true
+        //     },
+        //     main: {
+        //         files: {
+        //             '<%= config.css.dir %>/<%= config.css.fileName %>.css':'<%= config.sass.dir %>/<%= config.sass.fileName %>.scss'
+        //         }
+        //     }
+        // },
 
-        autoprefixer: {
-            options: {
-                browsers: ['last 2 version', 'ie 9']
-            },
-            main: {
-                expand: true,
-                flatten: true,
-                src: '<%= config.css.dir %>/<%= config.css.fileName %>.css',
-                dest: '<%= config.css.dir %>'
-            }
-        },
+        // autoprefixer: {
+        //     options: {
+        //         browsers: ['last 2 version', 'ie 9']
+        //     },
+        //     main: {
+        //         expand: true,
+        //         flatten: true,
+        //         src: '<%= config.css.dir %>/<%= config.css.fileName %>.css',
+        //         dest: '<%= config.css.dir %>'
+        //     }
+        // },
 
-        cssmin: {
-            main: {
-                expand: true,
-                cwd: '<%= config.css.dir %>',
-                src: '<%= config.css.fileName %>.css',
-                dest: '<%= config.css.dir %>',
-                ext: '.min.css'
-            }
-        },
+        // cssmin: {
+        //     main: {
+        //         expand: true,
+        //         cwd: '<%= config.css.dir %>',
+        //         src: '<%= config.css.fileName %>.css',
+        //         dest: '<%= config.css.dir %>',
+        //         ext: '.min.css'
+        //     }
+        // },
 
-        //=JS related tasks
-        concat: {
-            main: {
-                src: [
-                    '<%= config.js.concatDir %>/*.js'
-                ],
-                dest: '<%= config.js.rootDir %>/<%= config.js.fileName %>.js'
-            }
-        },
+        // //=JS related tasks
+        // concat: {
+        //     main: {
+        //         src: [
+        //             '<%= config.js.concatDir %>/*.js'
+        //         ],
+        //         dest: '<%= config.js.rootDir %>/<%= config.js.fileName %>.js'
+        //     }
+        // },
 
-        jshint: {
-            options: {
-                jshintrc: true,
-                reporter: require('jshint-stylish')
-            },
-            main: '<%= config.js.rootDir %>/<%= config.js.fileName %>.js',
-        },
+        // jshint: {
+        //     options: {
+        //         jshintrc: true,
+        //         reporter: require('jshint-stylish')
+        //     },
+        //     main: '<%= config.js.rootDir %>/<%= config.js.fileName %>.js',
+        // },
 
-        uglify: {
-            options: {
-                booleans: true,
-                comparisons: true,
-                conditionals: true,
-                dead_code: true,
-                drop_console: true,
-                drop_debugger: true,
-                join_vars: true,
-                loops: true,
-                mangle: false,
-                unused: true
-            },
-            main: {
-                src: '<%= config.js.rootDir %>/<%= config.js.fileName %>.js',
-                dest: '<%= config.js.rootDir %>/<%= config.js.fileName %>.min.js'
-            }
-        },
+        // uglify: {
+        //     options: {
+        //         booleans: true,
+        //         comparisons: true,
+        //         conditionals: true,
+        //         dead_code: true,
+        //         drop_console: true,
+        //         drop_debugger: true,
+        //         join_vars: true,
+        //         loops: true,
+        //         mangle: false,
+        //         unused: true
+        //     },
+        //     main: {
+        //         src: '<%= config.js.rootDir %>/<%= config.js.fileName %>.js',
+        //         dest: '<%= config.js.rootDir %>/<%= config.js.fileName %>.min.js'
+        //     }
+        // },
 
-        watch : {
-            options: {
-                livereload: true,
-            },
+   		//=Local server
+        connect: {
+			options: {
+				port: 8080,
+				livereload: 35730,
+				useAvailablePort: true,
+				hostname: 'localhost'
+			},
+			livereload: {
+				options: {
+					open: true,
+					base: '.'
+				}
+			}
+		},
 
-            sass: {
-                files: [
-                    '*.scss', '<%= config.sass.dir %>/*.scss', '<%= config.sass.dir %>/*/*.scss'
-                ],
-                tasks: ['sass', 'autoprefixer', 'cssmin']
-            },
+        watch: {
+            // options: {
+            //     livereload: true,
+            // },
+            // sass: {
+            //     files: [
+            //         '*.scss', '<%= config.sass.dir %>/*.scss', '<%= config.sass.dir %>/*/*.scss'
+            //     ],
+            //     tasks: ['sass', 'autoprefixer', 'cssmin']
+            // },
 
-            js: {
-                files: [
-                    '<%= config.js.concatDir %>/*.js'
-                ],
-                tasks: ['concat', 'jshint', 'uglify']
-            }
+            // js: {
+            //     files: [
+            //         '<%= config.js.concatDir %>/*.js'
+            //     ],
+            //     tasks: ['concat', 'jshint', 'uglify']
+            // },
+			livereload: {
+				options: {
+					livereload: '<%= connect.options.livereload %>'
+				},
+				files: [
+					'dashboard/**/*' // temp
+				]
+			}
         }
     });
 };
