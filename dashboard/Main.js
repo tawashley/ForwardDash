@@ -35,7 +35,7 @@ document.addEventListener("DOMContentLoaded", function(){
                 }
             }
         ]
-    })
+    });
 
     Manager.defineRow({
         name: 'ForecastRow',
@@ -51,7 +51,7 @@ document.addEventListener("DOMContentLoaded", function(){
                 }
             }
         ]
-    })
+    });
 
     Manager.renderWidgets();
 
