@@ -1,4 +1,4 @@
-# [[ TODO list:](https://github.com/tawashley/ForwardDashboard)]( https://github.com/tawashley/ForwardDashboard )
+# [ForwardDashboard]( https://github.com/tawashley/ForwardDashboard )
 
 **Version:** `0.0.0`
 
@@ -11,4 +11,4 @@
 
 * * *
 
-Last generated: Tue Sep 02 2014 20:46:50 by [grunt-todo](https://github.com/leny/grunt-todo).
+Last generated: Tue Sep 02 2014 20:56:40 by [grunt-todo](https://github.com/leny/grunt-todo).

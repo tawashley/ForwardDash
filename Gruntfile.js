@@ -105,7 +105,7 @@ module.exports = function(grunt) {
 		          	pattern: /@(todo)/i,
 		          	color: 'blue'
 	        	}],
-      			title: '[<%= pkg.title%> TODO list:](<%= pkg.homepage %>)',
+      			//title: '[<%= pkg.title %> TODO list:](<%= pkg.homepage %>) <%= pkg.homepage %>',
   				usePackage: true
 			},
 			main: [
