@@ -216,7 +216,53 @@ This function must be called before `renderWidgets()`
 
 ## Helper Functions
 
-@TODO helper functions
+`WidgetHelpers` are a collection of common functions avaiable to widgets that help with tasks such as making async requests or getting the user current location using geolcation.
+
+### Methods
+
+### General Helpers
+
+#### helpers.asyncRequest(data, callback)
+
+Type: data `Object`, callback `Function`
+
+Async request helper function. If a callback function is provided, when the XHR request has finished it will be invoked.
+
+#### helpers.getLocation(data)
+
+Type: data `Object`
+
+Get the user's current location using `navigation.geolocation`.
+
+### Configuration Helpers
+
+#### helpers.config.setValue(value, default_value)
+
+Type: `String`
+
+This function can be used to check if `value` is null and if so, return `default_value`. This can be helpful when creating a widget config option which requires a default value.
+
+#### helpers.config.isUndefined(value)
+
+Type: `String`
+
+Simple function to check if provided value is undefined, simple.
+
+### Date Helpers
+
+#### helpers.date.getDayString(day_number, short_day)
+
+Type: day_number `Int`, short_day `Boolean`
+
+Function for getting the day string from `date.getDay()` call.
+A short day (e.g. Mon) can be returned by passing `short_day` as true
+
+#### helpers.date.getMonthString(month_number, short_month)
+
+Type: month_number `Int`, short_month `Boolean`
+
+Function for getting the month string from `date.getMonth()` call.
+A short month (e.g. Sept) can be returned by passing `short_month` as true
 
 ## Current Limitations
 

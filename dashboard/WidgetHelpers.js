@@ -21,11 +21,11 @@ function WidgetHelpers(){
 
             return days[day_number];
         },
-        getMonthString: function(month_number, short_date){
+        getMonthString: function(month_number, short_month){
             var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
             var shortMonths = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'June', 'July', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'];
 
-            if(short_date){
+            if(short_month){
                 return shortMonths[month_number];
             }
 
