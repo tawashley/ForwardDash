@@ -12,7 +12,7 @@ function WidgetManager() {
     function _initialiseRows() {
         _dashboardRows.forEach(function(row, index){
             _renderRow(row);
-        })
+        });
     }
 
     function _renderRow(row) {
@@ -30,7 +30,7 @@ function WidgetManager() {
             });
 
             count++;
-        })
+        });
 
         html.push('</div>');
 
@@ -39,7 +39,7 @@ function WidgetManager() {
 
             row.widgets.forEach(function(widget, index){
                 _loadScript(widget);
-            })
+            });
         }
 
         if(_widgetCount === count){
@@ -59,7 +59,7 @@ function WidgetManager() {
 
         script.onload = function(){
             window[widget.name](widget.config, helpers).init();
-        }
+        };
 
         _widgetManagerScript.appendChild(script);
     }
@@ -71,7 +71,7 @@ function WidgetManager() {
             async: false
         }, function(response){
             callback(response);
-        })
+        });
     }
 
     function _renderWidgetHTML(response, widget) {
@@ -89,11 +89,11 @@ function WidgetManager() {
     }
 
     function _getWidgetPositionClass(widget){
-        return ((widget.position !== undefined) ? ' widget--' + widget.position : ' widget--left' )
+        return ((widget.position !== undefined) ? ' widget--' + widget.position : ' widget--left' );
     }
 
     function _getWidgetSizeClass(widget){
-        return ((widget.size !== undefined) ? ' widget--' + widget.size : '' )
+        return ((widget.size !== undefined) ? ' widget--' + widget.size : '' );
     }
 
     exports.defineRow = function(data) {
@@ -101,7 +101,7 @@ function WidgetManager() {
             name: data.name,
             widgets: data.widgets
         });
-    }
+    };
 
     exports.renderWidgets = function() {
         _initialiseRows();
@@ -115,7 +115,7 @@ function WidgetManager() {
         document.getElementsByTagName('body')[0].insertAdjacentHTML('afterbegin', html.join(''));
 
         _setLoadingMessage = true;
-    }
+    };
 
     return exports;
-};
+}
