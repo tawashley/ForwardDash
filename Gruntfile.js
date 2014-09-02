@@ -16,7 +16,6 @@ module.exports = function(grunt) {
         'watch'
     ]);
 
-   	//@TODO: CSSMin
    	//@TODO: JSHint
    	//@TODO: Uglify
    	//@TODO: Add watch handlers for js changes

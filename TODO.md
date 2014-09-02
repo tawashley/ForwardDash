@@ -10,9 +10,11 @@
 
 ## Gruntfile.js
 
--  **todo** `(line 18)` 
+-  **todo** `(line 19)` : JSHint
+-  **todo** `(line 20)` : Uglify
+-  **todo** `(line 21)` : Add watch handlers for js changes
 
 
 * * *
 
-Last generated: Tue Sep 02 2014 19:43:19 by [grunt-todo](https://github.com/leny/grunt-todo).
+Last generated: Tue Sep 02 2014 19:48:08 by [grunt-todo](https://github.com/leny/grunt-todo).
