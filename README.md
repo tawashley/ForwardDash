@@ -30,7 +30,7 @@ When defining individual widgets, global options can be set such as the size of 
 
 ## Getting Started
 
-Getting a single widget dashboard up and running is super quick. All is needed is a HTML document and a script file to get the ball rolling.
+Getting a single widget dashboard up and running is super quick, though running it on a server (local or whatever takes you fancy) is advisable. All is needed is a HTML document and a script file to get the ball rolling.
 
 index.html
 
