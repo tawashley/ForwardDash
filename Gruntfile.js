@@ -21,7 +21,7 @@ module.exports = function(grunt) {
 
         // Configuration
         config: {
-        	dashboard: 'dashboard',
+        	dashboard: 'dashboard/core',
         	docs: 'docs',
         	css: {
         		dir: 'styles',
