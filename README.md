@@ -1,10 +1,15 @@
-# Dashed
+# Dasher
 
-> Widget powered web based dashboard using HTML, CSS and JS
+* Dazzle
+* Swash
+
+> Widget powered, web based dashboard using HTML, CSS and JS
 
 - [Getting Started](#getting-started)
 - [Adding Widgets](#adding-more-widgets)
 - [Creating a new widget](#creating-a-new-widget)
+- [Widget Manager](#widget-manager)
+- [Helper Functions](#helper-functions)
 - [Current Limitations](#current-limitations)
 
 A Web Dashboard built using widgets - built with a focus on the developer, allowing freedom of structure and behavior with the look and feel being controlled programatically. You will find no fancy UI for dragging and dropping widgets here nor will you find menus for removing or adding widgets - all of this is done in the code, examples of which can be found below.
@@ -177,6 +182,41 @@ function FooBarWidget() {
 ```
 
 A widget stylesheet is optional, with only .html and .js being required. Further info on developing a widget can be found in Developing A Widget
+
+## Widget Manager
+
+The manager is the glue that brings together the widgets and the dashboard.
+
+The program lifecycle is:
+
+1. Define rows and inside of here define widgets to be contained in the row.
+2. Commit the dashboard widgets by calling the `renderWidgets()` function.
+3. Internally the WidgetManager will render each row, pull in each widgets structure and script, invoke each widget's .init() function and show the newly rendered dashboard once all widgets have been loaded.
+
+### Methods
+
+#### defineRow(rowData)
+
+Type: `Object`
+
+Define a single dashboard row.
+
+#### renderWidgets()
+
+Commit dashboard widgets and render the dashboard
+
+#### setLoadingMessage(message)
+
+Type: `String`
+Default `null`
+
+Display a loading message whilst dashboard widgets are being loaded. If a message is not set, none is shown.
+
+This function must be called before `renderWidgets()`
+
+## Helper Functions
+
+@TODO helper functions
 
 ## Current Limitations
 
