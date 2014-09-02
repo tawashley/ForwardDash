@@ -4,7 +4,7 @@ function ForecastWidget(config, helpers) {
 
     var _dom = {
         widgetContainer: document.getElementById('forecast-container')
-    }
+    };
 
     var _config = {
         celsius: helpers.config.setValue(config.celsius, false),
@@ -28,7 +28,7 @@ function ForecastWidget(config, helpers) {
                 _position = position;
                 _getForecast();
             }
-        })
+        });
     }
 
     function _renderWeatherUI(response){
@@ -79,17 +79,17 @@ function ForecastWidget(config, helpers) {
 
         switch(type){
             case 'Rain':
-                icon_class = 'icon-rainy'
+                icon_class = 'icon-rainy';
                 break;
             case 'Clear':
-                icon_class = 'icon-sunny'
+                icon_class = 'icon-sunny';
                 break;
             case 'Clouds':
-                icon_class = 'icon-cloudy-alt'
+                icon_class = 'icon-cloudy-alt';
                 break;
             default:
                 console.warn('Icon for weather type of"' + type + '" has not yet been implemented - defaulting to sunny');
-                icon_class = 'icon-sunny'
+                icon_class = 'icon-sunny';
         }
 
         return '<i class="icon ' + icon_class + '"></i>';
@@ -117,4 +117,4 @@ function ForecastWidget(config, helpers) {
     };
 
     return exports;
-};
+}

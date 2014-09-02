@@ -14,7 +14,7 @@ function CurrentWeatherWidget(config, helpers) {
 
     var _dom = {
         widgetContainer: document.getElementById('current-weather-container')
-    }
+    };
 
     function _getUserLocation() {
         helpers.getLocation({
@@ -27,7 +27,7 @@ function CurrentWeatherWidget(config, helpers) {
                 _position = position;
                 _weatherAPIRequest();
             }
-        })
+        });
     }
 
     function _weatherAPIRequest() {
@@ -93,4 +93,4 @@ function CurrentWeatherWidget(config, helpers) {
     };
 
     return exports;
-};
+}

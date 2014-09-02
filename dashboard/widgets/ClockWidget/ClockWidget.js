@@ -36,8 +36,8 @@ function ClockWidget(config, helpers) {
         _dom.date.innerHTML = html.join('');
 
         function getDayString(day_number){
-            var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
-            var shortDays = ['Sun', 'Mon', 'Tues', 'Wed', 'Thurs', 'Fri', 'Sat']
+            var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+            var shortDays = ['Sun', 'Mon', 'Tues', 'Wed', 'Thurs', 'Fri', 'Sat'];
 
             if(_config.date.shortDay){
                 return shortDays[day_number];
@@ -69,7 +69,7 @@ function ClockWidget(config, helpers) {
             pmAm = (hour > 12) ? 'pm' : 'am';
 
         if(_config.clock.showTimeOfDayIcon){
-            html.push('<div class="clock-section clock-icon"><i class="icon '  + getTimeOfDayIcon(hour) + '"></i></div>')
+            html.push('<div class="clock-section clock-icon"><i class="icon '  + getTimeOfDayIcon(hour) + '"></i></div>');
         }
 
 
@@ -96,7 +96,7 @@ function ClockWidget(config, helpers) {
         setTimeout(_render_time, 1000);
 
         function getTimeOfDayIcon(hour) {
-            if(hour > 00 && hour < 08){
+            if(hour > 0 && hour < 8){
                 return 'icon-morning';
             } else if(hour > 07 && hour < 13) {
                 return 'icon-sunny';
@@ -117,4 +117,4 @@ function ClockWidget(config, helpers) {
     };
 
     return exports;
-};
+}
