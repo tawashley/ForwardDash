@@ -1,7 +1,4 @@
-# Dasher
-
-* Dazzle
-* Swash
+# Sprint
 
 > Widget powered, web based dashboard using HTML, CSS and JS
 
