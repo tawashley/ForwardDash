@@ -1,37 +1,5 @@
 // dashboard
 
-html,
-body,
-p,
-ul,
-li,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-    padding: 0;
-    margin: 0;
-}
-
-*{
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
-}
-
-html{
-    height: 100%;
-}
-
-body{
-    border-top: 6px solid #2D7BB3;
-    padding: 1em 2.5em;
-    height: inherit;
-    font-family: 'Open Sans', sans-serif;
-}
-
 .loading-message{
     text-align: center;
     color: #AAA;
@@ -39,7 +7,6 @@ body{
 
 ._widget-container_{
     /*display: none;*/
-
     opacity: 0;
     -webkit-transition: opacity 2s ease-in;
     -moz-transition: opacity 2s ease-in;
@@ -50,7 +17,7 @@ body{
 
 .widget-row:after,
 .widget-container {
-  content: "";
+  content: '';
   display: table;
   clear: both;
 }

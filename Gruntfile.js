@@ -32,7 +32,8 @@ module.exports = function(grunt) {
         		outputFileName: 'main'
         	},
         	sass: {
-        		dir: 'sass'
+        		dir: 'sass',
+        		inputFileName: 'forward_dash'
         	}
 
         },
@@ -44,7 +45,7 @@ module.exports = function(grunt) {
             },
             main: {
                 files: {
-                    '<%= config.dashboard %>/<%= config.css.dir %>/<%= config.css.outputFileName %>.css':'<%= config.dashboard %>/<%= config.css.dir %>/<%= config.sass.dir %>/**/*.scss'
+                    '<%= config.dashboard %>/<%= config.css.dir %>/<%= config.css.outputFileName %>.css': '<%= config.dashboard %>/<%= config.css.dir %>/<%= config.sass.dir %>/<%= config.sass.inputFileName %>.scss'
                 }
             }
         },
@@ -128,12 +129,16 @@ module.exports = function(grunt) {
             // options: {
             //     livereload: true,
             // },
-            // sass: {
-            //     files: [
-            //         '*.scss', '<%= config.sass.dir %>/*.scss', '<%= config.sass.dir %>/*/*.scss'
-            //     ],
-            //     tasks: ['sass', 'autoprefixer', 'cssmin']
-            // },
+            sass: {
+                files: [
+                	'<%= config.dashboard %>/<%= config.css.dir %>/<%= config.sass.dir %>/**/*.scss'
+                ],
+                tasks: [
+                	'sass'
+                	//, 'autoprefixer',
+                	//'cssmin'
+                ]
+            },
 
             // js: {
             //     files: [
@@ -154,7 +159,7 @@ module.exports = function(grunt) {
 					livereload: '<%= connect.options.livereload %>'
 				},
 				files: [
-					'dashboard/**/*' // temp
+					'dashboard/{,*/}*.{js,css}'
 				]
 			}
         }
