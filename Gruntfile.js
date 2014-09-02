@@ -9,7 +9,7 @@ module.exports = function(grunt) {
         'sass',
         'autoprefixer',
         'cssmin',
-        //'concat',
+        'concat',
         //'jshint',
         //'uglify',
         'connect:livereload',
@@ -34,6 +34,11 @@ module.exports = function(grunt) {
         	sass: {
         		dir: 'sass',
         		inputFileName: 'forward_dash'
+        	},
+        	js: {
+        		concatDir: 'modules',
+        		dir: 'scripts',
+        		outputFileName: 'main'
         	}
         },
 
@@ -49,12 +54,16 @@ module.exports = function(grunt) {
                 	'cssmin'*/
                 ]
             },
-            // js: {
-            //     files: [
-            //         '<%= config.js.concatDir %>/*.js'
-            //     ],
-            //     tasks: ['concat', 'jshint', 'uglify']
-            // },
+            js: {
+                files: [
+                    '<%= config.dashboard %>/<%= config.js.dir %>/<%= config.js.concatDir %>/**/*.js'
+                ],
+                tasks: [
+                	'concat'//,
+                	//'jshint',
+                	//'uglify'
+            	]
+            },
             // gruntfile: {
             // 	files: [
             // 		'Gruntfile.js'
@@ -150,14 +159,14 @@ module.exports = function(grunt) {
 
 
         // Script tasks
-        // concat: {
-        //     main: {
-        //         src: [
-        //             '<%= config.js.concatDir %>/*.js'
-        //         ],
-        //         dest: '<%= config.js.rootDir %>/<%= config.js.fileName %>.js'
-        //     }
-        // },
+        concat: {
+            main: {
+                src: [
+                    '<%= config.dashboard %>/<%= config.js.dir %>/<%= config.js.concatDir %>/*.js'
+                ],
+                dest: '<%= config.dashboard %>/<%= config.js.dir %>/<%= config.js.outputFileName %>.js'
+            }
+        },
 
         // jshint: {
         //     options: {
