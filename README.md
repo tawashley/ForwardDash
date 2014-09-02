@@ -228,11 +228,37 @@ Type: data `Object`, callback `Function`
 
 Async request helper function. If a callback function is provided, when the XHR request has finished it will be invoked.
 
+```js
+helpers.asyncRequest({
+    method: 'GET',
+    type: 'json', // defaults to html
+    uri: 'xhr-request.co.uk'
+}, function(response){
+    //callback function with response
+});
+```
+
 #### helpers.getLocation(data)
 
 Type: data `Object`
 
 Get the user's current location using `navigation.geolocation`.
+
+```js
+helpers.getLocation({
+    options : {
+        enableHighAccuracy : true,
+        timeout : 10000, // 10 seconds
+        maximumAge : 0 //spec default is 0
+    },
+    completeCallback: function(position) {
+        //location successful
+    },
+    errorCallback: function(message, error) {
+        //location error
+    }
+})
+```
 
 ### Configuration Helpers
 
