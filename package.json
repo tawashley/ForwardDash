@@ -1,8 +1,8 @@
 {
   "name": "dashboard.dev",
   "version": "0.0.0",
-  "description": "",
-  "homepage": "http://tristanashley.com",
+  "description": "Widget powered, web based dashboard using HTML, CSS and JS",
+  "homepage": "https://github.com/tawashley/ForwardDashboard",
   "repository": {
     "type": "git",
     "url": "https://github.com/tawashley/ForwardDashboard"
@@ -24,6 +24,7 @@
     "grunt-contrib-sass": "~0.8.1",
     "grunt-contrib-uglify": "~0.5.1",
     "grunt-contrib-watch": "~0.6.1",
+    "grunt-todo": "^0.4.0",
     "jshint-stylish": "~0.4.0",
     "load-grunt-tasks": "~0.6.0",
     "time-grunt": "~1.0.0"

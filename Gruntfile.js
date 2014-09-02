@@ -5,6 +5,7 @@ module.exports = function(grunt) {
 
     //Default Task
     grunt.registerTask('default', [
+    	'todo',
         'sass',
         'autoprefixer',
         //'cssmin',
@@ -15,9 +16,10 @@ module.exports = function(grunt) {
         'watch'
     ]);
 
-    //@TODO
-	    //concat all js from widgets folder into one file, minify
-    	//add watch handlers for js changes
+   	//@TODO: CSSMin
+   	//@TODO: JSHint
+   	//@TODO: Uglify
+   	//@TODO: Add watch handlers for js changes
 
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
@@ -25,6 +27,7 @@ module.exports = function(grunt) {
         // Configuration
         config: {
         	dashboard: 'dashboard',
+        	docs: 'docs',
         	css: {
         		dir: 'styles',
         		outputFileName: 'main'
@@ -85,6 +88,27 @@ module.exports = function(grunt) {
 					base: '.'
 				}
 			}
+		},
+
+
+		// Project tasks
+		todo: {
+			options: {
+				colophon: true,
+				file: 'TODO.md',
+				marks: [{
+		          	name: 'todo',
+		          	pattern: /@(todo)/i,
+		          	color: 'blue'
+	        	}],
+      			title: '[<%= pkg.title%> TODO list:](<%= pkg.homepage %>)',
+  				usePackage: true
+			},
+			main: [
+				'<%= config.dashboard %>/**/*.{html,js,scss}',
+				'<%= config.docs %>/**/*.{html,js,scss}',
+				'Gruntfile.js'
+			]
 		},
 
 
