@@ -176,24 +176,23 @@ module.exports = function(grunt) {
             }
         },
 
-
-        // uglify: {
-        //     options: {
-        //         booleans: true,
-        //         comparisons: true,
-        //         conditionals: true,
-        //         dead_code: true,
-        //         drop_console: true,
-        //         drop_debugger: true,
-        //         join_vars: true,
-        //         loops: true,
-        //         mangle: false,
-        //         unused: true
-        //     },
-        //     main: {
-        //         src: '<%= config.js.rootDir %>/<%= config.js.fileName %>.js',
-        //         dest: '<%= config.js.rootDir %>/<%= config.js.fileName %>.min.js'
-        //     }
-        // }
+        uglify: {
+            options: {
+                booleans: true,
+                comparisons: true,
+                conditionals: true,
+                dead_code: true,
+                drop_console: true,
+                drop_debugger: true,
+                join_vars: true,
+                loops: true,
+                mangle: false,
+                unused: true
+            },
+            main: {
+                src: '<%= config.dashboard %>/<%= config.js.dir %>/<%= config.js.outputFileName %>.js',
+                dest: '<%= config.dashboard %>/<%= config.js.dir %>/<%= config.js.outputFileName %>.min.js'
+            }
+        }
     });
 };
