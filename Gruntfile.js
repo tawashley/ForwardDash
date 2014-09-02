@@ -8,7 +8,7 @@ module.exports = function(grunt) {
     	'todo',
         'sass',
         'autoprefixer',
-        //'cssmin',
+        'cssmin',
         //'concat',
         //'jshint',
         //'uglify',
@@ -139,15 +139,15 @@ module.exports = function(grunt) {
             }
         },
 
-        // cssmin: {
-        //     main: {
-        //         expand: true,
-        //         cwd: '<%= config.css.dir %>',
-        //         src: '<%= config.css.fileName %>.css',
-        //         dest: '<%= config.css.dir %>',
-        //         ext: '.min.css'
-        //     }
-        // },
+        cssmin: {
+            main: {
+                expand: true,
+                cwd: '<%= config.dashboard %>/<%= config.css.dir %>',
+                src: '<%= config.css.outputFileName %>.css',
+                dest: '<%= config.dashboard %>/<%= config.css.dir %>',
+                ext: '.min.css'
+            }
+        },
 
 
         // Script tasks
