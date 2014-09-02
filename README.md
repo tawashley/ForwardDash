@@ -2,14 +2,14 @@
 
 > Widget powered, web based dashboard using HTML, CSS and JS
 
+![ForwardDash with three widgets](docs/banner-img.png)
+
 - [Getting Started](#getting-started)
 - [Adding Widgets](#adding-more-widgets)
 - [Creating a new widget](#creating-a-new-widget)
 - [Widget Manager](#widget-manager)
 - [Helper Functions](#helper-functions)
 - [Current Limitations](#current-limitations)
-
-![ForwardDash with three widgets](docs/banner-img.png)
 
 A Web Dashboard built using widgets - built with a focus on the developer, allowing freedom of structure and behavior with the look and feel being controlled programatically. You will find no fancy UI for dragging and dropping widgets here nor will you find menus for removing or adding widgets - all of this is done in the code, examples of which can be found below.
 
