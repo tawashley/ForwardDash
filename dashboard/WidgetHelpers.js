@@ -8,12 +8,12 @@ function WidgetHelpers(){
         isUndefined: function(value){
             return (value === undefined);
         }
-    }
+    };
 
     exports.date = {
         getDayString: function(day_number, short_day){
-            var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
-            var shortDays = ['Sun', 'Mon', 'Tues', 'Wed', 'Thurs', 'Fri', 'Sat']
+            var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+            var shortDays = ['Sun', 'Mon', 'Tues', 'Wed', 'Thurs', 'Fri', 'Sat'];
 
             if(short_day){
                 return shortDays[day_number];
@@ -31,7 +31,7 @@ function WidgetHelpers(){
 
             return months[month_number];
         }
-    }
+    };
 
     exports.asyncRequest = function(data, callback) {
         var xhr = new XMLHttpRequest();
@@ -49,7 +49,7 @@ function WidgetHelpers(){
         };
 
         xhr.send();
-    }
+    };
 
     exports.getLocation = function(data) {
         if (navigator.geolocation) {
@@ -89,7 +89,7 @@ function WidgetHelpers(){
         } else {
             console.warn('You browser does not support geolocation');
         }
-    }
+    };
 
     return exports;
 }
