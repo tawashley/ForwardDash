@@ -145,7 +145,7 @@ The above code will render the 'ClockWidget' and 'CurrentWeatherWidget' as one r
 
 All widgets are stored in the 'dashboard/widgets' directory and individual widgets have their own folder containing one HTML, CSS and JS files namespaced with the widget name.
 
-For example, all code for a widget called 'FooBar' would be in a folder called 'FooBarWidget' ('Widget' and a suffix is required to work) and may contain the files:
+For example, all code for a widget called 'FooBar' would be in a folder called 'FooBarWidget' ('Widget' as a suffix is required to work) and may contain the files:
 
 * FooBarWidget.html - structure
 * FooBarWidget.css - appearance
@@ -180,7 +180,7 @@ function FooBarWidget() {
 };
 ```
 
-A widget stylesheet is optional, with only .html and .js being required. Further info on developing a widget can be found in Developing A Widget
+A widget stylesheet is optional, with only .html and .js being required
 
 ## Widget Manager
 
