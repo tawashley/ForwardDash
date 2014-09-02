@@ -1,4 +1,16 @@
+# OS
+.DS_Store
+
+# Logging
 _logs
+
+# Installed components
 node_modules
+
+# Generated files
+*.sass-cache
+*.css
+*.map
+
+# Project Meta
 *.sublime-workspace
-*.sublime-project
