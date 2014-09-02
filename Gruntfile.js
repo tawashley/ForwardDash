@@ -16,15 +16,13 @@ module.exports = function(grunt) {
     ]);
 
     //@TODO
-        //autoprefixer sass
-        //compile sass from all widget folders into one file, minify
-
-        //concat all js from widgets folder into one file, minify
-        //add watch handlers for scss, js changes
+	    //concat all js from widgets folder into one file, minify
+    	//add watch handlers for js changes
 
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
 
+        // Configuration
         config: {
         	dashboard: 'dashboard',
         	css: {
@@ -35,9 +33,62 @@ module.exports = function(grunt) {
         		dir: 'sass',
         		inputFileName: 'forward_dash'
         	}
-
         },
 
+        // Watchers
+        watch: {
+            sass: {
+                files: [
+                	'<%= config.dashboard %>/<%= config.css.dir %>/<%= config.sass.dir %>/**/*.scss'
+                ],
+                tasks: [
+                	'sass',
+                	'autoprefixer'/*,
+                	'cssmin'*/
+                ]
+            },
+            // js: {
+            //     files: [
+            //         '<%= config.js.concatDir %>/*.js'
+            //     ],
+            //     tasks: ['concat', 'jshint', 'uglify']
+            // },
+            // gruntfile: {
+            // 	files: [
+            // 		'Gruntfile.js'
+            // 	],
+            // 	tasks: [
+            // 		'jshint:gruntfile'
+            // 	]
+            // },
+			livereload: {
+				options: {
+					livereload: '<%= connect.options.livereload %>'
+				},
+				files: [
+					'dashboard/{,*/}*.{js,css}'
+				]
+			}
+        },
+
+		// Local server
+        connect: {
+			options: {
+				port: 8080,
+				livereload: 35730,
+				useAvailablePort: true,
+				hostname: 'localhost'
+			},
+			livereload: {
+				options: {
+					open: true,
+					base: '.'
+				}
+			}
+		},
+
+
+		// Style tasks
         sass: {
             options: {
                 style: 'expanded',
@@ -74,7 +125,8 @@ module.exports = function(grunt) {
         //     }
         // },
 
-        // //=JS related tasks
+
+        // Script tasks
         // concat: {
         //     main: {
         //         src: [
@@ -109,61 +161,6 @@ module.exports = function(grunt) {
         //         src: '<%= config.js.rootDir %>/<%= config.js.fileName %>.js',
         //         dest: '<%= config.js.rootDir %>/<%= config.js.fileName %>.min.js'
         //     }
-        // },
-
-   		//=Local server
-        connect: {
-			options: {
-				port: 8080,
-				livereload: 35730,
-				useAvailablePort: true,
-				hostname: 'localhost'
-			},
-			livereload: {
-				options: {
-					open: true,
-					base: '.'
-				}
-			}
-		},
-
-        watch: {
-            // options: {
-            //     livereload: true,
-            // },
-            sass: {
-                files: [
-                	'<%= config.dashboard %>/<%= config.css.dir %>/<%= config.sass.dir %>/**/*.scss'
-                ],
-                tasks: [
-                	'sass',
-                	'autoprefixer'//,
-                	//'cssmin'
-                ]
-            },
-
-            // js: {
-            //     files: [
-            //         '<%= config.js.concatDir %>/*.js'
-            //     ],
-            //     tasks: ['concat', 'jshint', 'uglify']
-            // },
-            // gruntfile: {
-            // 	files: [
-            // 		'Gruntfile.js'
-            // 	],
-            // 	tasks: [
-            // 		'jshint:gruntfile'
-            // 	]
-            // },
-			livereload: {
-				options: {
-					livereload: '<%= connect.options.livereload %>'
-				},
-				files: [
-					'dashboard/{,*/}*.{js,css}'
-				]
-			}
-        }
+        // }
     });
 };
