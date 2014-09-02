@@ -289,5 +289,8 @@ A short month (e.g. Sept) can be returned by passing `short_month` as true
 
 ## Current Limitations
 
-* Only one instance of a widget can be on the dashboard at a time. Due to how widgets markup have IDs and this being the hook for the widget's script adding a second widget of the same type does not currently work. This could be improved in the future via perhaps employing a data attribute to the markup. Either way having multiple instances of the the same widget is something I have not unfortunately at the time of writing invested time in solving.
+* Only one instance of a widget can be on the dashboard at a time. Due to how the widgets markup have IDs and this being the hook for the widget's script, adding a second widget of the same type does not currently work. This could be improved in the future by employing a data attribute to the markup. Either way having multiple instances of the the same widget is something I have not at the time of writing invested time in solving.
+
 * By it's very design, once the dashboard has been render on the UI adding, removing, repositioning etc. widgets is accompished by changing the underlying code, not by clicking UI controls.
+
+* Due to the dashboard lifecycle, each widget has it's own seperate CSS, JS and HTML file. While the structure is added to the page in an XHR request, this is not the case with CSS and JS. Without a build system in place to minify and concat widget files there may be a situation where 10+ individual CSS and JS files are loaded, at once, when the dashboard is being rendered. As such performance may become an issue in this situation.
