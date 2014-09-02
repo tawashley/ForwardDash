@@ -1,17 +1,12 @@
 // dashboard
 
-.loading-message{
-    text-align: center;
+.loading-message {
     color: #AAA;
+    text-align: center;
 }
 
-._widget-container_{
-    /*display: none;*/
+._widget-container_ {
     opacity: 0;
-    -webkit-transition: opacity 2s ease-in;
-    -moz-transition: opacity 2s ease-in;
-    -o-transition: opacity 2s ease-in;
-    -ms-transition: opacity 2s ease-in;
     transition: opacity 2s ease-in;
 }
 
@@ -23,40 +18,39 @@
 }
 
 .show {
-    /*display: block;*/
     opacity: 1;
 }
 
-.widget{
-    padding: .5em;
-    margin-bottom: 1em;
+.widget {
     margin-right: 20px;
+    margin-bottom: 1em;
+    padding: .5em;
 }
 
 .widget + * {
     margin-right: 0;
 }
 
-.widget-container--middle{
+.widget-container--middle {
     margin: 0 auto;
 }
 
-.widget--left{
+.widget--left {
     float: left;
 }
 
-.widget--right{
+.widget--right {
     float: right;
 }
 
-.widget--full{
+.widget--full {
     width: 100%;
 }
 
-.widget--half{
+.widget--half {
     width: 50%;
 }
 
-.widget--small{
+.widget--small {
     width: 25%;
 }

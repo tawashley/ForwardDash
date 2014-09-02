@@ -6,7 +6,7 @@ module.exports = function(grunt) {
     //Default Task
     grunt.registerTask('default', [
         'sass',
-        //'autoprefixer',
+        'autoprefixer',
         //'cssmin',
         //'concat',
         //'jshint',
@@ -50,17 +50,19 @@ module.exports = function(grunt) {
             }
         },
 
-        // autoprefixer: {
-        //     options: {
-        //         browsers: ['last 2 version', 'ie 9']
-        //     },
-        //     main: {
-        //         expand: true,
-        //         flatten: true,
-        //         src: '<%= config.css.dir %>/<%= config.css.fileName %>.css',
-        //         dest: '<%= config.css.dir %>'
-        //     }
-        // },
+        autoprefixer: {
+            options: {
+                browsers: [
+                	'last 2 version', 'ie 9'
+            	]
+            },
+            main: {
+                expand: true,
+                flatten: true,
+                src: '<%= config.dashboard %>/<%= config.css.dir %>/<%= config.css.outputFileName %>.css',
+                dest: '<%= config.dashboard %>/<%= config.css.dir %>'
+            }
+        },
 
         // cssmin: {
         //     main: {
@@ -134,8 +136,8 @@ module.exports = function(grunt) {
                 	'<%= config.dashboard %>/<%= config.css.dir %>/<%= config.sass.dir %>/**/*.scss'
                 ],
                 tasks: [
-                	'sass'
-                	//, 'autoprefixer',
+                	'sass',
+                	'autoprefixer'//,
                 	//'cssmin'
                 ]
             },
