@@ -11,6 +11,7 @@
 			],
 			"file_exclude_patterns": [
 				"*.map",
+				"*.min.*",
 				"*.sublime-workspace"
 			]
 		}
