@@ -63,14 +63,14 @@ module.exports = function(grunt) {
                 	//'uglify'
             	]
             },
-            // gruntfile: {
-            // 	files: [
-            // 		'Gruntfile.js'
-            // 	],
-            // 	tasks: [
-            // 		'jshint:gruntfile'
-            // 	]
-            // },
+            gruntfile: {
+            	files: [
+            		'Gruntfile.js'
+            	],
+            	tasks: [
+            		'jshint:gruntfile'
+            	]
+            },
 			livereload: {
 				options: {
 					livereload: '<%= connect.options.livereload %>'
@@ -163,7 +163,8 @@ module.exports = function(grunt) {
                 jshintrc: true,
                 reporter: require('jshint-stylish')
             },
-            main: '<%= config.dashboard %>/<%= config.js.dir %>/<%= config.js.concatDir %>/*.js'
+            main: '<%= config.dashboard %>/<%= config.js.dir %>/<%= config.js.concatDir %>/*.js',
+            gruntfile: 'Gruntfile.js'
         },
 
         concat: {
