@@ -111,7 +111,6 @@ function WidgetManager() {
         var html = [];
 
         html.push('<div class="loading-message" id="dashboard-loading-message">'+ message + '</div>');
-        // document.getElementsByTagName('body')[0].innerHTML = '<div class="loading-message">'+ message + '</div>';
         document.getElementsByTagName('body')[0].insertAdjacentHTML('afterbegin', html.join(''));
 
         _setLoadingMessage = true;
