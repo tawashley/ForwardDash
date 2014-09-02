@@ -5,7 +5,7 @@ module.exports = function(grunt) {
 
     //Default Task
     grunt.registerTask('default', [
-        //'sass',
+        'sass',
         //'autoprefixer',
         //'cssmin',
         //'concat',
@@ -25,23 +25,29 @@ module.exports = function(grunt) {
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
 
-        // usage '<%= config.foo %>'
-        // config: {
+        config: {
+        	dashboard: 'dashboard',
+        	css: {
+        		dir: 'styles',
+        		outputFileName: 'main'
+        	},
+        	sass: {
+        		dir: 'sass'
+        	}
 
-        // },
+        },
 
-        // //=CSS related tasks
-        // sass: {
-        //     options: {
-        //         style: 'expanded',
-        //         sourcemap: true
-        //     },
-        //     main: {
-        //         files: {
-        //             '<%= config.css.dir %>/<%= config.css.fileName %>.css':'<%= config.sass.dir %>/<%= config.sass.fileName %>.scss'
-        //         }
-        //     }
-        // },
+        sass: {
+            options: {
+                style: 'expanded',
+                sourcemap: true
+            },
+            main: {
+                files: {
+                    '<%= config.dashboard %>/<%= config.css.dir %>/<%= config.css.outputFileName %>.css':'<%= config.dashboard %>/<%= config.css.dir %>/<%= config.sass.dir %>/**/*.scss'
+                }
+            }
+        },
 
         // autoprefixer: {
         //     options: {
@@ -134,6 +140,14 @@ module.exports = function(grunt) {
             //         '<%= config.js.concatDir %>/*.js'
             //     ],
             //     tasks: ['concat', 'jshint', 'uglify']
+            // },
+            // gruntfile: {
+            // 	files: [
+            // 		'Gruntfile.js'
+            // 	],
+            // 	tasks: [
+            // 		'jshint:gruntfile'
+            // 	]
             // },
 			livereload: {
 				options: {
