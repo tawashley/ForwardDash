@@ -210,7 +210,7 @@ Optional name for a row. This name is added to the widget markup.
 
 Type `Array`
 
-An array of objects containing an object for each widget for the row.
+An array of objects containing an object for each widget for the row. More information can be found in [Adding Widgets](#adding-more-widgets)
 
 #### renderWidgets()
 
