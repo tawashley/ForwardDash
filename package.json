@@ -1,25 +1,32 @@
 {
   "name": "dashboard.dev",
   "version": "0.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Widget powered, web based dashboard using HTML, CSS and JS",
+  "homepage": "https://github.com/tawashley/ForwardDashboard",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tawashley/ForwardDashboard"
+  },
+  "main": "index.html",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "grunt": "~0.4.5",
-    "grunt-cli": "~0.1.13",
-    "grunt-contrib-sass": "~0.8.1",
-    "grunt-contrib-cssmin": "~0.10.0",
+    "grunt": "^0.4.5",
     "grunt-autoprefixer": "~1.0.1",
-    "grunt-contrib-jshint": "~0.10.0",
-    "grunt-contrib-uglify": "~0.5.1",
-    "time-grunt": "~1.0.0",
-    "load-grunt-tasks": "~0.6.0",
-    "grunt-contrib-watch": "~0.6.1",
+    "grunt-cli": "~0.1.13",
     "grunt-contrib-concat": "~0.5.0",
-    "jshint-stylish": "~0.4.0"
+    "grunt-contrib-connect": "^0.8.0",
+    "grunt-contrib-cssmin": "~0.10.0",
+    "grunt-contrib-jshint": "~0.10.0",
+    "grunt-contrib-sass": "~0.8.1",
+    "grunt-contrib-uglify": "~0.5.1",
+    "grunt-contrib-watch": "~0.6.1",
+    "grunt-todo": "^0.4.0",
+    "jshint-stylish": "~0.4.0",
+    "load-grunt-tasks": "~0.6.0",
+    "time-grunt": "~1.0.0"
   }
 }

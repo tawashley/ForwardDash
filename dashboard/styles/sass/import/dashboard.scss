@@ -1,0 +1,56 @@
+// dashboard
+
+.loading-message {
+    color: #AAA;
+    text-align: center;
+}
+
+._widget-container_ {
+    opacity: 0;
+    transition: opacity 2s ease-in;
+}
+
+.widget-row:after,
+.widget-container {
+  content: '';
+  display: table;
+  clear: both;
+}
+
+.show {
+    opacity: 1;
+}
+
+.widget {
+    margin-right: 20px;
+    margin-bottom: 1em;
+    padding: .5em;
+}
+
+.widget + * {
+    margin-right: 0;
+}
+
+.widget-container--middle {
+    margin: 0 auto;
+}
+
+.widget--left {
+    float: left;
+}
+
+.widget--right {
+    float: right;
+}
+
+.widget--full {
+    width: 100%;
+}
+
+.widget--half {
+    width: 50%;
+}
+
+.widget--small {
+    width: 25%;
+}
