@@ -165,7 +165,7 @@ FooBarWidget.html
 FooBarWidget.js
 
 ```js
-function FooBarWidget() {
+function FooBarWidget(config, helpers) {
 
     var exports = {};
 
@@ -179,6 +179,8 @@ function FooBarWidget() {
     return exports;
 };
 ```
+
+When declaring a widget function - a config object and a helpers object can be passed into it as can be seen in the above example. These are passed to the function by the `WidgetManager` and represent the `config` object when defining a widget and helpers as an instance of `WidgetHelpers` [helper functions](#helper-functions)
 
 A widget stylesheet is optional, with only .html and .js being required
 
