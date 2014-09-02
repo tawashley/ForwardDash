@@ -11,13 +11,10 @@ module.exports = function(grunt) {
         'cssmin',
         'jshint',
         'concat',
-        //'uglify',
+        'uglify',
         'connect:livereload',
         'watch'
     ]);
-
-   	//@TODO: Uglify
-   	//@TODO: Add watch handlers for js changes
 
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
@@ -48,9 +45,9 @@ module.exports = function(grunt) {
                 	'<%= config.dashboard %>/<%= config.css.dir %>/<%= config.sass.dir %>/**/*.scss'
                 ],
                 tasks: [
-                	'sass',
-                	'autoprefixer'/*,
-                	'cssmin'*/
+                	'sass:main',
+                	'autoprefixer:main',
+                	'cssmin:main'
                 ]
             },
             js: {
@@ -58,9 +55,9 @@ module.exports = function(grunt) {
                     '<%= config.dashboard %>/<%= config.js.dir %>/<%= config.js.concatDir %>/**/*.js'
                 ],
                 tasks: [
-                	'concat',
-                	'jshint'//,
-                	//'uglify'
+                	'concat:main',
+                	'jshint:main',
+                	'uglify:main'
             	]
             },
             gruntfile: {
