@@ -194,9 +194,23 @@ The program lifecycle is:
 
 #### defineRow(rowData)
 
-Type: `Object`
+rowData `Object`
 
 Define a single dashboard row.
+
+#### rowData Properties
+
+##### name
+
+Type: `String`
+
+Optional name for a row. This name is added to the widget markup.
+
+##### widget
+
+Type `Array`
+
+An array of objects containing an object for each widget for the row.
 
 #### renderWidgets()
 
@@ -204,8 +218,7 @@ Commit dashboard widgets and render the dashboard
 
 #### setLoadingMessage(message)
 
-Type: `String`
-Default `null`
+message `String`
 
 Display a loading message whilst dashboard widgets are being loaded. If a message is not set, none is shown.
 
@@ -221,14 +234,14 @@ This function must be called before `renderWidgets()`
 
 #### helpers.asyncRequest(data, callback)
 
-Type: data `Object`, callback `Function`
+data `Object`, callback `Function`
 
 Async request helper function. If a callback function is provided, when the XHR request has finished it will be invoked.
 
 ```js
 helpers.asyncRequest({
     method: 'GET',
-    type: 'json', // defaults to html
+    type: 'json', //defaults to text
     uri: 'xhr-request.co.uk'
 }, function(response){
     //callback function with response
@@ -237,7 +250,7 @@ helpers.asyncRequest({
 
 #### helpers.getLocation(data)
 
-Type: data `Object`
+data `Object`
 
 Get the user's current location using `navigation.geolocation`.
 
@@ -261,13 +274,13 @@ helpers.getLocation({
 
 #### helpers.config.setValue(value, default_value)
 
-Type: `String`
+default_value `String`
 
 This function can be used to check if `value` is null and if so, return `default_value`. This can be helpful when creating a widget config option which requires a default value.
 
 #### helpers.config.isUndefined(value)
 
-Type: `String`
+value `String`
 
 Simple function to check if provided value is undefined, simple.
 
@@ -275,14 +288,14 @@ Simple function to check if provided value is undefined, simple.
 
 #### helpers.date.getDayString(day_number, short_day)
 
-Type: day_number `Int`, short_day `Boolean`
+day_number `Int`, short_day `Boolean`
 
 Function for getting the day string from `date.getDay()` call.
 A short day (e.g. Mon) can be returned by passing `short_day` as true
 
 #### helpers.date.getMonthString(month_number, short_month)
 
-Type: month_number `Int`, short_month `Boolean`
+month_number `Int`, short_month `Boolean`
 
 Function for getting the month string from `date.getMonth()` call.
 A short month (e.g. Sept) can be returned by passing `short_month` as true
