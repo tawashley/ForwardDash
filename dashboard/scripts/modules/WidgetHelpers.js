@@ -8,12 +8,12 @@ function WidgetHelpers(){
         isUndefined: function(value){
             return (value === undefined);
         }
-    }
+    };
 
     exports.date = {
         getDayString: function(day_number, short_day){
-            var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
-            var shortDays = ['Sun', 'Mon', 'Tues', 'Wed', 'Thurs', 'Fri', 'Sat']
+            var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+            var shortDays = ['Sun', 'Mon', 'Tues', 'Wed', 'Thurs', 'Fri', 'Sat'];
 
             if(short_day){
                 return shortDays[day_number];
@@ -31,7 +31,7 @@ function WidgetHelpers(){
 
             return months[month_number];
         }
-    }
+    };
 
     exports.asyncRequest = function(data, callback) {
         var xhr = new XMLHttpRequest();
@@ -43,13 +43,13 @@ function WidgetHelpers(){
                 return;
             }
 
-            if(typeof callback == 'function'){
+            if(typeof callback === 'function'){
                 callback((data.type === 'json') ? JSON.parse(this.responseText) : this.responseText);
             }
         };
 
         xhr.send();
-    }
+    };
 
     exports.getLocation = function(data) {
         if (navigator.geolocation) {
@@ -62,26 +62,26 @@ function WidgetHelpers(){
                 switch(error.code)
                 {
                     case error.PERMISSION_DENIED:
-                        console.warn("Geolocation Error - User denied the request for Geolocation.");
+                        console.warn('Geolocation Error - User denied the request for Geolocation.');
                         message = 'User Permission was not given';
                         break;
                     case error.POSITION_UNAVAILABLE:
-                        console.warn("Geolocation Error - Location information is unavailable.");
+                        console.warn('Geolocation Error - Location information is unavailable.');
                         message = 'Your device was unable to get your location';
                         break;
                     case error.TIMEOUT:
-                        console.warn("Geolocation Error - The request to get user location timed out.");
+                        console.warn('Geolocation Error - The request to get user location timed out.');
                         message = 'Location request timed out';
                         break;
                     case error.UNKNOWN_ERROR:
-                        console.warn("Geolocation Error - An unknown error occurred.");
+                        console.warn('Geolocation Error - An unknown error occurred.');
                         message = 'An unknown error occured';
                         break;
                 }
 
                 console.log(error);
 
-                if(typeof data.errorCallback == 'function'){
+                if(typeof data.errorCallback === 'function'){
                     data.errorCallback(message, error);
                 }
 
@@ -89,7 +89,7 @@ function WidgetHelpers(){
         } else {
             console.warn('You browser does not support geolocation');
         }
-    }
+    };
 
     return exports;
 }

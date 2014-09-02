@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", function(){
+document.addEventListener('DOMContentLoaded', function(){
     var Manager = WidgetManager();
 
     Manager.setLoadingMessage('Loading dashboard widgets');
@@ -35,7 +35,7 @@ document.addEventListener("DOMContentLoaded", function(){
                 }
             }
         ]
-    })
+    });
 
     Manager.defineRow({
         name: 'ForecastRow',
@@ -51,7 +51,7 @@ document.addEventListener("DOMContentLoaded", function(){
                 }
             }
         ]
-    })
+    });
 
     Manager.renderWidgets();
 

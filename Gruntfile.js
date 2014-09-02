@@ -9,14 +9,13 @@ module.exports = function(grunt) {
         'sass',
         'autoprefixer',
         'cssmin',
+        'jshint',
         'concat',
-        //'jshint',
         //'uglify',
         'connect:livereload',
         'watch'
     ]);
 
-   	//@TODO: JSHint
    	//@TODO: Uglify
    	//@TODO: Add watch handlers for js changes
 
@@ -59,8 +58,8 @@ module.exports = function(grunt) {
                     '<%= config.dashboard %>/<%= config.js.dir %>/<%= config.js.concatDir %>/**/*.js'
                 ],
                 tasks: [
-                	'concat'//,
-                	//'jshint',
+                	'concat',
+                	'jshint'//,
                 	//'uglify'
             	]
             },
@@ -159,6 +158,14 @@ module.exports = function(grunt) {
 
 
         // Script tasks
+        jshint: {
+            options: {
+                jshintrc: true,
+                reporter: require('jshint-stylish')
+            },
+            main: '<%= config.dashboard %>/<%= config.js.dir %>/<%= config.js.concatDir %>/*.js'
+        },
+
         concat: {
             main: {
                 src: [
@@ -168,13 +175,6 @@ module.exports = function(grunt) {
             }
         },
 
-        // jshint: {
-        //     options: {
-        //         jshintrc: true,
-        //         reporter: require('jshint-stylish')
-        //     },
-        //     main: '<%= config.js.rootDir %>/<%= config.js.fileName %>.js',
-        // },
 
         // uglify: {
         //     options: {

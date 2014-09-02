@@ -1,0 +1,24 @@
+{
+    "bitwise": true,
+    "browser": true,
+    "curly": true,
+    "eqeqeq": true,
+    "eqnull": true,
+    "evil": true,
+    "globals": {
+    	"document": true,
+    	"console": true,
+		"module": true,
+		"require": true,
+		"WidgetManager": true,
+		"WidgetManager": true,
+		"WidgetManager": true,
+		"window": true
+    },
+    "latedef": true,
+    "noempty": true,
+    "quotmark": "single",
+    "shadow": true,
+    "undef": false,
+    "unused": false
+}
