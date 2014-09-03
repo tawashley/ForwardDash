@@ -11,8 +11,10 @@ function ForecastWidget(config, helpers) {
         formatString: ((config.celsius) ? '&#8451;' : '&#8457;'),
         apiFormatString: ((config.celsius) ? 'metric' : 'imperial'),
         showTemp: helpers.config.setValue(config.showTemp, true),
+        showDayString: helpers.config.setValue(config.showDayString, false),
+        shortDay: helpers.config.setValue(config.shortDay, false),
         showForecastDescription: helpers.config.setValue(config.showForecastDescription, true),
-        hightlightTodaysForecast: helpers.config.setValue(config.hightlightTodaysForecast, true)
+        hightlightTodaysForecast: helpers.config.setValue(config.hightlightTodaysForecast, true),
     };
 
     var _position;
@@ -46,7 +48,7 @@ function ForecastWidget(config, helpers) {
         _html.push('<div class="day-forecast ' + ((_config.hightlightTodaysForecast) ? _checkAddTodayClass(forecastDate.getDay()) : '') + '">');
 
         _html.push('<div class="forecast-details">');
-        _html.push('<div class="forecast-day">' + forecastDate.getDate() + ' ' + helpers.date.getMonthString(forecastDate.getMonth(), true) + '</div>');
+        _html.push('<div class="forecast-day">' +  ((_config.showDayString) ? helpers.date.getDayString(forecastDate.getDay(), _config.shortDay) + ' ' : '') + + forecastDate.getDate() + ' ' + helpers.date.getMonthString(forecastDate.getMonth(), true) + '</div>');
         _html.push('</div>');
 
         _html.push('<div class="forecast-icon">' + _renderForecastIconHTML(day_forecast.weather[0].main) + '</div>');

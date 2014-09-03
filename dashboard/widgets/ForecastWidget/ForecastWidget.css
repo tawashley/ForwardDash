@@ -16,6 +16,7 @@
 .forecast-icon{
     height: 5em;
     width: 5em;
+    margin: 0 auto;
 }
 
 .forecast-icon .icon{
