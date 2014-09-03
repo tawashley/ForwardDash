@@ -44,3 +44,13 @@ Show a description for each day's forecast e.g 'Cloudy'
 Default: `true`
 
 Highlight the current day's forecast on the UI
+
+#### showDayString
+Default: `false`
+
+Show the day for each forecast
+
+#### shortDay
+Default: `false`
+
+Show the day in short formate for each forecast e.g 'Sat'. showDayString config option must be true for this to take effect.
