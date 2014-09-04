@@ -48,8 +48,6 @@ document.addEventListener('DOMContentLoaded', function(){
                     // showTemp: false,
                     // showForecastDescription: false,
                     // hightlightTodaysForecast: false
-                    showDayString: true,
-                    shortDay: true
                 }
             }
         ]
