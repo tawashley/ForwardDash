@@ -47,14 +47,14 @@ index.html
 </body>
 
 <!-- common widget helpers -->
-<script src="/dashboard/WidgetHelpers.js"></script>
+<script src="/dashboard/core/scripts/modules/WidgetHelpers.js"></script>
 
 <!-- widget manager responsible for all the heavy lifting -->
 <!-- id is required and should not be changed -->
-<script src="/dashboard/WidgetManager.js" id="WidgetManagerScript"></script>
+<script src="/dashboard/core/scripts/modules/WidgetManager.js" id="WidgetManagerScript"></script>
 
 <!-- script that brings it all together-->
-<script src="/dashboard/main.js"></script>
+<script src="/dashboard/core/scripts/modules/ForwardDash.js"></script>
 
 </html>
 ```
