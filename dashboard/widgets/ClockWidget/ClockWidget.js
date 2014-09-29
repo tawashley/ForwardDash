@@ -5,6 +5,7 @@ function ClockWidget(config, helpers) {
             showSeconds: helpers.config.setValue(config.clock.showSeconds, true),
             showTimeOfDayIcon: helpers.config.setValue(config.clock.showTimeOfDayIcon, true),
             TwelvehourClock: helpers.config.setValue(config.clock.TwelvehourClock, false),
+            hexColour: helpers.config.setValue(config.clock.hexColour, false)
         },
         date : {
             showDate: helpers.config.setValue(config.date.showDate, true),
@@ -15,6 +16,7 @@ function ClockWidget(config, helpers) {
     };
 
     var _dom = {
+        container: document.getElementById('ClockWidgetContainer'),
         clock: document.getElementById('clock-widget-clock'),
         date: document.getElementById('clock-widget-date')
     };
@@ -66,12 +68,16 @@ function ClockWidget(config, helpers) {
             hour = (date.getHours() <= 9) ? '0' + date.getHours() : date.getHours(),
             mins = (date.getMinutes() <= 9) ? '0' + date.getMinutes() : date.getMinutes(),
             seconds = (date.getSeconds() <= 9) ? '0' + date.getSeconds() : date.getSeconds(),
+            hex = '#' + hour + mins + seconds,
             pmAm = (hour > 12) ? 'pm' : 'am';
+
+        if(_config.clock.hexColour){
+            _dom.container.style.backgroundColor = hex;
+        }
 
         if(_config.clock.showTimeOfDayIcon){
             html.push('<div class="clock-section clock-icon"><i class="icon '  + getTimeOfDayIcon(hour) + '"></i></div>');
         }
-
 
         if(_config.clock.TwelvehourClock && hour > 12){
             hour = (hour - 12);
