@@ -141,6 +141,44 @@ Manager.defineRow({
 
 The above code will render the 'ClockWidget' and 'CurrentWeatherWidget' as one row and the 'ForecastWidget' on the row below it. When adding a widget extra properties can be also be provided such as 'position' its 'size' (how much space it takes up of the row). A config object that is exposed to the widget script can also be defined here and allows for control over the display and behaviour of any given widget.
 
+Better yet, want to have multiple instances of the same widget on the dashboard, all with their own configs? Making this so is as easy as pie.
+
+```js
+Manager.defineRow({
+    name: 'ClockAndDate',
+    widgets: [
+        {
+            name: 'ClockWidget',
+            size: 'half',
+            config : {
+                clock: {
+                    showSeconds: false,
+                },
+                date: {
+                    showDate: false
+                }
+            }
+        },
+        {
+            name: 'ClockWidget',
+            position: 'right'
+            config : {
+                clock: {
+                    showSeconds: true,
+                    TwelvehourClock: true
+                },
+                date: {
+                    showDate: true
+                    showYear: false
+                    shortDay: true
+                    shortMonth: true
+                }
+            }
+        },
+    ]
+})
+```
+
 ## Creating a new widget
 
 All widgets are stored in the 'dashboard/widgets' directory and individual widgets have their own folder containing one HTML, CSS and JS files namespaced with the widget name.
@@ -156,16 +194,24 @@ This strucutre can be seen for the default dashboard widgets.
 FooBarWidget.html
 
 ```html
-<div id="foo-bar-container" class="foo-bar-container widget-container"></div>
+<div data-widget-foobar class="foo-bar-container widget-container"></div>
 
 <!-- href must be relative to index.html -->
 <link rel="stylesheet" href="dashboard/widgets/FooBarWidget/FooBarWidget.css">
 ```
 
+To allow for multiple instances of a widget it is advised to not use ids in the HTML file, with data attributes seen as a better hook if required.
+
 FooBarWidget.js
 
 ```js
-function FooBarWidget(config, helpers) {
+function FooBarWidget(object) {
+
+    //Object contents
+
+    //object.container -> the HTML Element for the widget container
+    //object.helpers -> All helper functions
+    //object.config -> config object for this widget instance
 
     var exports = {};
 
