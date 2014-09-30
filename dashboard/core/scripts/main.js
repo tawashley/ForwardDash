@@ -182,7 +182,7 @@ function WidgetManager() {
             _widgetCount++;
 
             //random number between 1 and 10,000
-            widget.id = (Math.floor(Math.random() * 10000) + 1)
+            widget.id = (Math.floor(Math.random() * 10000) + 1);
 
             _XHRWidgetHTML(widget, function(response){
                 html.push(_renderWidgetHTML(response, widget));
