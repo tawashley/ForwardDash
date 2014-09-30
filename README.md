@@ -13,7 +13,7 @@
 
 A Web Dashboard built using widgets - built with a focus on the developer, allowing freedom of structure and behavior with the look and feel being controlled programatically. You will find no fancy UI for dragging and dropping widgets here nor will you find menus for removing or adding widgets - all of this is done in the code, examples of which can be found below.
 
-This is all in the aim of giving a developer power over a widget's structure, look and behaviour and removing unecessary abstraction through the interface.
+This is all in the aim of giving a developer power over a widget's structure, look and behaviour and removing unecessary abstraction through the interface. Want more than one clock displayed on the dashboard with their own seperate options, done!
 
 There are currently three default widgets
 
@@ -305,8 +305,6 @@ Function for getting the month string from `date.getMonth()` call.
 A short month (e.g. Sept) can be returned by passing `short_month` as true
 
 ## Current Limitations
-
-* Only one instance of a widget can be on the dashboard at a time. Due to how the widgets markup have IDs and this being the hook for the widget's script, adding a second widget of the same type does not currently work. This could be improved in the future by employing a data attribute to the markup. Either way having multiple instances of the the same widget is something I have not at the time of writing invested time in solving.
 
 * By it's very design, once the dashboard has been render on the UI adding, removing, repositioning etc. widgets is accompished by changing the underlying code, not by clicking UI controls.
 
