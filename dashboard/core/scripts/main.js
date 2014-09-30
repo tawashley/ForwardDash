@@ -228,8 +228,6 @@ function WidgetManager() {
     }
 
     function _XHRWidgetHTML(widget, callback) {
-        console.log(widget);
-
         helpers.asyncRequest({
             method: 'GET',
             uri: '/dashboard/widgets/'+ widget.name + '/' + widget.name + '.html',
