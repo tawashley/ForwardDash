@@ -58,13 +58,11 @@ function WidgetManager() {
         script.src = 'dashboard/widgets/' + widget.name + '/' + widget.name + '.js';
 
         script.onload = function(){
-            // window[widget.name]( widget.config, helpers).init();
             window[widget.name]({
                 container: _getElement(widget),
                 config: widget.config,
                 helpers: helpers
             }).init();
-            //Widget' + widget.id + '-' + widget.name
         };
 
         _widgetManagerScript.appendChild(script);

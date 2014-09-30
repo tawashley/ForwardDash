@@ -23,38 +23,38 @@ document.addEventListener('DOMContentLoaded', function(){
                         // shortMonth: true
                     }
                 }
+            },
+            {
+                name: 'CurrentWeatherWidget',
+                position: 'right',
+                id: 2,
+                config: {
+                    celsius: true,
+                    // celsius: false (default)
+                    showMinMaxTemp: false,
+                    // showSunrise: false,
+                    // showSunset: true
+                }
             }
-            // {
-            //     name: 'CurrentWeatherWidget',
-            //     position: 'right',
-            //     id: 2,
-            //     config: {
-            //         celsius: true,
-            //         // celsius: false (default)
-            //         showMinMaxTemp: false,
-            //         // showSunrise: false,
-            //         showSunset: true
-            //     }
-            // }
         ]
     });
 
-    // Manager.defineRow({
-    //     name: 'ForecastRow',
-    //     widgets: [
-    //         {
-    //             name: 'ForecastWidget',
-    //             size: 'full',
-    //             id: 3,
-    //             config: {
-    //                 celsius: true,
-    //                 // showTemp: false,
-    //                 // showForecastDescription: false,
-    //                 // hightlightTodaysForecast: false
-    //             }
-    //         }
-    //     ]
-    // });
+    Manager.defineRow({
+        name: 'ForecastRow',
+        widgets: [
+            {
+                name: 'ForecastWidget',
+                size: 'full',
+                id: 3,
+                config: {
+                    celsius: true,
+                    // showTemp: false,
+                    // showForecastDescription: false,
+                    // hightlightTodaysForecast: false
+                }
+            }
+        ]
+    });
 
     Manager.renderWidgets();
 

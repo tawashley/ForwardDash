@@ -21,9 +21,6 @@ function ClockWidget(object) {
         date: document.querySelector('#' + object.container.id + ' [data-widget-date]'),
     };
 
-    console.log('object', object);
-    console.log('dom obj', _dom);
-
     var exports = {};
 
     function _render_date(){

@@ -1,23 +1,23 @@
-function CurrentWeatherWidget(config, helpers) {
+function CurrentWeatherWidget(object) {
 
     var _config = {
-        celsius: helpers.config.setValue(config.celsius, false),
-        formatString: ((config.celsius) ? '&#8451;' : '&#8457;'),
-        apiFormatString: ((config.celsius) ? 'metric' : 'imperial'),
-        showPlaceName: helpers.config.setValue(config.showPlaceName, true),
-        showMinMaxTemp: helpers.config.setValue(config.showMinMaxTemp, true),
-        showSunrise: helpers.config.setValue(config.showSunrise, false),
-        showSunset: helpers.config.setValue(config.showSunset, false),
+        celsius: object.helpers.config.setValue(object.config.celsius, false),
+        formatString: ((object.config.celsius) ? '&#8451;' : '&#8457;'),
+        apiFormatString: ((object.config.celsius) ? 'metric' : 'imperial'),
+        showPlaceName: object.helpers.config.setValue(object.config.showPlaceName, true),
+        showMinMaxTemp: object.helpers.config.setValue(object.config.showMinMaxTemp, true),
+        showSunrise: object.helpers.config.setValue(object.config.showSunrise, false),
+        showSunset: object.helpers.config.setValue(object.config.showSunset, false),
     };
 
     var _position;
 
     var _dom = {
-        widgetContainer: document.getElementById('current-weather-container')
+        widgetContainer: document.querySelector('#' + object.container.id + ' [data-widget-weather]')
     };
 
     function _getUserLocation() {
-        helpers.getLocation({
+        object.helpers.getLocation({
             options : {
                 enableHighAccuracy : true,
                 timeout : 10000, //10 seconds
@@ -31,7 +31,7 @@ function CurrentWeatherWidget(config, helpers) {
     }
 
     function _weatherAPIRequest() {
-        helpers.asyncRequest({
+        object.helpers.asyncRequest({
             method: 'GET',
             type: 'json',
             uri: 'http://api.openweathermap.org/data/2.5/weather?lat=' + _position.coords.latitude + '&lon=' + _position.coords.longitude + '&units=' + _config.apiFormatString + '&type=accurate'

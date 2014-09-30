@@ -1,26 +1,26 @@
-function ForecastWidget(config, helpers) {
+function ForecastWidget(object) {
 
     var _html = [];
 
     var _dom = {
-        widgetContainer: document.getElementById('forecast-container')
+        widgetContainer: document.querySelector('#' + object.container.id + ' [data-widget-forecast]')
     };
 
     var _config = {
-        celsius: helpers.config.setValue(config.celsius, false),
-        formatString: ((config.celsius) ? '&#8451;' : '&#8457;'),
-        apiFormatString: ((config.celsius) ? 'metric' : 'imperial'),
-        showTemp: helpers.config.setValue(config.showTemp, true),
-        showDayString: helpers.config.setValue(config.showDayString, false),
-        shortDay: helpers.config.setValue(config.shortDay, false),
-        showForecastDescription: helpers.config.setValue(config.showForecastDescription, true),
-        hightlightTodaysForecast: helpers.config.setValue(config.hightlightTodaysForecast, true),
+        celsius: object.helpers.config.setValue(object.config.celsius, false),
+        formatString: ((object.config.celsius) ? '&#8451;' : '&#8457;'),
+        apiFormatString: ((object.config.celsius) ? 'metric' : 'imperial'),
+        showTemp: object.helpers.config.setValue(object.config.showTemp, true),
+        showDayString: object.helpers.config.setValue(object.config.showDayString, false),
+        shortDay: object.helpers.config.setValue(object.config.shortDay, false),
+        showForecastDescription: object.helpers.config.setValue(object.config.showForecastDescription, true),
+        hightlightTodaysForecast: object.helpers.config.setValue(object.config.hightlightTodaysForecast, true),
     };
 
     var _position;
 
     function _getUserLocation() {
-        helpers.getLocation({
+        object.helpers.getLocation({
             options : {
                 enableHighAccuracy : true,
                 timeout : 10000, //10 seconds
@@ -48,7 +48,7 @@ function ForecastWidget(config, helpers) {
         _html.push('<div class="day-forecast ' + ((_config.hightlightTodaysForecast) ? _checkAddTodayClass(forecastDate.getDay()) : '') + '">');
 
         _html.push('<div class="forecast-details">');
-        _html.push('<div class="forecast-day">' +  ((_config.showDayString) ? helpers.date.getDayString(forecastDate.getDay(), _config.shortDay) + ' ' : '') + + forecastDate.getDate() + ' ' + helpers.date.getMonthString(forecastDate.getMonth(), true) + '</div>');
+        _html.push('<div class="forecast-day">' +  ((_config.showDayString) ? object.helpers.date.getDayString(forecastDate.getDay(), _config.shortDay) + ' ' : '') + + forecastDate.getDate() + ' ' + object.helpers.date.getMonthString(forecastDate.getMonth(), true) + '</div>');
         _html.push('</div>');
 
         _html.push('<div class="forecast-icon">' + _renderForecastIconHTML(day_forecast.weather[0].main) + '</div>');
@@ -98,7 +98,7 @@ function ForecastWidget(config, helpers) {
     }
 
     function _getForecast(){
-        helpers.asyncRequest({
+        object.helpers.asyncRequest({
             method: 'GET',
             type: 'json',
             uri: 'http://api.openweathermap.org/data/2.5/forecast/daily?lat=' + _position.coords.latitude + '&lon=' + _position.coords.longitude + '&units=' + _config.apiFormatString + '&type=accurate&cnt=7' //cnt 7 - seven day forecast
