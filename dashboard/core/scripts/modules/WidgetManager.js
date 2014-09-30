@@ -25,6 +25,9 @@ function WidgetManager() {
         row.widgets.forEach(function(widget, index){
             _widgetCount++;
 
+            //random number between 1 and 10,000
+            widget.id = (Math.floor(Math.random() * 10000) + 1)
+
             _XHRWidgetHTML(widget, function(response){
                 html.push(_renderWidgetHTML(response, widget));
             });
@@ -69,6 +72,8 @@ function WidgetManager() {
     }
 
     function _XHRWidgetHTML(widget, callback) {
+        console.log(widget);
+
         helpers.asyncRequest({
             method: 'GET',
             uri: '/dashboard/widgets/'+ widget.name + '/' + widget.name + '.html',

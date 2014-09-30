@@ -9,7 +9,6 @@ document.addEventListener('DOMContentLoaded', function(){
             {
                 name: 'ClockWidget',
                 size: 'half',
-                id: 1,
                 config : {
                     clock: {
                         showSeconds: false,
@@ -27,7 +26,6 @@ document.addEventListener('DOMContentLoaded', function(){
             {
                 name: 'CurrentWeatherWidget',
                 position: 'right',
-                id: 2,
                 config: {
                     celsius: true,
                     // celsius: false (default)
@@ -45,7 +43,6 @@ document.addEventListener('DOMContentLoaded', function(){
             {
                 name: 'ForecastWidget',
                 size: 'full',
-                id: 3,
                 config: {
                     celsius: true,
                     // showTemp: false,
@@ -184,6 +181,9 @@ function WidgetManager() {
         row.widgets.forEach(function(widget, index){
             _widgetCount++;
 
+            //random number between 1 and 10,000
+            widget.id = (Math.floor(Math.random() * 10000) + 1)
+
             _XHRWidgetHTML(widget, function(response){
                 html.push(_renderWidgetHTML(response, widget));
             });
@@ -228,6 +228,8 @@ function WidgetManager() {
     }
 
     function _XHRWidgetHTML(widget, callback) {
+        console.log(widget);
+
         helpers.asyncRequest({
             method: 'GET',
             uri: '/dashboard/widgets/'+ widget.name + '/' + widget.name + '.html',

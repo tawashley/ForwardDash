@@ -9,7 +9,6 @@ document.addEventListener('DOMContentLoaded', function(){
             {
                 name: 'ClockWidget',
                 size: 'half',
-                id: 1,
                 config : {
                     clock: {
                         showSeconds: false,
@@ -27,7 +26,6 @@ document.addEventListener('DOMContentLoaded', function(){
             {
                 name: 'CurrentWeatherWidget',
                 position: 'right',
-                id: 2,
                 config: {
                     celsius: true,
                     // celsius: false (default)
@@ -45,7 +43,6 @@ document.addEventListener('DOMContentLoaded', function(){
             {
                 name: 'ForecastWidget',
                 size: 'full',
-                id: 3,
                 config: {
                     celsius: true,
                     // showTemp: false,
