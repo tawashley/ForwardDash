@@ -58,7 +58,13 @@ function WidgetManager() {
         script.src = 'dashboard/widgets/' + widget.name + '/' + widget.name + '.js';
 
         script.onload = function(){
-            window[widget.name](widget.config, helpers).init();
+            // window[widget.name]( widget.config, helpers).init();
+            window[widget.name]({
+                container: _getElement(widget),
+                config: widget.config,
+                helpers: helpers
+            }).init();
+            //Widget' + widget.id + '-' + widget.name
         };
 
         _widgetManagerScript.appendChild(script);
@@ -77,11 +83,19 @@ function WidgetManager() {
     function _renderWidgetHTML(response, widget) {
         var html = [];
 
-        html.push('<section class="widget' + _getWidgetSizeClass(widget) + _getWidgetPositionClass(widget) +'" id="' + widget.name + 'Container">');
+        html.push('<section class="widget' + _getWidgetSizeClass(widget) + _getWidgetPositionClass(widget) + '" id="' + _getHTMLID(widget) + '">');
         html.push(response);
         html.push('</section>');
 
         return html.join('');
+    }
+
+    function _getElement(widget){
+        return document.getElementById(_getHTMLID(widget));
+    }
+
+    function _getHTMLID(widget) {
+        return 'Widget' + widget.id + '-' + widget.name;
     }
 
     function _getDashboardRowID(name){

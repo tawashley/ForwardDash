@@ -1,25 +1,28 @@
-function ClockWidget(config, helpers) {
+function ClockWidget(object) {
 
     var _config = {
         clock: {
-            showSeconds: helpers.config.setValue(config.clock.showSeconds, true),
-            showTimeOfDayIcon: helpers.config.setValue(config.clock.showTimeOfDayIcon, true),
-            TwelvehourClock: helpers.config.setValue(config.clock.TwelvehourClock, false),
-            hexColour: helpers.config.setValue(config.clock.hexColour, false)
+            showSeconds: object.helpers.config.setValue(object.config.clock.showSeconds, true),
+            showTimeOfDayIcon: object.helpers.config.setValue(object.config.clock.showTimeOfDayIcon, true),
+            TwelvehourClock: object.helpers.config.setValue(object.config.clock.TwelvehourClock, false),
+            hexColour: object.helpers.config.setValue(object.config.clock.hexColour, false)
         },
         date : {
-            showDate: helpers.config.setValue(config.date.showDate, true),
-            showYear: helpers.config.setValue(config.date.showYear, true),
-            shortDay: helpers.config.setValue(config.date.shortDay, false),
-            shortMonth: helpers.config.setValue(config.date.shortMonth, false)
+            showDate: object.helpers.config.setValue(object.config.date.showDate, true),
+            showYear: object.helpers.config.setValue(object.config.date.showYear, true),
+            shortDay: object.helpers.config.setValue(object.config.date.shortDay, false),
+            shortMonth: object.helpers.config.setValue(object.config.date.shortMonth, false)
         }
     };
 
     var _dom = {
-        container: document.getElementById('ClockWidgetContainer'),
-        clock: document.getElementById('clock-widget-clock'),
-        date: document.getElementById('clock-widget-date')
+        container: object.container,
+        clock: document.querySelector('#' + object.container.id + ' [data-widget-clock]'),
+        date: document.querySelector('#' + object.container.id + ' [data-widget-date]'),
     };
+
+    console.log('object', object);
+    console.log('dom obj', _dom);
 
     var exports = {};
 
