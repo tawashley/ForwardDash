@@ -61,7 +61,6 @@ function WidgetManager() {
         script.src = 'dashboard/widgets/' + widget.getName() + '/' + widget.getName() + '.js';
 
         script.onload = function(){
-
             window[widget.getName()]({
                 container: widget.getElement(),
                 config: widget.getConfig(),

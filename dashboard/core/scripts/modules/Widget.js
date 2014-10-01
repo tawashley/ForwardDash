@@ -6,7 +6,7 @@ function Widget(widget){
     var CSSSizeClass = ((widget.size !== undefined) ? ' ' + CSSClassPrefix + widget.size : '');
 
     var name = widget.name;
-    var config = widget.config;
+    var config = ((widget.config !== undefined) ? widget.config : {});
 
     //random number between 1 and 10,000ß
     var widgetID = (Math.floor(Math.random() * 10000) + 1);

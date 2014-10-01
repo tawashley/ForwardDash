@@ -53,6 +53,15 @@ document.addEventListener('DOMContentLoaded', function(){
         ]
     });
 
+    Manager.defineRow({
+        name: 'ClockRow',
+        widgets: [
+            Widget({
+                name: 'ClockWidget'
+            })
+        ]
+    });
+
     Manager.renderWidgets();
 
 }, false);
@@ -65,7 +74,7 @@ function Widget(widget){
     var CSSSizeClass = ((widget.size !== undefined) ? ' ' + CSSClassPrefix + widget.size : '');
 
     var name = widget.name;
-    var config = widget.config;
+    var config = ((widget.config !== undefined) ? widget.config : {});
 
     //random number between 1 and 10,000ß
     var widgetID = (Math.floor(Math.random() * 10000) + 1);
@@ -266,7 +275,6 @@ function WidgetManager() {
         script.src = 'dashboard/widgets/' + widget.getName() + '/' + widget.getName() + '.js';
 
         script.onload = function(){
-
             window[widget.getName()]({
                 container: widget.getElement(),
                 config: widget.getConfig(),
