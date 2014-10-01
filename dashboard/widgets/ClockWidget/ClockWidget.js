@@ -1,5 +1,10 @@
 function ClockWidget(object) {
 
+    if(object.helpers.isEmptyObject(object.config)){
+        object.config.date = {};
+        object.config.clock = {};
+    }
+
     var _config = {
         clock: {
             showSeconds: object.helpers.config.setValue(object.config.clock.showSeconds, true),

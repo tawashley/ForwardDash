@@ -7,7 +7,7 @@ function WidgetHelpers(){
         },
         isUndefined: function(value){
             return (value === undefined);
-        }
+        },
     };
 
     exports.date = {
@@ -31,6 +31,10 @@ function WidgetHelpers(){
 
             return months[month_number];
         }
+    };
+
+    exports.isEmptyObject = function(object){
+        return Object.keys(object).length === 0;
     };
 
     exports.asyncRequest = function(data, callback) {

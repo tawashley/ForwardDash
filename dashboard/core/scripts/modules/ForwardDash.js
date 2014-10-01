@@ -53,15 +53,6 @@ document.addEventListener('DOMContentLoaded', function(){
         ]
     });
 
-    Manager.defineRow({
-        name: 'ClockRow',
-        widgets: [
-            Widget({
-                name: 'ClockWidget'
-            })
-        ]
-    });
-
     Manager.renderWidgets();
 
 }, false);
