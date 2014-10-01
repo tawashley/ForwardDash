@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', function(){
     Manager.defineRow({
         name: 'TopRow',
         widgets: [
-            {
+            Widget({
                 name: 'ClockWidget',
                 size: 'half',
                 config : {
@@ -22,8 +22,8 @@ document.addEventListener('DOMContentLoaded', function(){
                         // shortMonth: true
                     }
                 }
-            },
-            {
+            }),
+            Widget({
                 name: 'CurrentWeatherWidget',
                 position: 'right',
                 config: {
@@ -33,14 +33,14 @@ document.addEventListener('DOMContentLoaded', function(){
                     // showSunrise: false,
                     // showSunset: true
                 }
-            }
+            })
         ]
     });
 
     Manager.defineRow({
         name: 'ForecastRow',
         widgets: [
-            {
+            Widget({
                 name: 'ForecastWidget',
                 size: 'full',
                 config: {
@@ -49,7 +49,7 @@ document.addEventListener('DOMContentLoaded', function(){
                     // showForecastDescription: false,
                     // hightlightTodaysForecast: false
                 }
-            }
+            })
         ]
     });
 

@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', function(){
     Manager.defineRow({
         name: 'TopRow',
         widgets: [
-            {
+            Widget({
                 name: 'ClockWidget',
                 size: 'half',
                 config : {
@@ -22,8 +22,8 @@ document.addEventListener('DOMContentLoaded', function(){
                         // shortMonth: true
                     }
                 }
-            },
-            {
+            }),
+            Widget({
                 name: 'CurrentWeatherWidget',
                 position: 'right',
                 config: {
@@ -33,14 +33,14 @@ document.addEventListener('DOMContentLoaded', function(){
                     // showSunrise: false,
                     // showSunset: true
                 }
-            }
+            })
         ]
     });
 
     Manager.defineRow({
         name: 'ForecastRow',
         widgets: [
-            {
+            Widget({
                 name: 'ForecastWidget',
                 size: 'full',
                 config: {
@@ -49,7 +49,7 @@ document.addEventListener('DOMContentLoaded', function(){
                     // showForecastDescription: false,
                     // hightlightTodaysForecast: false
                 }
-            }
+            })
         ]
     });
 
@@ -57,6 +57,55 @@ document.addEventListener('DOMContentLoaded', function(){
 
 }, false);
 
+function Widget(widget){
+
+    var CSSClassPrefix = 'widget--';
+    var CSSIDPrefix = 'Widget';
+    var CSSPositionClass = ((widget.position !== undefined) ? ' ' + CSSClassPrefix + widget.position : ' ' + CSSClassPrefix + 'left' );
+    var CSSSizeClass = ((widget.size !== undefined) ? ' ' + CSSClassPrefix + widget.size : '');
+
+    var name = widget.name;
+    var config = widget.config;
+
+    //random number between 1 and 10,000ß
+    var widgetID = (Math.floor(Math.random() * 10000) + 1);
+    var HTMLID = CSSIDPrefix + widgetID + '-' + name;
+    var DOMElement;
+
+    var exports = {};
+
+    exports.setElement = function(){
+        DOMElement = document.getElementById(HTMLID);
+    };
+
+    exports.getName = function(){
+        return name;
+    };
+
+    exports.getConfig = function(){
+        return config;
+    };
+
+    exports.getElement = function(){
+        return DOMElement;
+    };
+
+    exports.getHTMLID = function(){
+        return HTMLID;
+    };
+
+    exports.CSS = {
+        getpositionClass: function() {
+            return CSSPositionClass;
+        },
+
+        getsizeClass: function() {
+            return CSSSizeClass;
+        }
+    };
+
+    return exports;
+}
 function WidgetHelpers(){
     var exports = {};
 
@@ -172,17 +221,16 @@ function WidgetManager() {
     }
 
     function _renderRow(row) {
+
         var html = [];
         var widgetCount = row.widgets.length;
         var count = 0;
+        var _widget;
 
-        html.push('<div class="widget-row"' + _getDashboardRowID(row.name) + '>');
+        html.push('<div class="widget-row" id="' + row.name + '">');
 
         row.widgets.forEach(function(widget, index){
             _widgetCount++;
-
-            //random number between 1 and 10,000
-            widget.id = (Math.floor(Math.random() * 10000) + 1);
 
             _XHRWidgetHTML(widget, function(response){
                 html.push(_renderWidgetHTML(response, widget));
@@ -197,6 +245,7 @@ function WidgetManager() {
             _container.insertAdjacentHTML('beforeend', html.join(''));
 
             row.widgets.forEach(function(widget, index){
+                widget.setElement();
                 _loadScript(widget);
             });
         }
@@ -214,12 +263,13 @@ function WidgetManager() {
 
     function _loadScript(widget) {
         var script = document.createElement('script');
-        script.src = 'dashboard/widgets/' + widget.name + '/' + widget.name + '.js';
+        script.src = 'dashboard/widgets/' + widget.getName() + '/' + widget.getName() + '.js';
 
         script.onload = function(){
-            window[widget.name]({
-                container: _getElement(widget),
-                config: widget.config,
+
+            window[widget.getName()]({
+                container: widget.getElement(),
+                config: widget.getConfig(),
                 helpers: helpers
             }).init();
         };
@@ -230,7 +280,7 @@ function WidgetManager() {
     function _XHRWidgetHTML(widget, callback) {
         helpers.asyncRequest({
             method: 'GET',
-            uri: '/dashboard/widgets/'+ widget.name + '/' + widget.name + '.html',
+            uri: '/dashboard/widgets/' + widget.getName() + '/' + widget.getName() + '.html',
             async: false
         }, function(response){
             callback(response);
@@ -240,7 +290,7 @@ function WidgetManager() {
     function _renderWidgetHTML(response, widget) {
         var html = [];
 
-        html.push('<section class="widget' + _getWidgetSizeClass(widget) + _getWidgetPositionClass(widget) + '" id="' + _getHTMLID(widget) + '">');
+        html.push('<section class="widget' + widget.CSS.getsizeClass() + widget.CSS.getpositionClass()  + '" id="' + widget.getHTMLID() + '">');
         html.push(response);
         html.push('</section>');
 
@@ -248,24 +298,9 @@ function WidgetManager() {
     }
 
     function _getElement(widget){
-        return document.getElementById(_getHTMLID(widget));
+        return document.getElementById(widget.getHTMLID());
     }
 
-    function _getHTMLID(widget) {
-        return 'Widget' + widget.id + '-' + widget.name;
-    }
-
-    function _getDashboardRowID(name){
-        return ((name !== undefined) ? 'id="' + name + '"': '');
-    }
-
-    function _getWidgetPositionClass(widget){
-        return ((widget.position !== undefined) ? ' widget--' + widget.position : ' widget--left' );
-    }
-
-    function _getWidgetSizeClass(widget){
-        return ((widget.size !== undefined) ? ' widget--' + widget.size : '' );
-    }
 
     exports.defineRow = function(data) {
         _dashboardRows.push({
@@ -281,7 +316,7 @@ function WidgetManager() {
     exports.setLoadingMessage = function(message) {
         var html = [];
 
-        html.push('<div class="loading-message" id="dashboard-loading-message">'+ message + '</div>');
+        html.push('<div class="loading-message" id="dashboard-loading-message">' + message + '</div>');
         document.getElementsByTagName('body')[0].insertAdjacentHTML('afterbegin', html.join(''));
 
         _setLoadingMessage = true;
