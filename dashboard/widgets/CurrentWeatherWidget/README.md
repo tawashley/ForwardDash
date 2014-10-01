@@ -9,7 +9,7 @@ var Manager = WidgetManager();
 
 Manager.defineRow({
     widgets: [
-        {
+        Widget({
             name: 'CurrentWeatherWidget',
             config: {
                 //celsius: true,
@@ -17,7 +17,7 @@ Manager.defineRow({
                 //showSunrise: false,
                 //showSunset: true
             }
-        }
+        })
     ]
 })
 ```

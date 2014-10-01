@@ -9,7 +9,7 @@ var Manager = WidgetManager();
 
 Manager.defineRow({
     widgets: [
-        {
+        Widget({
             name: 'ClockWidget',
             config : {
                 clock: {
@@ -24,7 +24,7 @@ Manager.defineRow({
                     // shortMonth: true
                 }
             }
-        }
+        })
     ]
 })
 ```

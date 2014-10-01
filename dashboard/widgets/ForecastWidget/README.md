@@ -9,7 +9,7 @@ var Manager = WidgetManager();
 
 Manager.defineRow({
     widgets: [
-        {
+        Widget({
             name: 'ForecastWidget',
             size: 'full',
             config: {
@@ -18,7 +18,7 @@ Manager.defineRow({
                 // showForecastDescription: false,
                 // hightlightTodaysForecast: false
             }
-        }
+        })
     ]
 })
 ```
