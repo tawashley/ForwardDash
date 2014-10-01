@@ -68,10 +68,10 @@ document.addEventListener("DOMContentLoaded", function(){
 
     Manager.defineRow({
         widgets: [
-            {
+            Widget({
                 //this must be the same as the widget folder
                 name: 'ClockWidget'
-            }
+            })
         ]
     })
 
@@ -91,7 +91,7 @@ More widgets and rows with widgets can easily be added by expanding the widgets 
 Manager.defineRow({
     name: 'ClockAndDate',
     widgets: [
-        {
+        Widget({
             name: 'ClockWidget',
             size: 'half',
             config : {
@@ -107,8 +107,8 @@ Manager.defineRow({
                     // shortMonth: true
                 }
             }
-        },
-        {
+        }),
+        Widget({
             name: 'CurrentWeatherWidget',
             position: 'right',
             config: {
@@ -117,7 +117,7 @@ Manager.defineRow({
                 // showSunrise: false,
                 showSunset: true
             }
-        }
+        })
     ]
 })
 
@@ -125,7 +125,7 @@ Manager.defineRow({
     name: 'ForecastRow',
     position: 'left'
     widgets: [
-        {
+        Widget({
             name: 'ForecastWidget',
             size: 'full',
             config: {
@@ -134,7 +134,7 @@ Manager.defineRow({
                 // showForecastDescription: false,
                 // hightlightTodaysForecast: false
             }
-        }
+        })
     ]
 })
 ```
@@ -147,7 +147,7 @@ Better yet, want to have multiple instances of the same widget on the dashboard,
 Manager.defineRow({
     name: 'ClockAndDate',
     widgets: [
-        {
+        Widget({
             name: 'ClockWidget',
             size: 'half',
             config : {
@@ -158,8 +158,8 @@ Manager.defineRow({
                     showDate: false
                 }
             }
-        },
-        {
+        }),
+        Widget({
             name: 'ClockWidget',
             position: 'right'
             config : {
@@ -174,7 +174,7 @@ Manager.defineRow({
                     shortMonth: true
                 }
             }
-        },
+        }),
     ]
 })
 ```
