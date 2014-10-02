@@ -30,7 +30,7 @@ When defining individual widgets, global options can be set such as the size of 
 
 ## Getting Started
 
-Getting a single widget dashboard up and running is super quick, though running it on a server (local or whatever takes you fancy) is advisable. All is needed is a HTML document and a script file to get the ball rolling.
+Getting a single widget dashboard up and running is super quick, though running it on a server (local or whatever takes you fancy) is advisable. All is needed is a HTML document and a script file (or several depending on if developing) to get the ball rolling.
 
 index.html
 
@@ -48,6 +48,9 @@ index.html
 
 <!-- common widget helpers -->
 <script src="/dashboard/core/scripts/modules/WidgetHelpers.js"></script>
+
+<!-- widget object used for each individual widget -->
+<script src="/dashboard/core/scripts/modules/Widget.js"></script>
 
 <!-- widget manager responsible for all the heavy lifting -->
 <!-- id is required and should not be changed -->
