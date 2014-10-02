@@ -12,7 +12,6 @@ module.exports = function(grunt) {
         'jshint',
         'concat',
         'uglify',
-        'connect:livereload',
         'watch'
     ]);
 
@@ -37,63 +36,6 @@ module.exports = function(grunt) {
         		outputFileName: 'main'
         	}
         },
-
-        // Watchers
-        watch: {
-            sass: {
-                files: [
-                	'<%= config.dashboard %>/<%= config.css.dir %>/<%= config.sass.dir %>/**/*.scss'
-                ],
-                tasks: [
-                	'sass:main',
-                	'autoprefixer:main',
-                	'cssmin:main'
-                ]
-            },
-            js: {
-                files: [
-                    '<%= config.dashboard %>/<%= config.js.dir %>/<%= config.js.concatDir %>/**/*.js'
-                ],
-                tasks: [
-                	'concat:main',
-                	'jshint:main',
-                	'uglify:main'
-            	]
-            },
-            gruntfile: {
-            	files: [
-            		'Gruntfile.js'
-            	],
-            	tasks: [
-            		'jshint:gruntfile'
-            	]
-            },
-			livereload: {
-				options: {
-					livereload: '<%= connect.options.livereload %>'
-				},
-				files: [
-					'dashboard/{,*/}*.{js,css}'
-				]
-			}
-        },
-
-		// Local server
-        connect: {
-			options: {
-				port: 8080,
-				livereload: 35730,
-				useAvailablePort: true,
-				hostname: 'localhost'
-			},
-			livereload: {
-				options: {
-					open: true,
-					base: '.'
-				}
-			}
-		},
-
 
 		// Project tasks
 		todo: {
@@ -189,6 +131,38 @@ module.exports = function(grunt) {
             main: {
                 src: '<%= config.dashboard %>/<%= config.js.dir %>/<%= config.js.outputFileName %>.js',
                 dest: '<%= config.dashboard %>/<%= config.js.dir %>/<%= config.js.outputFileName %>.min.js'
+            }
+        }
+
+        // Watchers
+        watch: {
+            sass: {
+                files: [
+                    '<%= config.dashboard %>/<%= config.css.dir %>/<%= config.sass.dir %>/**/*.scss'
+                ],
+                tasks: [
+                    'sass:main',
+                    'autoprefixer:main',
+                    'cssmin:main'
+                ]
+            },
+            js: {
+                files: [
+                    '<%= config.dashboard %>/<%= config.js.dir %>/<%= config.js.concatDir %>/**/*.js'
+                ],
+                tasks: [
+                    'concat:main',
+                    'jshint:main',
+                    'uglify:main'
+                ]
+            },
+            gruntfile: {
+                files: [
+                    'Gruntfile.js'
+                ],
+                tasks: [
+                    'jshint:gruntfile'
+                ]
             }
         }
     });
