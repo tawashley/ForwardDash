@@ -84,7 +84,7 @@ function WidgetManager() {
     function _renderWidgetHTML(response, widget) {
         var html = [];
 
-        html.push('<section class="widget' + widget.CSS.getsizeClass() + widget.CSS.getpositionClass()  + '" id="' + widget.getHTMLID() + '">');
+        html.push('<section class="widget' + widget.HTML.getsizeClass() + widget.HTML.getpositionClass()  + '" id="' + widget.getHTMLID() + '">');
         html.push(response);
         html.push('</section>');
 

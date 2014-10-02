@@ -1,16 +1,14 @@
 function Widget(widget){
 
-    var CSSClassPrefix = 'widget--';
-    var CSSIDPrefix = 'Widget';
-    var CSSPositionClass = ((widget.position !== undefined) ? ' ' + CSSClassPrefix + widget.position : ' ' + CSSClassPrefix + 'left' );
-    var CSSSizeClass = ((widget.size !== undefined) ? ' ' + CSSClassPrefix + widget.size : '');
-
     var name = widget.name;
     var config = ((widget.config !== undefined) ? widget.config : {});
+    var widgetID = (Math.floor(Math.random() * 10000) + 1); //random number between 1 and 10,000
 
-    //random number between 1 and 10,000ß
-    var widgetID = (Math.floor(Math.random() * 10000) + 1);
-    var HTMLID = CSSIDPrefix + widgetID + '-' + name;
+    var HTMLIDPrefix = 'Widget';
+    var HTMLID = HTMLIDPrefix + widgetID + '-' + name;
+    var HTMLClassPrefix = 'widget--';
+    var HTMLPositionClass = ((widget.position !== undefined) ? ' ' + HTMLClassPrefix + widget.position : ' ' + HTMLClassPrefix + 'left' );
+    var HTMLSizeClass = ((widget.size !== undefined) ? ' ' + HTMLClassPrefix + widget.size : '');
     var DOMElement;
 
     var exports = {};
@@ -35,13 +33,13 @@ function Widget(widget){
         return HTMLID;
     };
 
-    exports.CSS = {
+    exports.HTML = {
         getpositionClass: function() {
-            return CSSPositionClass;
+            return HTMLPositionClass;
         },
 
         getsizeClass: function() {
-            return CSSSizeClass;
+            return HTMLSizeClass;
         }
     };
 
