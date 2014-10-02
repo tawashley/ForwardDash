@@ -12,6 +12,7 @@ module.exports = function(grunt) {
         'jshint',
         'concat',
         'uglify',
+        'browserSync',
         'watch'
     ]);
 
@@ -134,8 +135,32 @@ module.exports = function(grunt) {
             }
         },
 
+        browserSync: {
+            dev: {
+                bsFiles: {
+                    src : [
+                        'dashboard/core/scripts/modules/*.js',
+                        'index.html'
+                    ]
+                },
+                options: {
+                    watchTask: true,
+                    ghostMode: {
+                        clicks: true,
+                        scroll: true,
+                        links: true,
+                        forms: true
+                    },
+                    proxy: 'dashboard.dev'
+                }
+            }
+        },
+
         // Watchers
         watch: {
+            options: {
+                livereload: true,
+            },
             sass: {
                 files: [
                     '<%= config.dashboard %>/<%= config.css.dir %>/<%= config.sass.dir %>/**/*.scss'
