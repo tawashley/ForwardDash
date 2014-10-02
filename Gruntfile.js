@@ -132,7 +132,7 @@ module.exports = function(grunt) {
                 src: '<%= config.dashboard %>/<%= config.js.dir %>/<%= config.js.outputFileName %>.js',
                 dest: '<%= config.dashboard %>/<%= config.js.dir %>/<%= config.js.outputFileName %>.min.js'
             }
-        }
+        },
 
         // Watchers
         watch: {
