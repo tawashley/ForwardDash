@@ -1,31 +1,31 @@
-function WidgetHelpers(){
+function WidgetHelpers() {
     var exports = {};
 
     exports.config = {
-        setValue: function(value, default_value){
+        setValue: function(value, default_value) {
             return ((value !== undefined) ? value : default_value);
         },
-        isUndefined: function(value){
+        isUndefined: function(value) {
             return (value === undefined);
         },
     };
 
     exports.date = {
-        getDayString: function(day_number, short_day){
+        getDayString: function(day_number, short_day) {
             var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
             var shortDays = ['Sun', 'Mon', 'Tues', 'Wed', 'Thurs', 'Fri', 'Sat'];
 
-            if(short_day){
+            if (short_day) {
                 return shortDays[day_number];
             }
 
             return days[day_number];
         },
-        getMonthString: function(month_number, short_month){
+        getMonthString: function(month_number, short_month) {
             var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
             var shortMonths = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'June', 'July', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'];
 
-            if(short_month){
+            if (short_month) {
                 return shortMonths[month_number];
             }
 
@@ -33,11 +33,11 @@ function WidgetHelpers(){
         }
     };
 
-    exports.isEmptyObject = function(object){
+    exports.isEmptyObject = function(object) {
         return Object.keys(object).length === 0;
     };
 
-    exports.asyncRequest = function(data){
+    exports.asyncRequest = function(data) {
         return new Promise(function(resolve, reject) {
             var request = new XMLHttpRequest();
             request.open(data.method, data.uri);
@@ -51,20 +51,19 @@ function WidgetHelpers(){
             request.onerror = function() {
                 reject(Error('Error fetching data.'));
             };
-            request.send(); //send the request
+            request.send();
         });
     };
 
     exports.getLocation = function(data) {
         if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(function(position){
+            navigator.geolocation.getCurrentPosition(function(position) {
                 data.completeCallback(position);
-            }, function(error){
+            }, function(error) {
 
                 var message;
 
-                switch(error.code)
-                {
+                switch (error.code) {
                     case error.PERMISSION_DENIED:
                         console.warn('Geolocation Error - User denied the request for Geolocation.');
                         message = 'User Permission was not given';
@@ -85,7 +84,7 @@ function WidgetHelpers(){
 
                 console.log(error);
 
-                if(typeof data.errorCallback === 'function'){
+                if (typeof data.errorCallback === 'function') {
                     data.errorCallback(message, error);
                 }
 
@@ -97,4 +96,3 @@ function WidgetHelpers(){
 
     return exports;
 }
-
