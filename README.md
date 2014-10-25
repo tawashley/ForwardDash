@@ -355,6 +355,6 @@ A short month (e.g. Sept) can be returned by passing `short_month` as true
 
 ## Current Limitations
 
-* By it's very design, once the dashboard has been render on the UI adding, removing, repositioning etc. widgets is accompished by changing the underlying code, not by clicking UI controls.
+* By it's very design, once the dashboard has been rendered and the UI created - adding, removing, repositioning etc. widgets is accompished by changing the underlying code, not by clicking on UI controls.
 
 * Due to the dashboard lifecycle, each widget has it's own seperate CSS, JS and HTML file. While the structure is added to the page in an XHR request, this is not the case with CSS and JS. Without a build system in place to minify and concat widget files there may be a situation where 10+ individual CSS and JS files are loaded, at once, when the dashboard is being rendered. As such performance may become an issue in this situation.
