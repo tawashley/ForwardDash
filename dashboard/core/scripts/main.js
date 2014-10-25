@@ -228,9 +228,8 @@ function WidgetManager() {
     var _dashboardRows = [];
     var _container = document.getElementById('_widget-container_');
     var _widgetManagerScript = document.getElementById('WidgetManagerScript');
-    var _widgetCount = 0;
-    var _count = 0;
     var _setLoadingMessage = false;
+
     var helpers = WidgetHelpers();
     var exports = {};
 
@@ -251,7 +250,7 @@ function WidgetManager() {
             promises.push(_getWidgetHTML(row.widgets[i]));
         }
 
-        //when all promises have been resolved
+        //when all promises have been resolved (or are no longer pending)
         Promise.all(promises).then(function(data) {
 
             html.push(data.join(''));
@@ -265,7 +264,6 @@ function WidgetManager() {
             }
 
             _container.classList.add('show');
-
         });
     }
 
@@ -277,26 +275,22 @@ function WidgetManager() {
     }
 
     function _getWidgetHTML(widget) {
-
-        var widgetHTML;
-
         return new Promise(function(resolve, reject) {
             var request = new XMLHttpRequest();
             request.open('GET', '/dashboard/widgets/' + widget.getName() + '/' + widget.getName() + '.html');
             request.onload = function() {
                 if (request.status === 200) {
-                    //resolve(request.response); // we got data here, so resolve the Promise
-                    // resolve(_renderWidgetHTML(request.response, widget));
-                    widgetHTML = _renderWidgetHTML(request.response, widget);
-                    resolve(widgetHTML);
+                    resolve(_renderWidgetHTML(request.response, widget));
                 } else {
-                    reject(Error(request.statusText)); // status is not 200 OK, so reject
+                    reject(Error(request.statusText));
                 }
             };
+
             request.onerror = function() {
-                reject(Error('Error fetching data.')); // error occurred, reject the  Promise
+                reject(Error('Error fetching data.'));
             };
-            request.send(); //send the request
+
+            request.send();
         });
     }
 
