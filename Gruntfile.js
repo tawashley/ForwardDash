@@ -5,7 +5,7 @@ module.exports = function(grunt) {
 
     //Default Task
     grunt.registerTask('default', [
-    	'todo',
+        'todo',
         'sass',
         'autoprefixer',
         'cssmin',
@@ -16,50 +16,63 @@ module.exports = function(grunt) {
         'watch'
     ]);
 
+    grunt.registerTask('test', [
+        'jasmine'
+    ]);
+
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
 
         // Configuration
         config: {
-        	dashboard: 'dashboard/core',
-        	docs: 'docs',
-        	css: {
-        		dir: 'styles',
-        		outputFileName: 'main'
-        	},
-        	sass: {
-        		dir: 'sass',
-        		inputFileName: 'forward_dash'
-        	},
-        	js: {
-        		concatDir: 'modules',
-        		dir: 'scripts',
-        		outputFileName: 'main'
-        	}
+            dashboard: 'dashboard/core',
+            docs: 'docs',
+            css: {
+                dir: 'styles',
+                outputFileName: 'main'
+            },
+            sass: {
+                dir: 'sass',
+                inputFileName: 'forward_dash'
+            },
+            js: {
+                concatDir: 'modules',
+                dir: 'scripts',
+                testingDir: 'tests',
+                outputFileName: 'main'
+            }
         },
 
-		// Project tasks
-		todo: {
-			options: {
-				colophon: true,
-				file: 'TODO.md',
-				marks: [{
-		          	name: 'todo',
-		          	pattern: /@(todo)/i,
-		          	color: 'blue'
-	        	}],
-      			title: '[<%= pkg.title%> TODO list:](<%= pkg.homepage %>)',
-  				usePackage: true
-			},
-			main: [
-				'<%= config.dashboard %>/**/*.{html,js,scss}',
-				'<%= config.docs %>/**/*.{html,js,scss}',
-				'Gruntfile.js'
-			]
-		},
+        // Project tasks
+        todo: {
+            options: {
+                colophon: true,
+                file: 'TODO.md',
+                marks: [{
+                    name: 'todo',
+                    pattern: /@(todo)/i,
+                    color: 'blue'
+                }],
+                title: '[<%= pkg.title%> TODO list:](<%= pkg.homepage %>)',
+                usePackage: true
+            },
+            main: [
+                '<%= config.dashboard %>/**/*.{html,js,scss}',
+                '<%= config.docs %>/**/*.{html,js,scss}',
+                'Gruntfile.js'
+            ]
+        },
 
+        jasmine: {
+            forwardDash: {
+                src: '<%= config.dashboard %>/<%= config.js.dir %>/<%= config.js.concatDir %>/*.js',
+                options: {
+                    specs: 'tests/*.js'
+                }
+            }
+        },
 
-		// Style tasks
+        // Style tasks
         sass: {
             options: {
                 style: 'expanded',
@@ -75,8 +88,8 @@ module.exports = function(grunt) {
         autoprefixer: {
             options: {
                 browsers: [
-                	'last 2 version', 'ie 9'
-            	]
+                    'last 2 version', 'ie 9'
+                ]
             },
             main: {
                 expand: true,
@@ -138,7 +151,7 @@ module.exports = function(grunt) {
         browserSync: {
             dev: {
                 bsFiles: {
-                    src : [
+                    src: [
                         'dashboard/core/scripts/modules/*.js',
                         'index.html'
                     ]
