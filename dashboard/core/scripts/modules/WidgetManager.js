@@ -22,38 +22,99 @@ function WidgetManager() {
         var count = 0;
         var _widget;
 
+        //promises spike start
+
+        var promises = [];
+
+        //start of row container
         html.push('<div class="widget-row" id="' + row.name + '">');
 
-        row.widgets.forEach(function(widget, index){
-            _widgetCount++;
+        for (var i = row.widgets.length - 1; i >= 0; i--) {
+            promises.push(_getWidgetHTML(row.widgets[i]));
+        }
 
-            _XHRWidgetHTML(widget, function(response){
-                html.push(_renderWidgetHTML(response, widget));
-            });
 
-            count++;
+        //main widget promise
+        Promise.all(promises).then(function(data){
+
+            html.push(data.join(''));
+
+            //end of row container
+            html.push('</div>');
+
+           _container.insertAdjacentHTML('beforeend', html.join(''));
+
+           row.widgets.forEach(function(widget, index){
+               widget.setElement();
+               _loadScript(widget);
+           });
+
+           if(_setLoadingMessage){
+               document.getElementById('dashboard-loading-message').parentElement.removeChild(document.getElementById('dashboard-loading-message'));
+           }
+
+           _container.classList.add('show');
         });
 
-        html.push('</div>');
 
-        if(count === widgetCount){
-            _container.insertAdjacentHTML('beforeend', html.join(''));
+        //promises spike end
 
-            row.widgets.forEach(function(widget, index){
-                widget.setElement();
-                _loadScript(widget);
+        // html.push('<div class="widget-row" id="' + row.name + '">');
+
+        // row.widgets.forEach(function(widget, index){
+        //     _widgetCount++;
+
+        //     _XHRWidgetHTML(widget, function(response){
+        //         html.push(_renderWidgetHTML(response, widget));
+        //     });
+
+        //     count++;
+        // });
+
+        // html.push('</div>');
+
+        // if(count === widgetCount){
+        //     _container.insertAdjacentHTML('beforeend', html.join(''));
+
+        //     row.widgets.forEach(function(widget, index){
+        //         widget.setElement();
+        //         _loadScript(widget);
+        //     });
+        // }
+
+        // if(_widgetCount === count){
+
+        //     if(_setLoadingMessage){
+        //         document.getElementById('dashboard-loading-message').parentElement.removeChild(document.getElementById('dashboard-loading-message'));
+        //     }
+
+        //     _container.classList.add('show');
+        // }
+
+    }
+
+    function _getWidgetHTML(widget){
+
+        var widgetHTML;
+
+        return new Promise(function(resolve, reject) {
+                var request = new XMLHttpRequest();
+                request.open('GET', '/dashboard/widgets/' + widget.getName() + '/' + widget.getName() + '.html');
+                request.onload = function() {
+                    if (request.status === 200) {
+                        //resolve(request.response); // we got data here, so resolve the Promise
+                        // resolve(_renderWidgetHTML(request.response, widget));
+                        widgetHTML = _renderWidgetHTML(request.response, widget);
+                        resolve(widgetHTML);
+                    } else {
+                        reject(Error(request.statusText)); // status is not 200 OK, so reject
+                    }
+                };
+                request.onerror = function() {
+                    reject(Error('Error fetching data.')); // error occurred, reject the  Promise
+                };
+                request.send(); //send the request
             });
-        }
-
-        if(_widgetCount === count){
-
-            if(_setLoadingMessage){
-                document.getElementById('dashboard-loading-message').parentElement.removeChild(document.getElementById('dashboard-loading-message'));
-            }
-
-            _container.classList.add('show');
-        }
-
     }
 
     function _loadScript(widget) {
@@ -118,3 +179,33 @@ function WidgetManager() {
 
     return exports;
 }
+
+
+// if (window.Promise) {
+//     console.log('Promise found');
+//     var promise = new Promise(function(resolve, reject) {
+//         var request = new XMLHttpRequest();
+//         request.open('GET', 'http://api.icndb.com/jokes/random');
+//         request.onload = function() {
+//             if (request.status == 200) {
+//                 resolve(request.response); // we got data here, so resolve the Promise
+//             } else {
+//                 reject(Error(request.statusText)); // status is not 200 OK, so reject
+//             }
+//         };
+//         request.onerror = function() {
+//             reject(Error('Error fetching data.')); // error occurred, reject the  Promise
+//         };
+//         request.send(); //send the request
+//     });
+//     console.log('Asynchronous request made.');
+//     promise.then(function(data) {
+//         console.log('Got data! Promise fulfilled.');
+//         document.getElementsByTagName('body')[0].textContent = JSON.parse(data).value.joke;
+//     }, function(error) {
+//         console.log('Promise rejected.');
+//         console.log(error.message);
+//     });
+// } else {
+//     console.log('Promise not available');
+// }
