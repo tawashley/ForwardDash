@@ -37,6 +37,24 @@ function WidgetHelpers(){
         return Object.keys(object).length === 0;
     };
 
+    exports.asyncRequestPromise = function(data){
+        return new Promise(function(resolve, reject) {
+            var request = new XMLHttpRequest();
+            request.open(data.method, data.uri);
+            request.onload = function() {
+                if (request.status === 200) {
+                    resolve(request.response);
+                } else {
+                    reject(Error(request.statusText)); // status is not 200 OK, so reject
+                }
+            };
+            request.onerror = function() {
+                reject(Error('Error fetching data.')); // error occurred, reject the  Promise
+            };
+            request.send(); //send the request
+        });
+    };
+
     exports.asyncRequest = function(data, callback) {
         var xhr = new XMLHttpRequest();
 
