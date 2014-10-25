@@ -285,19 +285,19 @@ This function must be called before `renderWidgets()`
 
 ### General Helpers
 
-#### helpers.asyncRequest(data, callback)
+#### helpers.asyncRequest(data)
 
-data `Object`, callback `Function`
+data `Object`
 
-Async request helper function. If a callback function is provided, when the XHR request has finished it will be invoked.
+Async request helper function which returns a JavaScript promise.
 
 ```js
 helpers.asyncRequest({
     method: 'GET',
     type: 'json', //defaults to text
     uri: 'xhr-request.co.uk'
-}, function(response){
-    //callback function with response
+}).then(function(response){
+    //do something with the response
 });
 ```
 
