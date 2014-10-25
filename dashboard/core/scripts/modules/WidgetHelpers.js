@@ -37,40 +37,22 @@ function WidgetHelpers(){
         return Object.keys(object).length === 0;
     };
 
-    exports.asyncRequestPromise = function(data){
+    exports.asyncRequest = function(data){
         return new Promise(function(resolve, reject) {
             var request = new XMLHttpRequest();
             request.open(data.method, data.uri);
             request.onload = function() {
                 if (request.status === 200) {
-                    resolve(request.response);
+                    resolve((data.type === 'json') ? JSON.parse(request.response) : request.response);
                 } else {
-                    reject(Error(request.statusText)); // status is not 200 OK, so reject
+                    reject(Error(request.statusText));
                 }
             };
             request.onerror = function() {
-                reject(Error('Error fetching data.')); // error occurred, reject the  Promise
+                reject(Error('Error fetching data.'));
             };
             request.send(); //send the request
         });
-    };
-
-    exports.asyncRequest = function(data, callback) {
-        var xhr = new XMLHttpRequest();
-
-        xhr.open(data.method, data.uri, (data.async !== undefined) ? data.async : true);
-
-        xhr.onreadystatechange = function() {
-            if (this.readyState !== 4 || this.status !== 200){
-                return;
-            }
-
-            if(typeof callback === 'function'){
-                callback((data.type === 'json') ? JSON.parse(this.responseText) : this.responseText);
-            }
-        };
-
-        xhr.send();
     };
 
     exports.getLocation = function(data) {

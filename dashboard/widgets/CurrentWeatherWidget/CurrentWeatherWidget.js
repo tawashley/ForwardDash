@@ -35,9 +35,9 @@ function CurrentWeatherWidget(object) {
             method: 'GET',
             type: 'json',
             uri: 'http://api.openweathermap.org/data/2.5/weather?lat=' + _position.coords.latitude + '&lon=' + _position.coords.longitude + '&units=' + _config.apiFormatString + '&type=accurate'
-        }, function(response){
+        }).then(function(response){
             _renderWeatherUI(response);
-        });
+        })
     }
 
     function _renderWeatherUI(response){

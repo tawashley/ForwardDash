@@ -102,9 +102,9 @@ function ForecastWidget(object) {
             method: 'GET',
             type: 'json',
             uri: 'http://api.openweathermap.org/data/2.5/forecast/daily?lat=' + _position.coords.latitude + '&lon=' + _position.coords.longitude + '&units=' + _config.apiFormatString + '&type=accurate&cnt=7' //cnt 7 - seven day forecast
-        }, function(response){
+        }).then(function(response){
             _renderWeatherUI(response);
-        });
+        })
     }
 
     function _loadingUIMessage(){
