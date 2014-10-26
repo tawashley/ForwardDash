@@ -43,7 +43,7 @@ describe("When testing WidgetHelpers", function() {
 
     })
 
-    it("correctly check if object is empty", function() {
+    it("correctly check if an object is empty", function() {
         var emptyObj = {};
         var notEmptyObj = {
             foo: "bar"

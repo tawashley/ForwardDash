@@ -67,7 +67,7 @@ module.exports = function(grunt) {
             forwardDash: {
                 src: '<%= config.dashboard %>/<%= config.js.dir %>/<%= config.js.concatDir %>/*.js',
                 options: {
-                    specs: 'tests/*.js'
+                    specs: '<%= config.js.testingDir %>/*.js'
                 }
             }
         },
