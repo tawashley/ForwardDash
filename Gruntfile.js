@@ -194,6 +194,14 @@ module.exports = function(grunt) {
                     'uglify:main'
                 ]
             },
+            tests: {
+                files: [
+                    '<%= config.js.testingDir %>/*.js'
+                ],
+                tasks: [
+                    'jasmine'
+                ]
+            },
             gruntfile: {
                 files: [
                     'Gruntfile.js'
