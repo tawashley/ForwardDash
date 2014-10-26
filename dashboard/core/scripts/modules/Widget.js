@@ -29,6 +29,10 @@ function Widget(widget){
         return DOMElement;
     };
 
+    exports.getWidgetID = function(){
+        return widgetID;
+    }
+
     exports.getHTMLID = function(){
         return HTMLID;
     };
