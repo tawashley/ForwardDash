@@ -90,7 +90,7 @@ function Widget(widget){
 
     exports.getWidgetID = function(){
         return widgetID;
-    }
+    };
 
     exports.getHTMLID = function(){
         return HTMLID;
@@ -103,6 +103,10 @@ function Widget(widget){
 
         getsizeClass: function() {
             return HTMLSizeClass;
+        },
+
+        getID: function(){
+            return HTMLID;
         }
     };
 

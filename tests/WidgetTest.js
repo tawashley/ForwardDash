@@ -11,6 +11,18 @@ describe("When testing a Widget", function() {
         })
     });
 
+    it("the widget element is correctly set", function() {
+
+        var element = document.createElement('section');
+        element.id = widget.HTML.getID();
+        document.body.appendChild(element);
+
+        widget.setElement();
+
+        expect(widget.getElement()).toEqual(jasmine.any(HTMLElement));
+        expect(widget.getElement().id).toEqual(widget.HTML.getID());
+    });
+
     it("the name is correctly set", function() {
         expect(widget.getName()).toEqual('testWidgetName');
     });
@@ -25,7 +37,6 @@ describe("When testing a Widget", function() {
 
     it("the config HTML ID is correctly set", function() {
         var widgetID = widget.getWidgetID() + '-';
-
         expect(widget.getHTMLID()).toEqual('Widget' + widgetID + widget.getName());
     });
 
