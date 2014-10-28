@@ -110,6 +110,10 @@ function WidgetManager() {
         _initialiseRows();
     };
 
+    exports.getRows = function() {
+        return _dashboardRows;
+    };
+
     exports.setLoadingMessage = function(message) {
         var html = [];
 
