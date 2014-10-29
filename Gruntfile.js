@@ -16,7 +16,7 @@ module.exports = function(grunt) {
         'watch'
     ]);
 
-    grunt.travis('test', [
+    grunt.registerTask('test', [
         'sass',
         'jshint',
         'jasmine'
