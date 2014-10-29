@@ -20,6 +20,12 @@ module.exports = function(grunt) {
         'jasmine'
     ]);
 
+    grunt.travis('ci', [
+        'sass',
+        'jshint',
+        'jasmine'
+    ])
+
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
 
