@@ -9,7 +9,7 @@
   },
   "main": "index.html",
   "scripts": {
-    "test": "grunt jasmine"
+    "test": "grunt test"
   },
   "author": "",
   "license": "ISC",
