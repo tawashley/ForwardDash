@@ -20,7 +20,7 @@ module.exports = function(grunt) {
         'sass',
         'jshint',
         'jasmine'
-    ])
+    ]);
 
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
