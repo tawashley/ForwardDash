@@ -1,5 +1,8 @@
 # ForwardDash
 
+[![Build Status](https://travis-ci.org/tawashley/ForwardDash.svg?branch=master)](https://travis-ci.org/tawashley/ForwardDash)
+[![devDependency Status](https://david-dm.org/tawashley/ForwardDash/dev-status.svg)](https://david-dm.org/tawashley/ForwardDash#info=devDependencies)
+
 > Widget powered, web based dashboard using HTML, CSS and JS
 
 ![ForwardDash with three widgets](docs/banner-img.png)
