@@ -46,7 +46,7 @@ index.html
 </head>
 
 <body>
-    <div id="_widget-container_" class="_widget-container_"></div>
+    <div id="ForwardDash" class="ForwardDash"></div>
 </body>
 
 <!-- common widget helpers -->
@@ -57,7 +57,7 @@ index.html
 
 <!-- widget manager responsible for all the heavy lifting -->
 <!-- id is required and should not be changed -->
-<script src="/dashboard/core/scripts/modules/WidgetManager.js" id="WidgetManagerScript"></script>
+<script src="/dashboard/core/scripts/modules/WidgetManager.js" id="ForwardDashScript"></script>
 
 <!-- script that brings it all together-->
 <script src="/dashboard/core/scripts/modules/ForwardDash.js"></script>
