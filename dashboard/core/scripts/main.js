@@ -215,8 +215,8 @@ function WidgetHelpers() {
 function WidgetManager() {
 
     var _dashboardRows = [];
-    var _container = document.getElementById('_widget-container_');
-    var _widgetManagerScript = document.getElementById('WidgetManagerScript');
+    var _container = document.getElementById('ForwardDash');
+    var _widgetManagerScript = document.getElementById('ForwardDashScript');
     var _setLoadingMessage = false;
 
     var helpers = WidgetHelpers();
@@ -239,7 +239,6 @@ function WidgetManager() {
             promises.push(_getWidgetHTML(row.widgets[i]));
         }
 
-        //when all promises have been resolved (or are no longer pending)
         Promise.all(promises).then(function(data) {
 
             html.push(data.join(''));
