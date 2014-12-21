@@ -217,7 +217,7 @@ function FooBarWidget(dashboard) {
 
     //dashboard.container -> the HTML Element for the widget container
     //dashboard.helpers -> All helper functions
-    //dashboard.Widgetconfig -> config object for this widget instance
+    //dashboard.widgetConfig -> config object for this widget instance
 
     var exports = {};
 
