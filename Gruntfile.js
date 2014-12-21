@@ -77,8 +77,7 @@ module.exports = function(grunt) {
         // Style tasks
         sass: {
             options: {
-                style: 'expanded',
-                sourcemap: true
+                style: 'expanded'
             },
             main: {
                 files: {

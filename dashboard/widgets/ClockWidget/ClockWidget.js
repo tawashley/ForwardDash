@@ -32,37 +32,15 @@ function ClockWidget(object) {
         var html = [],
             date = new Date();
 
-        html.push('<span class="date-section date-day">' + getDayString(date.getDay()) + '</span>');
+        html.push('<span class="date-section date-day">' + object.helpers.date.getDayString(date.getDay()) + '</span>');
         html.push('<span class="date-section date-date">' + date.getDate() + '</span>');
-        html.push('<span class="date-section date-month">' + getMonthString(date.getMonth()) + '</span>');
+        html.push('<span class="date-section date-month">' + object.helpers.date.getMonthString(date.getMonth()) + '</span>');
 
         if(_config.date.showYear){
             html.push('<span class="date-section date-year">' + date.getFullYear() + '</span>');
         }
 
         _dom.date.innerHTML = html.join('');
-
-        function getDayString(day_number){
-            var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-            var shortDays = ['Sun', 'Mon', 'Tues', 'Wed', 'Thurs', 'Fri', 'Sat'];
-
-            if(_config.date.shortDay){
-                return shortDays[day_number];
-            }
-
-            return days[day_number];
-        }
-
-        function getMonthString(month_number){
-            var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-            var shortMonths = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'June', 'July', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'];
-
-            if(_config.date.shortMonth){
-                return shortMonths[month_number];
-            }
-
-            return months[month_number];
-        }
 
         setTimeout(_render_date, 100000);
     }
