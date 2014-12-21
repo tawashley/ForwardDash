@@ -1,29 +1,29 @@
-function ClockWidget(object) {
+function ClockWidget(dashboard) {
 
-    if(object.helpers.isEmptyObject(object.config)){
-        object.config.date = {};
-        object.config.clock = {};
+    if(dashboard.helpers.isEmptyObject(dashboard.widgetConfig)){
+        dashboard.widgetConfig.date = {};
+        dashboard.widgetConfig.clock = {};
     }
 
     var _config = {
         clock: {
-            showSeconds: object.helpers.config.setValue(object.config.clock.showSeconds, true),
-            showTimeOfDayIcon: object.helpers.config.setValue(object.config.clock.showTimeOfDayIcon, true),
-            TwelvehourClock: object.helpers.config.setValue(object.config.clock.TwelvehourClock, false),
-            hexColour: object.helpers.config.setValue(object.config.clock.hexColour, false)
+            showSeconds: dashboard.helpers.config.setValue(dashboard.widgetConfig.clock.showSeconds, true),
+            showTimeOfDayIcon: dashboard.helpers.config.setValue(dashboard.widgetConfig.clock.showTimeOfDayIcon, true),
+            TwelvehourClock: dashboard.helpers.config.setValue(dashboard.widgetConfig.clock.TwelvehourClock, false),
+            hexColour: dashboard.helpers.config.setValue(dashboard.widgetConfig.clock.hexColour, false)
         },
         date : {
-            showDate: object.helpers.config.setValue(object.config.date.showDate, true),
-            showYear: object.helpers.config.setValue(object.config.date.showYear, true),
-            shortDay: object.helpers.config.setValue(object.config.date.shortDay, false),
-            shortMonth: object.helpers.config.setValue(object.config.date.shortMonth, false)
+            showDate: dashboard.helpers.config.setValue(dashboard.widgetConfig.date.showDate, true),
+            showYear: dashboard.helpers.config.setValue(dashboard.widgetConfig.date.showYear, true),
+            shortDay: dashboard.helpers.config.setValue(dashboard.widgetConfig.date.shortDay, false),
+            shortMonth: dashboard.helpers.config.setValue(dashboard.widgetConfig.date.shortMonth, false)
         }
     };
 
     var _dom = {
-        container: object.container,
-        clock: document.querySelector('#' + object.container.id + ' [data-widget-clock]'),
-        date: document.querySelector('#' + object.container.id + ' [data-widget-date]'),
+        container: dashboard.container,
+        clock: document.querySelector('#' + dashboard.container.id + ' [data-widget-clock]'),
+        date: document.querySelector('#' + dashboard.container.id + ' [data-widget-date]'),
     };
 
     var exports = {};
@@ -32,9 +32,9 @@ function ClockWidget(object) {
         var html = [],
             date = new Date();
 
-        html.push('<span class="date-section date-day">' + object.helpers.date.getDayString(date.getDay()) + '</span>');
+        html.push('<span class="date-section date-day">' + dashboard.helpers.date.getDayString(date.getDay()) + '</span>');
         html.push('<span class="date-section date-date">' + date.getDate() + '</span>');
-        html.push('<span class="date-section date-month">' + object.helpers.date.getMonthString(date.getMonth()) + '</span>');
+        html.push('<span class="date-section date-month">' + dashboard.helpers.date.getMonthString(date.getMonth()) + '</span>');
 
         if(_config.date.showYear){
             html.push('<span class="date-section date-year">' + date.getFullYear() + '</span>');

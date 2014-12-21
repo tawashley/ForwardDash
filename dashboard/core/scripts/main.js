@@ -289,7 +289,7 @@ function WidgetManager() {
         script.onload = function() {
             window[widget.getName()]({
                 container: widget.getElement(),
-                config: widget.getConfig(),
+                widgetConfig: widget.getConfig(),
                 helpers: helpers
             }).init();
         };

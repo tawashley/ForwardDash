@@ -29,7 +29,7 @@ s and behaviour and with the ability to make easily configurable. Don't need sec
 
 Once all desired widgets have been added to the dashboard directory, a simple script defining the User Interface and the Widgets to include is all that is needed.
 
-When defining individual widgets, global options can be set such as the size of the widget and the position can be as well as the config object for the widget to interact with.
+When defining individual widgets, global options can be set such as the size of the widget and the position, as well as the config object for the widget to interact with.
 
 ## Getting Started
 
@@ -145,7 +145,7 @@ Manager.defineRow({
 })
 ```
 
-The above code will render the 'ClockWidget' and 'CurrentWeatherWidget' as one row and the 'ForecastWidget' on the row below it. When adding a widget extra properties can be also be provided such as 'position' its 'size' (how much space it takes up of the row). A config object that is exposed to the widget script can also be defined here and allows for control over the display and behaviour of any given widget.
+The above code will render the 'ClockWidget' and 'CurrentWeatherWidget' on one row and the 'ForecastWidget' on the row below it. When adding a widget extra properties can be also be provided such as 'position' or 'size' (how much space it takes up of the row). A config object that is exposed to the widget script can also be defined here and allows for control over the display and behaviour of any given widget.
 
 Better yet, want to have multiple instances of the same widget on the dashboard, all with their own configs? Making this so is as easy as pie.
 
@@ -211,13 +211,13 @@ To allow for multiple instances of a widget it is advised to not use ids in the 
 FooBarWidget.js
 
 ```js
-function FooBarWidget(object) {
+function FooBarWidget(dashboard) {
 
-    //Object contents
+    //dashboard contents
 
-    //object.container -> the HTML Element for the widget container
-    //object.helpers -> All helper functions
-    //object.config -> config object for this widget instance
+    //dashboard.container -> the HTML Element for the widget container
+    //dashboard.helpers -> All helper functions
+    //dashboard.Widgetconfig -> config object for this widget instance
 
     var exports = {};
 
@@ -232,7 +232,7 @@ function FooBarWidget(object) {
 };
 ```
 
-When declaring a widget function - a config object and a helpers object can be passed into it as can be seen in the above example. These are passed to the function by the `WidgetManager` and represent the `config` object when defining a widget and helpers as an instance of `WidgetHelpers` [helper functions](#helper-functions)
+When declaring a widget function a config object and a helpers object is passed into it. These are passed to the function by the `WidgetManager` and represent the `config` object when defining a widget and helpers as an instance of `WidgetHelpers` [helper functions](#helper-functions)
 
 A widget stylesheet is optional, with only .html and .js being required
 

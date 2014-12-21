@@ -1,23 +1,23 @@
-function CurrentWeatherWidget(object) {
+function CurrentWeatherWidget(dashboard) {
 
     var _config = {
-        celsius: object.helpers.config.setValue(object.config.celsius, false),
-        formatString: ((object.config.celsius) ? '&#8451;' : '&#8457;'),
-        apiFormatString: ((object.config.celsius) ? 'metric' : 'imperial'),
-        showPlaceName: object.helpers.config.setValue(object.config.showPlaceName, true),
-        showMinMaxTemp: object.helpers.config.setValue(object.config.showMinMaxTemp, true),
-        showSunrise: object.helpers.config.setValue(object.config.showSunrise, false),
-        showSunset: object.helpers.config.setValue(object.config.showSunset, false),
+        celsius: dashboard.helpers.config.setValue(dashboard.widgetConfig.celsius, false),
+        formatString: ((dashboard.widgetConfig.celsius) ? '&#8451;' : '&#8457;'),
+        apiFormatString: ((dashboard.widgetConfig.celsius) ? 'metric' : 'imperial'),
+        showPlaceName: dashboard.helpers.config.setValue(dashboard.widgetConfig.showPlaceName, true),
+        showMinMaxTemp: dashboard.helpers.config.setValue(dashboard.widgetConfig.showMinMaxTemp, true),
+        showSunrise: dashboard.helpers.config.setValue(dashboard.widgetConfig.showSunrise, false),
+        showSunset: dashboard.helpers.config.setValue(dashboard.widgetConfig.showSunset, false),
     };
 
     var _position;
 
     var _dom = {
-        widgetContainer: document.querySelector('#' + object.container.id + ' [data-widget-weather]')
+        widgetContainer: document.querySelector('#' + dashboard.container.id + ' [data-widget-weather]')
     };
 
     function _getUserLocation() {
-        object.helpers.getLocation({
+        dashboard.helpers.getLocation({
             options : {
                 enableHighAccuracy : true,
                 timeout : 10000, //10 seconds
@@ -31,7 +31,7 @@ function CurrentWeatherWidget(object) {
     }
 
     function _weatherAPIRequest() {
-        object.helpers.asyncRequest({
+        dashboard.helpers.asyncRequest({
             method: 'GET',
             type: 'json',
             uri: 'http://api.openweathermap.org/data/2.5/weather?lat=' + _position.coords.latitude + '&lon=' + _position.coords.longitude + '&units=' + _config.apiFormatString + '&type=accurate'
