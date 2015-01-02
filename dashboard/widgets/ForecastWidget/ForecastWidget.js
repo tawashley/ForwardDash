@@ -79,15 +79,18 @@ function ForecastWidget(dashboard) {
     function _renderForecastIconHTML(type){
         var icon_class;
 
-        switch(type){
-            case 'Rain':
+        switch(type.toLowerCase()){
+            case 'rain':
                 icon_class = 'icon-rainy';
                 break;
-            case 'Clear':
+            case 'clear':
                 icon_class = 'icon-sunny';
                 break;
-            case 'Clouds':
+            case 'clouds':
                 icon_class = 'icon-cloudy-alt';
+                break;
+            case 'snow':
+                icon_class = 'icon-snowy';
                 break;
             default:
                 console.warn('Icon for weather type of"' + type + '" has not yet been implemented - defaulting to sunny');
