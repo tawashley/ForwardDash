@@ -338,3 +338,336 @@ function WidgetManager() {
 
     return exports;
 }
+
+function ClockWidget(dashboard) {
+
+    if(dashboard.helpers.isEmptyObject(dashboard.widgetConfig)){
+        dashboard.widgetConfig.date = {};
+        dashboard.widgetConfig.clock = {};
+    }
+
+    var _config = {
+        clock: {
+            showSeconds: dashboard.helpers.config.setValue(dashboard.widgetConfig.clock.showSeconds, true),
+            showTimeOfDayIcon: dashboard.helpers.config.setValue(dashboard.widgetConfig.clock.showTimeOfDayIcon, true),
+            TwelvehourClock: dashboard.helpers.config.setValue(dashboard.widgetConfig.clock.TwelvehourClock, false),
+            hexColour: dashboard.helpers.config.setValue(dashboard.widgetConfig.clock.hexColour, false)
+        },
+        date : {
+            showDate: dashboard.helpers.config.setValue(dashboard.widgetConfig.date.showDate, true),
+            showYear: dashboard.helpers.config.setValue(dashboard.widgetConfig.date.showYear, true),
+            shortDay: dashboard.helpers.config.setValue(dashboard.widgetConfig.date.shortDay, false),
+            shortMonth: dashboard.helpers.config.setValue(dashboard.widgetConfig.date.shortMonth, false)
+        }
+    };
+
+    var _dom = {
+        container: dashboard.container,
+        clock: document.querySelector('#' + dashboard.container.id + ' [data-widget-clock]'),
+        date: document.querySelector('#' + dashboard.container.id + ' [data-widget-date]'),
+    };
+
+    var exports = {};
+
+    function _render_date(){
+        var html = [],
+            date = new Date();
+
+        html.push('<span class="date-section date-day">' + dashboard.helpers.date.getDayString(date.getDay()) + '</span>');
+        html.push('<span class="date-section date-date">' + date.getDate() + '</span>');
+        html.push('<span class="date-section date-month">' + dashboard.helpers.date.getMonthString(date.getMonth()) + '</span>');
+
+        if(_config.date.showYear){
+            html.push('<span class="date-section date-year">' + date.getFullYear() + '</span>');
+        }
+
+        _dom.date.innerHTML = html.join('');
+
+        setTimeout(_render_date, 100000);
+    }
+
+    function _render_time(){
+        var html = [],
+            date = new Date(),
+            hour = (date.getHours() <= 9) ? '0' + date.getHours() : date.getHours(),
+            mins = (date.getMinutes() <= 9) ? '0' + date.getMinutes() : date.getMinutes(),
+            seconds = (date.getSeconds() <= 9) ? '0' + date.getSeconds() : date.getSeconds(),
+            hex = '#' + hour + mins + seconds,
+            pmAm = (hour > 12) ? 'pm' : 'am';
+
+        if(_config.clock.hexColour){
+            _dom.container.style.backgroundColor = hex;
+        }
+
+        if(_config.clock.showTimeOfDayIcon){
+            html.push('<div class="clock-section clock-icon"><i class="icon '  + getTimeOfDayIcon(hour) + '"></i></div>');
+        }
+
+        if(_config.clock.TwelvehourClock && hour > 12){
+            hour = (hour - 12);
+        }
+
+        html.push('<div class="clock-section clock-time">');
+        html.push('<span class="clock-hours">' + hour + ':</span>');
+        html.push('<span class="clock-mins">' + mins + '</span>');
+
+        if(_config.clock.showSeconds){
+            html.push('<span class="clock-seconds">:' + seconds + '</span>');
+        }
+
+        if(_config.TwelvehourClock){
+            html.push('<span class="clock-pm-am">' + pmAm + '</div>');
+        }
+
+        html.push('</div>');
+
+        _dom.clock.innerHTML = html.join('');
+
+        setTimeout(_render_time, 1000);
+
+        function getTimeOfDayIcon(hour) {
+            if(hour > 0 && hour < 8){
+                return 'icon-morning';
+            } else if(hour > 07 && hour < 13) {
+                return 'icon-sunny';
+            } else if (hour > 12 && hour < 19){
+                return 'icon-afternoon';
+            } else if (hour > 18 && hour <= 23) {
+                return 'icon-evening';
+            }
+        }
+    }
+
+    exports.init = function() {
+        _render_time();
+
+        if(_config.date.showDate){
+            _render_date();
+        }
+    };
+
+    return exports;
+}
+
+function CurrentWeatherWidget(dashboard) {
+
+    var _config = {
+        celsius: dashboard.helpers.config.setValue(dashboard.widgetConfig.celsius, false),
+        formatString: ((dashboard.widgetConfig.celsius) ? '&#8451;' : '&#8457;'),
+        apiFormatString: ((dashboard.widgetConfig.celsius) ? 'metric' : 'imperial'),
+        showPlaceName: dashboard.helpers.config.setValue(dashboard.widgetConfig.showPlaceName, true),
+        showMinMaxTemp: dashboard.helpers.config.setValue(dashboard.widgetConfig.showMinMaxTemp, true),
+        showSunrise: dashboard.helpers.config.setValue(dashboard.widgetConfig.showSunrise, false),
+        showSunset: dashboard.helpers.config.setValue(dashboard.widgetConfig.showSunset, false),
+    };
+
+    var _position;
+
+    var _dom = {
+        widgetContainer: document.querySelector('#' + dashboard.container.id + ' [data-widget-weather]')
+    };
+
+    function _getUserLocation() {
+        dashboard.helpers.getLocation({
+            options : {
+                enableHighAccuracy : true,
+                timeout : 10000, //10 seconds
+                maximumAge : 0 //spec default is 0
+            },
+            completeCallback: function(position) {
+                _position = position;
+                _weatherAPIRequest();
+            }
+        });
+    }
+
+    function _weatherAPIRequest() {
+        dashboard.helpers.asyncRequest({
+            method: 'GET',
+            type: 'json',
+            uri: 'http://api.openweathermap.org/data/2.5/weather?lat=' + _position.coords.latitude + '&lon=' + _position.coords.longitude + '&units=' + _config.apiFormatString + '&type=accurate'
+        }).then(function(response){
+            _renderWeatherUI(response);
+        })
+    }
+
+    function _renderWeatherUI(response){
+        //sunrise / sunset use epoch timestamp
+        //http://www.epochconverter.com
+        //epoch date -> JS date = new Date(epochDate * 1000)
+        //JS date -> epoch date = Date.getTime()/1000.0
+
+        var html = [];
+
+        if(_config.showPlaceName){
+            html.push('<div class="weather-location">' + response.name +', ' + response.sys.country +'</div>');
+        }
+
+        html.push('<div class="weather-data weather-data--primary">' + response.main.temp_max.toFixed(0) + formatStringHTML(_config.formatString) + '</div>');
+
+        if(_config.showMinMaxTemp){
+            html.push('<div class="weather-data weather-data--secondary">Max: ' + response.main.temp_max.toFixed(0) + formatStringHTML(_config.formatString) + '</div>');
+            html.push('<div class="weather-data weather-data--secondary">Min: ' + response.main.temp_min.toFixed(0) + formatStringHTML(_config.formatString) + '</div>');
+        }
+
+        if(_config.showSunrise){
+            html.push('<div class="weather-data weather-data--secondary">Sunrise: ' + timeToString(new Date(response.sys.sunrise * 1000))  + '</div>');
+        }
+
+        if(_config.showSunset){
+            html.push('<div class="weather-data weather-data--secondary">Sunset: ' + timeToString(new Date(response.sys.sunset * 1000)) + '</div>');
+        }
+
+        _dom.widgetContainer.innerHTML = html.join('');
+
+        function formatStringHTML(format) {
+            return '<sup class="weather-data temp-format">' + format + '</sup>';
+        }
+
+        function timeToString(date){
+            var hour = (date.getHours() <= 9) ? '0' + date.getHours() : date.getHours(),
+                mins = (date.getMinutes() <= 9) ? '0' + date.getMinutes() : date.getMinutes();
+
+            return hour + ':' + mins;
+        }
+    }
+
+    function _loadingUIMessage(){
+        _dom.widgetContainer.innerHTML = '<div class="loading-message">Getting today\'s weather</div>';
+    }
+
+    var exports = {};
+
+    exports.init = function() {
+        _loadingUIMessage();
+        _getUserLocation();
+    };
+
+    return exports;
+}
+
+function ForecastWidget(dashboard) {
+
+    var _html = [];
+
+    var _dom = {
+        widgetContainer: document.querySelector('#' + dashboard.container.id + ' [data-widget-forecast]')
+    };
+
+    var _config = {
+        celsius: dashboard.helpers.config.setValue(dashboard.widgetConfig.celsius, false),
+        formatString: ((dashboard.widgetConfig.celsius) ? '&#8451;' : '&#8457;'),
+        apiFormatString: ((dashboard.widgetConfig.celsius) ? 'metric' : 'imperial'),
+        showTemp: dashboard.helpers.config.setValue(dashboard.widgetConfig.showTemp, true),
+        showDayString: dashboard.helpers.config.setValue(dashboard.widgetConfig.showDayString, false),
+        shortDay: dashboard.helpers.config.setValue(dashboard.widgetConfig.shortDay, false),
+        showForecastDescription: dashboard.helpers.config.setValue(dashboard.widgetConfig.showForecastDescription, true),
+        hightlightTodaysForecast: dashboard.helpers.config.setValue(dashboard.widgetConfig.hightlightTodaysForecast, true),
+    };
+
+    var _position;
+
+    function _getUserLocation() {
+        dashboard.helpers.getLocation({
+            options : {
+                enableHighAccuracy : true,
+                timeout : 10000, //10 seconds
+                maximumAge : 0 //spec default is 0
+            },
+            completeCallback: function(position) {
+                _position = position;
+                _getForecast();
+            }
+        });
+    }
+
+    function _renderWeatherUI(response){
+        response.list.forEach(function(day_forecast, index){
+            _renderSingleDayForecast(day_forecast, index);
+        });
+
+        _dom.widgetContainer.innerHTML = _html.join('');
+    }
+
+    function _renderSingleDayForecast(day_forecast, day_number){
+        //epoch date
+        var forecastDate = new Date(day_forecast.dt * 1000);
+
+        _html.push('<div class="day-forecast ' + ((_config.hightlightTodaysForecast) ? _checkAddTodayClass(forecastDate.getDay()) : '') + '">');
+
+        _html.push('<div class="forecast-details">');
+        _html.push('<div class="forecast-day">' +  ((_config.showDayString) ? dashboard.helpers.date.getDayString(forecastDate.getDay(), _config.shortDay) + ' ' : '') + + forecastDate.getDate() + ' ' + dashboard.helpers.date.getMonthString(forecastDate.getMonth(), true) + '</div>');
+        _html.push('</div>');
+
+        _html.push('<div class="forecast-icon">' + _renderForecastIconHTML(day_forecast.weather[0].main) + '</div>');
+
+        _html.push('<div class="forecast-details">');
+
+        if(_config.showForecastDescription){
+            _html.push('<div class="forecast-details--description">' + day_forecast.weather[0].main + '</div>');
+        }
+
+        if(_config.showTemp){
+            _html.push('<div class="forecast-details--temp">' + Math.round(day_forecast.temp.day) + _renderFormatStringHTML() + '</div>');
+        }
+
+        _html.push('</div>');
+
+        _html.push('</div>');
+    }
+
+    function _checkAddTodayClass(day){
+        return (day === new Date().getDay()) ? 'day-forecast--today' : '';
+    }
+
+    function _renderFormatStringHTML(){
+        return '<sup class="forecast-details--temp-format">' + _config.formatString + '</sup>';
+    }
+
+    function _renderForecastIconHTML(type){
+        var icon_class;
+
+        switch(type.toLowerCase()){
+            case 'rain':
+                icon_class = 'icon-rainy';
+                break;
+            case 'clear':
+                icon_class = 'icon-sunny';
+                break;
+            case 'clouds':
+                icon_class = 'icon-cloudy-alt';
+                break;
+            case 'snow':
+                icon_class = 'icon-snowy';
+                break;
+            default:
+                console.warn('Icon for weather type of"' + type + '" has not yet been implemented - defaulting to sunny');
+                icon_class = 'icon-sunny';
+        }
+
+        return '<i class="icon ' + icon_class + '"></i>';
+    }
+
+    function _getForecast(){
+        dashboard.helpers.asyncRequest({
+            method: 'GET',
+            type: 'json',
+            uri: 'http://api.openweathermap.org/data/2.5/forecast/daily?lat=' + _position.coords.latitude + '&lon=' + _position.coords.longitude + '&units=' + _config.apiFormatString + '&type=accurate&cnt=7' //cnt 7 - seven day forecast
+        }).then(function(response){
+            _renderWeatherUI(response);
+        })
+    }
+
+    function _loadingUIMessage(){
+        _dom.widgetContainer.innerHTML = '<div class="loading-message">Getting the weather forecast</div>';
+    }
+
+    var exports = {};
+
+    exports.init = function() {
+        _loadingUIMessage();
+        _getUserLocation();
+    };
+
+    return exports;
+}

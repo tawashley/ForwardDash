@@ -27,7 +27,12 @@ module.exports = function(grunt) {
 
         // Configuration
         config: {
-            dashboard: 'dashboard/core',
+            dashboard: {
+                root: 'dashboard',
+                core: '<%= config.dashboard.root %>/core',
+                widgets: '<%= config.dashboard.root %>/widgets'
+            },
+            // dashboard: 'dashboard/core',
             docs: 'docs',
             css: {
                 dir: 'styles',
@@ -59,7 +64,7 @@ module.exports = function(grunt) {
                 usePackage: true
             },
             main: [
-                '<%= config.dashboard %>/**/*.{html,js,scss}',
+                '<%= config.dashboard.core %>/**/*.{html,js,scss}',
                 '<%= config.docs %>/**/*.{html,js,scss}',
                 'Gruntfile.js'
             ]
@@ -67,7 +72,7 @@ module.exports = function(grunt) {
 
         jasmine: {
             forwardDash: {
-                src: '<%= config.dashboard %>/<%= config.js.dir %>/<%= config.js.concatDir %>/*.js',
+                src: '<%= config.dashboard.core %>/<%= config.js.dir %>/<%= config.js.concatDir %>/*.js',
                 options: {
                     specs: '<%= config.js.testingDir %>/*.js'
                 }
@@ -81,7 +86,7 @@ module.exports = function(grunt) {
             },
             main: {
                 files: {
-                    '<%= config.dashboard %>/<%= config.css.dir %>/<%= config.css.outputFileName %>.css': '<%= config.dashboard %>/<%= config.css.dir %>/<%= config.sass.dir %>/<%= config.sass.inputFileName %>.scss'
+                    '<%= config.dashboard.core %>/<%= config.css.dir %>/<%= config.css.outputFileName %>.css': '<%= config.dashboard.core %>/<%= config.css.dir %>/<%= config.sass.dir %>/<%= config.sass.inputFileName %>.scss'
                 }
             }
         },
@@ -95,17 +100,17 @@ module.exports = function(grunt) {
             main: {
                 expand: true,
                 flatten: true,
-                src: '<%= config.dashboard %>/<%= config.css.dir %>/<%= config.css.outputFileName %>.css',
-                dest: '<%= config.dashboard %>/<%= config.css.dir %>'
+                src: '<%= config.dashboard.core %>/<%= config.css.dir %>/<%= config.css.outputFileName %>.css',
+                dest: '<%= config.dashboard.core %>/<%= config.css.dir %>'
             }
         },
 
         cssmin: {
             main: {
                 expand: true,
-                cwd: '<%= config.dashboard %>/<%= config.css.dir %>',
+                cwd: '<%= config.dashboard.core %>/<%= config.css.dir %>',
                 src: '<%= config.css.outputFileName %>.css',
-                dest: '<%= config.dashboard %>/<%= config.css.dir %>',
+                dest: '<%= config.dashboard.core %>/<%= config.css.dir %>',
                 ext: '.min.css'
             }
         },
@@ -117,16 +122,18 @@ module.exports = function(grunt) {
                 jshintrc: true,
                 reporter: require('jshint-stylish')
             },
-            main: '<%= config.dashboard %>/<%= config.js.dir %>/<%= config.js.concatDir %>/*.js',
+            main: '<%= config.dashboard.core %>/<%= config.js.dir %>/<%= config.js.concatDir %>/*.js',
             gruntfile: 'Gruntfile.js'
         },
 
         concat: {
             main: {
                 src: [
-                    '<%= config.dashboard %>/<%= config.js.dir %>/<%= config.js.concatDir %>/*.js'
+                    '<%= config.dashboard.core %>/<%= config.js.dir %>/<%= config.js.concatDir %>/*.js',
+                    '<%= config.dashboard.widgets %>/**/*.js'
+                    // 'dashboard.core/widgets/**/*.js'
                 ],
-                dest: '<%= config.dashboard %>/<%= config.js.dir %>/<%= config.js.outputFileName %>.js'
+                dest: '<%= config.dashboard.core %>/<%= config.js.dir %>/<%= config.js.outputFileName %>.js'
             }
         },
 
@@ -144,8 +151,8 @@ module.exports = function(grunt) {
                 unused: true
             },
             main: {
-                src: '<%= config.dashboard %>/<%= config.js.dir %>/<%= config.js.outputFileName %>.js',
-                dest: '<%= config.dashboard %>/<%= config.js.dir %>/<%= config.js.outputFileName %>.min.js'
+                src: '<%= config.dashboard.core %>/<%= config.js.dir %>/<%= config.js.outputFileName %>.js',
+                dest: '<%= config.dashboard.core %>/<%= config.js.dir %>/<%= config.js.outputFileName %>.min.js'
             }
         },
 
@@ -153,7 +160,7 @@ module.exports = function(grunt) {
             dev: {
                 bsFiles: {
                     src: [
-                        'dashboard/core/scripts/modules/*.js',
+                        '<%= config.dashboard.core %>/scripts/modules/*.js',
                         'index.html'
                     ]
                 },
@@ -177,7 +184,7 @@ module.exports = function(grunt) {
             },
             sass: {
                 files: [
-                    '<%= config.dashboard %>/<%= config.css.dir %>/<%= config.sass.dir %>/**/*.scss'
+                    '<%= config.dashboard.core %>/<%= config.css.dir %>/<%= config.sass.dir %>/**/*.scss'
                 ],
                 tasks: [
                     'sass:main',
@@ -187,7 +194,7 @@ module.exports = function(grunt) {
             },
             js: {
                 files: [
-                    '<%= config.dashboard %>/<%= config.js.dir %>/<%= config.js.concatDir %>/**/*.js'
+                    '<%= config.dashboard.core %>/<%= config.js.dir %>/<%= config.js.concatDir %>/**/*.js'
                 ],
                 tasks: [
                     'concat:main',
