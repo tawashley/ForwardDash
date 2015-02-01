@@ -196,7 +196,7 @@ module.exports = function(grunt) {
             },
             js: {
                 files: [
-                    '<%= config.dashboard.core %>/<%= config.js.dir %>/<%= config.js.concatDir %>/**/*.js'
+                    '<%= config.dashboard.core %>/<%= config.js.dir %>/<%= config.js.concatDir %>/*.js'
                 ],
                 tasks: [
                     'concat:main',
