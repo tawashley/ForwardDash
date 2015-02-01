@@ -2,7 +2,13 @@
     float: left;
     margin-right: 1.5em;
     padding: .4em;
-    width: 12.5%;
+    width: 11.6%;
+}
+
+@media screen and (min-width: 82em){
+    .day-forecast{
+        width: 12.5%;
+    }
 }
 
 .day-forecast:last-child{
