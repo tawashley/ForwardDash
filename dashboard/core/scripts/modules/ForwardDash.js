@@ -12,6 +12,7 @@ document.addEventListener('DOMContentLoaded', function(){
                 config : {
                     clock: {
                         showSeconds: false,
+                        flashHourMinuteSeperator: true
                         // showTimeOfDayIcon: false,
                         // TwelvehourClock: true
                     },

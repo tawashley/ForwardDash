@@ -8,6 +8,7 @@ function ClockWidget(dashboard) {
     var _config = {
         clock: {
             showSeconds: dashboard.helpers.config.setValue(dashboard.widgetConfig.clock.showSeconds, true),
+            flashHourMinuteSeperator: dashboard.helpers.config.setValue(dashboard.widgetConfig.clock.flashHourMinuteSeperator, false),
             showTimeOfDayIcon: dashboard.helpers.config.setValue(dashboard.widgetConfig.clock.showTimeOfDayIcon, true),
             TwelvehourClock: dashboard.helpers.config.setValue(dashboard.widgetConfig.clock.TwelvehourClock, false),
             hexColour: dashboard.helpers.config.setValue(dashboard.widgetConfig.clock.hexColour, false)
@@ -25,6 +26,8 @@ function ClockWidget(dashboard) {
         clock: document.querySelector('#' + dashboard.container.id + ' [data-widget-clock]'),
         date: document.querySelector('#' + dashboard.container.id + ' [data-widget-date]'),
     };
+
+    var _tickTock = 1;
 
     var exports = {};
 
@@ -67,11 +70,11 @@ function ClockWidget(dashboard) {
         }
 
         html.push('<div class="clock-section clock-time">');
-        html.push('<span class="clock-hours">' + hour + ':</span>');
+        html.push('<span class="clock-hours">' + hour + getClockSeperator() + '</span>');
         html.push('<span class="clock-mins">' + mins + '</span>');
 
         if(_config.clock.showSeconds){
-            html.push('<span class="clock-seconds">:' + seconds + '</span>');
+            html.push('<span class="clock-seconds">&#58;' + seconds + '</span>');
         }
 
         if(_config.TwelvehourClock){
@@ -94,6 +97,25 @@ function ClockWidget(dashboard) {
             } else if (hour > 18 && hour <= 23) {
                 return 'icon-evening';
             }
+        }
+
+        function getClockSeperator() {
+
+            var html = [];
+
+            html.push('<span class="clock-seperator ' + ((_config.clock.flashHourMinuteSeperator) ? 'clock-seperator--flashing' : '') + '">');
+
+            if (!_config.clock.flashHourMinuteSeperator || _tickTock){
+                html.push('&#58;'); //colon
+            } else {
+                html.push('&nbsp;') //space
+            }
+
+            html.push('</span>');
+
+            _tickTock = !_tickTock;
+
+            return html.join('');
         }
     }
 

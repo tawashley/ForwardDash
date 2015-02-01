@@ -23,6 +23,16 @@
     margin-right: .5em;
 }
 
+.clock-seperator {
+    width: .3em;
+    display: inline-block;
+    text-align: center;
+}
+
+.clock-seperator--flashing {
+    color: #424242;
+}
+
 .clock-seconds{
     color: #AAA;
     opacity: .65;
