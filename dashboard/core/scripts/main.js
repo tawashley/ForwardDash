@@ -427,7 +427,7 @@ function ClockWidget(dashboard) {
 
         _dom.clock.innerHTML = html.join('');
 
-        //setTimeout(_render_time, 1000);
+        setTimeout(_render_time, 1000);
 
         function getTimeOfDayIcon(hour) {
             if(hour > 0 && hour < 8){
@@ -445,7 +445,7 @@ function ClockWidget(dashboard) {
 
             var html = [];
 
-            html.push('<span class="clock-seperator' + ((_config.clock.flashHourMinuteSeperator) ? 'clock-seperator--flashing' : '') + '">');
+            html.push('<span class="clock-seperator ' + ((_config.clock.flashHourMinuteSeperator) ? 'clock-seperator--flashing' : '') + '">');
 
             if (!_config.clock.flashHourMinuteSeperator || _tickTock){
                 html.push('&#58;'); //colon

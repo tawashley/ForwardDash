@@ -13,7 +13,8 @@ Manager.defineRow({
             name: 'ClockWidget',
             config : {
                 clock: {
-                    //showSeconds: false,
+                    // showSeconds: false,
+                    // flashHourMinuteSeperator: true,
                     // showTimeOfDayIcon: false,
                     // TwelvehourClock: true
                 },
@@ -36,6 +37,11 @@ Manager.defineRow({
 Default: `true`
 
 Show the seconds on the clock.
+
+#### flashHourMinuteSeperator
+Default: `false`
+
+Setting this will flash (either show or hide) the hour minute seperator each second
 
 #### showTimeOfDayIcon
 Default: `true`
