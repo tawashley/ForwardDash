@@ -161,6 +161,7 @@ module.exports = function(grunt) {
                 bsFiles: {
                     src: [
                         '<%= config.dashboard.core %>/scripts/modules/*.js',
+                        '<%= config.dashboard.widgets %>/**/*.css',
                         'index.html'
                     ]
                 },
