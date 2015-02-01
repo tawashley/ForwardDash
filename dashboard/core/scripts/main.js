@@ -218,6 +218,7 @@ function WidgetManager() {
     var _dashboardRows = [];
     var _container = document.getElementById('ForwardDash');
     var _widgetManagerScript = document.getElementById('ForwardDashScript');
+    var _loadingMessageElement;
     var _setLoadingMessage = false;
 
     var helpers = WidgetHelpers();
@@ -249,7 +250,8 @@ function WidgetManager() {
             _setupWidgets(row);
 
             if (_setLoadingMessage) {
-                document.getElementById('dashboard-loading-message').parentElement.removeChild(document.getElementById('dashboard-loading-message'));
+                _loadingMessageElement.parentElement.removeChild(_loadingMessageElement);
+                _setLoadingMessage = false;
             }
 
             _container.classList.add('show');
@@ -333,6 +335,7 @@ function WidgetManager() {
 
         html.push('<div class="loading-message" id="dashboard-loading-message">' + message + '</div>');
         document.getElementsByTagName('body')[0].insertAdjacentHTML('afterbegin', html.join(''));
+        _loadingMessageElement = document.getElementById('dashboard-loading-message');
 
         _setLoadingMessage = true;
     };
