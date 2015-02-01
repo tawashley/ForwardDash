@@ -2,6 +2,7 @@
     float: left;
     margin-right: 1.5em;
     padding: .4em;
+    width: 12.75%;
 }
 
 .day-forecast:last-child{
@@ -31,7 +32,6 @@
 }
 
 .forecast-details--description{
-    /*color: #AAA;*/
     opacity: .4;
 }
 
