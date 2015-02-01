@@ -32,7 +32,7 @@ document.addEventListener('DOMContentLoaded', function(){
                     // celsius: false (default)
                     showMinMaxTemp: false,
                     // showSunrise: false,
-                    // showSunset: true
+                    showSunset: true
                 }
             })
         ]
